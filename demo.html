@@ -18,8 +18,8 @@ description: Fifteen minutes is enough. We can walk you through a live screen ov
         <p class="lede">Fifteen minutes is enough. We can walk you through a live screen over a call, or bring it into the venue and plug it into the TV you are already looking at. Either way you will see your own logo on it, your specials on it, and your room's name in the corner - not a generic demo about somebody else's pub.</p>
 
         <div class="btn-row">
-          <a class="btn btn--primary" href="mailto:{{ site.contact.email }}">Email us</a>
-          <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20way%20to%20reach%20you%3A%20%0D%0A%0D%0A">Email us about your venue</a>
+          <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Talk to us</a>
+          <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
         </div>
 
         <p class="dm-fine">No obligation, no slide deck, and nobody will chase you for a fortnight afterwards.</p>
@@ -80,6 +80,19 @@ description: Fifteen minutes is enough. We can walk you through a live screen ov
         <p>Leave it going for a bit and watch what happens on a normal Thursday. People work the QR code out on their own - that is what the prompts are there for.</p>
       </div>
     </div>
+
+    <div class="shots shots--lead" style="margin-top:clamp(26px,3.2vw,40px)">
+      <figure class="shot">
+        <div class="shot__f">{% include pic.html src="screen-wide-pub-interior-night" ratio="16/9" alt="The main bar room of a large pub on a Friday night, the display on the wall the brightest thing in the room above the crowd." %}</div>
+        <figcaption><span class="anno anno--dim">Friday night, in the main bar</span></figcaption>
+      </figure>
+      <figure class="shot">
+        <div class="shot__f">{% include pic.html src="screen-portrait-entry-vestibule" ratio="3/4" alt="A woman stopping just inside the front doors of an older pub to look up at a screen mounted on the brick wall of the entry." %}</div>
+        <figcaption><span class="anno anno--dim">And the one by the door</span></figcaption>
+      </figure>
+    </div>
+
+    <p class="note">Illustrative - the photos on this site are AI generated, not photographs of real customers.</p>
   </div>
 </section>
 
@@ -92,22 +105,17 @@ description: Fifteen minutes is enough. We can walk you through a live screen ov
         <div>
           <p class="eyebrow">Talk to us</p>
           <h2 id="dm-contact-h" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">Tell us about your room.</h2>
-          <p style="color:var(--smoke);max-width:34em">The button below opens an email with the four things we need already listed in it. Fill in what you know, leave the rest, and send it. A person reads it, not a queue.</p>
+          <p style="color:var(--smoke);max-width:34em">Fill in what you know and leave the rest. A person at eJukebox reads it, not a queue, and we normally come back the same day.</p>
 
           <div class="dm-lines">
-            <p class="dm-line">
-              <span class="anno anno--dim dm-line__k">Email</span>
-              <a class="dm-line__v" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20way%20to%20reach%20you%3A%20%0D%0A%0D%0A">{{ site.contact.email }}</a>
-            </p>
             <p class="dm-line">
               <span class="anno anno--dim dm-line__k">Who you get</span>
               <span class="dm-line__v">{{ site.contact.name }}, {{ site.contact.company }}</span>
             </p>
           </div>
 
-          <div class="btn-row" style="margin-top:26px">
-            <a class="btn btn--primary" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20way%20to%20reach%20you%3A%20%0D%0A%0D%0A">Email us about your venue</a>
-            <a class="btn btn--ghost" href="{{ site.family.parent }}">See the full product</a>
+          <div style="margin-top:26px">
+            {% include contactform.html site="ejukebox.tv" cta="Send it through" %}
           </div>
 
           <p class="dm-fine">Every enquiry goes straight to a person at eJukebox, not a ticket queue. We normally come back the same day.</p>
@@ -297,11 +305,11 @@ description: Fifteen minutes is enough. We can walk you through a live screen ov
       <h2>Four lines about the room and we will tell you what yours would look like.</h2>
       <p>The venue, the town, how many screens and what is on them now. That is enough to come back to you with something real rather than a brochure.</p>
       <div class="btn-row">
-        <a class="btn btn--primary" href="mailto:{{ site.contact.email }}">Email us</a>
-        <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20way%20to%20reach%20you%3A%20%0D%0A%0D%0A">Email us about your venue</a>
+        <a class="btn btn--primary" href="{{ '/contact/' | relative_url }}">Talk to us</a>
+        <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
         <a class="btn btn--ghost" href="{{ '/functions/' | relative_url }}">See a function night</a>
       </div>
-      <p class="anno anno--dim closer__fine">{{ site.contact.email }}</p>
+      <p class="anno anno--dim closer__fine">A person reads every enquiry - normally back the same day.</p>
     </div>
   </div>
 </section>

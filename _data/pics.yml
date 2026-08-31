@@ -1,0 +1,64 @@
+# Intrinsic pixel size of every photo in /assets/img, so _includes/pic.html
+# can put width and height on the <img> and nothing shifts as it loads.
+# Generated from the files themselves - regenerate if images are replaced.
+# Every one of these images is AI generated. See assets/img/MANIFEST.json
+# for what each one shows.
+
+functions-aunt-wiping-eyes: { w: 900, h: 900 }
+functions-bride-shoes-off-dancing: { w: 514, h: 900 }
+functions-cake-carried-out-candlelight: { w: 514, h: 900 }
+functions-country-pub-reception-wide: { w: 900, h: 514 }
+functions-couple-laughing-engagement: { w: 514, h: 900 }
+functions-crowd-looking-up-at-screen: { w: 514, h: 900 }
+functions-early-dancefloor-two-people: { w: 514, h: 900 }
+functions-end-of-night-stacking-chairs: { w: 900, h: 514 }
+functions-grandmother-shown-phone: { w: 900, h: 900 }
+functions-groom-and-father-at-bar: { w: 900, h: 900 }
+functions-guest-phone-over-shoulder: { w: 514, h: 900 }
+functions-long-table-dinner-remains: { w: 900, h: 514 }
+functions-manager-on-tablet-behind-bar: { w: 900, h: 900 }
+functions-room-set-up-before-guests: { w: 900, h: 514 }
+functions-slideshow-wall-guests-pointing: { w: 900, h: 514 }
+functions-speech-room-watching: { w: 900, h: 514 }
+functions-thirtieth-mates-picking-song: { w: 514, h: 900 }
+functions-two-mates-arms-round-singing: { w: 900, h: 900 }
+functions-work-christmas-bistro-wide: { w: 900, h: 514 }
+moderation-hold-chaotic-motion-blur: { w: 320, h: 560 }
+moderation-hold-dark-unusable-blur: { w: 320, h: 560 }
+moderation-hold-extreme-closeup-silly-face: { w: 560, h: 560 }
+moderation-pass-birthday-table-night: { w: 560, h: 560 }
+moderation-pass-bistro-couple-winter: { w: 320, h: 560 }
+moderation-pass-bowls-club-women: { w: 320, h: 560 }
+moderation-pass-front-bar-mates: { w: 560, h: 560 }
+screen-bartender-glance-close: { w: 1344, h: 768 }
+screen-beer-garden-dusk: { w: 1344, h: 768 }
+screen-bistro-dinner-service: { w: 1344, h: 768 }
+screen-bowls-club-afternoon: { w: 1344, h: 768 }
+screen-empty-room-before-opening: { w: 1344, h: 768 }
+screen-front-bar-tiled-afternoon: { w: 1344, h: 768 }
+screen-portrait-corridor-glow: { w: 768, h: 1344 }
+screen-portrait-entry-vestibule: { w: 768, h: 1344 }
+screen-wide-pub-interior-night: { w: 1344, h: 768 }
+wall-beer-garden-golden-hour: { w: 434, h: 760 }
+wall-birthday-cake-sixtieth: { w: 760, h: 760 }
+wall-bowls-club-carpet-group: { w: 434, h: 760 }
+wall-ceiling-fan-group-selfie: { w: 760, h: 760 }
+wall-christmas-party-tinsel-laugh: { w: 434, h: 760 }
+wall-couple-at-bar: { w: 434, h: 760 }
+wall-engagement-toast-tinsel: { w: 760, h: 760 }
+wall-family-bistro-lunch: { w: 434, h: 760 }
+wall-footy-jersey-mates: { w: 434, h: 760 }
+wall-front-bar-high-table-flash: { w: 434, h: 760 }
+wall-grand-final-front-bar: { w: 434, h: 760 }
+wall-knockoff-workmates-hivis: { w: 434, h: 760 }
+wall-late-night-corner-booth: { w: 434, h: 760 }
+wall-long-table-share-plates: { w: 760, h: 760 }
+wall-older-regulars-corner: { w: 760, h: 760 }
+wall-pool-table-mates: { w: 434, h: 760 }
+wall-schooner-toast-overhead: { w: 760, h: 760 }
+wall-showing-phone-to-table: { w: 434, h: 760 }
+wall-tab-screens-race-win: { w: 434, h: 760 }
+wall-thumb-over-lens-laugh: { w: 760, h: 760 }
+wall-trivia-team-concentrating: { w: 434, h: 760 }
+wall-two-women-selfie-bistro: { w: 434, h: 760 }
+wall-winter-booth-raincoats: { w: 434, h: 760 }

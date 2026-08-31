@@ -13,7 +13,13 @@ _includes/nav.html         top bar - brand, nav, live clock, ON AIR dot
 _includes/footer.html      site footer
 _includes/cta.html         the closer block every page ends on
 _includes/video-stage.html ROLL THE TAPE - the video slot
-_includes/pic.html         a "photo", drawn in CSS and SVG (swap for real images)
+_includes/pic.html         one photo - src="<file stem>", ratio, class, alt, eager, above, sizes, thumb
+_data/pics.yml             pixel size of every image, so each <img> carries width/height
+assets/img/                the images, .webp, ALL AI GENERATED - see MANIFEST.json for what each shows
+assets/img/640/            640px copy of anything wider, served to phones through srcset
+assets/img/thumb/          96px copy, for the 34px and 44px moderation-gate chips
+assets/img/MANIFEST.json   what every image shows. Working material - excluded from the build
+_tools/make-derivatives.py rebuilds assets/img/640 and assets/img/thumb - run after adding a photo
 _includes/css-fx.html      page-scoped CSS for /functions/  (front matter: page_css)
 _includes/css-dm.html      page-scoped CSS for /demo/       (front matter: page_css)
 index.html                 the home page - the screen product
@@ -92,7 +98,14 @@ revisiting once `info@ejukebox.tv` is live and a form endpoint has been chosen.
 - Nothing unbuilt is claimed as shipping. Roadmap items carry the diamond marker and an
   adjacent "not shipping yet" line, and render cooler and lower contrast than live ones.
 - No pricing and no hardware cost anywhere on the site. The call to action is "talk to us".
-- The photos are illustrations, not venue photography, and are labelled once per page.
+- **The images are AI generated.** The footer legal row carries a permanent site-wide line
+  reading "Images illustrative - AI generated, not photographs of real customers", so the
+  disclosure reaches every page including 404. On top of that, every page that shows a photo
+  carries a small mono line saying "Illustrative - the photos on this site are AI generated,
+  not photographs of real customers"; photos used at size carry a short "Illustrative - AI
+  generated" caption; and any band that could read as real personal photographs - the
+  arrivals slideshow, the crop trio, the moderation gate - carries its own local label.
+  Never drop that disclosure, and never describe them as real customers or a real venue.
 - No claim that the product is running in real venues, and no claim that footage was shot
   in one, until that is true.
 - Colour is never the only carrier of meaning - the roadmap tags carry a visually hidden

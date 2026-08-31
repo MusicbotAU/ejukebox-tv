@@ -23,7 +23,7 @@ description: A small player into any spare HDMI port and the screen your venue a
 
         <div class="btn-row">
           <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-          <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+          <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
           <a class="btn btn--ghost" href="{{ '/functions/' | relative_url }}">Win the function booking</a>
         </div>
 
@@ -39,7 +39,7 @@ description: A small player into any spare HDMI port and the screen your venue a
 
               <div class="slide slide--photo is-on" data-slide="photo">
                 <div class="frame-photo">
-                  {% include pic.html v="a" ratio="4/5" %}
+                  {% include pic.html src="wall-front-bar-high-table-flash" ratio="4/5" eager=true %}
                   <div class="frame-photo__cap">Sat 9:41 pm - a guest</div>
                 </div>
                 <span class="slide__onair"><i></i>On air</span>
@@ -48,7 +48,7 @@ description: A small player into any spare HDMI port and the screen your venue a
 
               <div class="slide slide--photo" data-slide="fresh">
                 <div class="frame-photo">
-                  {% include pic.html v="b" ratio="4/5" %}
+                  {% include pic.html src="wall-christmas-party-tinsel-laugh" ratio="4/5" %}
                   <div class="frame-photo__cap">Sat 9:44 pm - a guest</div>
                 </div>
                 <span class="slide__badge">New - up in 3s</span>
@@ -156,19 +156,19 @@ description: A small player into any spare HDMI port and the screen your venue a
         <p class="strip__d">AI screens it for nudity, offensive gestures and anything tasteless <strong>before</strong> it can reach the wall. Anything questionable is held back, not displayed. What passes is branded with your logo and kept in both portrait and landscape.</p>
         <div class="gate" data-gate role="img" aria-label="An illustration of the check: an incoming photo is scanned, then either approved onto the wall or held back and never shown." style="margin-top:16px">
           <div class="gate__wall" aria-hidden="true">
-            {% include pic.html v="a" %}
-            {% include pic.html v="c" %}
-            {% include pic.html v="d" %}
-            {% include pic.html v="b" %}
+            {% include pic.html src="wall-older-regulars-corner" thumb=true %}
+            {% include pic.html src="wall-thumb-over-lens-laugh" thumb=true %}
+            {% include pic.html src="wall-pool-table-mates" thumb=true %}
+            {% include pic.html src="wall-tab-screens-race-win" thumb=true %}
           </div>
           <div class="gate__lane">
             <div class="gate__tile gate__tile--ok">
-              {% include pic.html v="c" %}
+              {% include pic.html src="moderation-pass-bowls-club-women" %}
               <span class="gate__scan"></span>
               <span class="gate__badge gate__badge--ok">Approved</span>
             </div>
             <div class="gate__tile gate__tile--held">
-              {% include pic.html v="d" %}
+              {% include pic.html src="moderation-hold-chaotic-motion-blur" %}
               <span class="gate__scan"></span>
               <span class="gate__badge gate__badge--held">Held</span>
             </div>
@@ -190,7 +190,7 @@ description: A small player into any spare HDMI port and the screen your venue a
       </div>
     </div>
 
-    <p class="note">Illustration - the photos on this site are drawn, not venue photography.</p>
+    <p class="note">Illustrative - the photos on this site are AI generated, not photographs of real customers.</p>
   </div>
 </section>
 
@@ -210,12 +210,12 @@ description: A small player into any spare HDMI port and the screen your venue a
         </div>
         <div>
           <div class="wall wall--3" data-wall aria-hidden="true">
-            <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">9:41 pm</span></div>
-            <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">9:41 pm</span></div>
-            <div class="wall__tile is-fresh">{% include pic.html v="c" %}<span class="wall__fresh">Fresh</span><span class="wall__stamp">9:44 pm</span></div>
-            <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">9:46 pm</span></div>
-            <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:48 pm</span></div>
-            <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">9:52 pm</span></div>
+            <div class="wall__tile">{% include pic.html src="wall-engagement-toast-tinsel" %}<span class="wall__stamp">9:41 pm</span></div>
+            <div class="wall__tile">{% include pic.html src="wall-two-women-selfie-bistro" %}<span class="wall__stamp">9:41 pm</span></div>
+            <div class="wall__tile is-fresh">{% include pic.html src="wall-long-table-share-plates" %}<span class="wall__fresh">Fresh</span><span class="wall__stamp">9:44 pm</span></div>
+            <div class="wall__tile">{% include pic.html src="wall-footy-jersey-mates" %}<span class="wall__stamp">9:46 pm</span></div>
+            <div class="wall__tile">{% include pic.html src="wall-late-night-corner-booth" %}<span class="wall__stamp">9:48 pm</span></div>
+            <div class="wall__tile">{% include pic.html src="wall-knockoff-workmates-hivis" %}<span class="wall__stamp">9:52 pm</span></div>
           </div>
         </div>
       </div>
@@ -351,7 +351,11 @@ description: A small player into any spare HDMI port and the screen your venue a
         <div class="sched__what">
           <h3>Portrait and landscape, both kept</h3>
           <p>A portrait screen by the bar and a widescreen TV on the wall each get the version that fills them properly. No stretched faces, no photo the size of a postage stamp between two black bars.</p>
-          <p>And it does not have to fight the footy. It goes on the spare screen - the one in the corner nobody has switched on since the last grand final - so nothing comes off the game.</p>
+          <p style="margin-top:12px">And it does not have to fight the footy. It goes on the spare screen - the one in the corner nobody has switched on since the last grand final - so nothing comes off the game.</p>
+          <figure class="shot" style="margin-top:20px">
+            <div class="shot__f">{% include pic.html src="screen-front-bar-tiled-afternoon" ratio="16/9" alt="A widescreen TV mounted on the wall behind a long tiled front bar, running the display in the afternoon while a few regulars talk at the far end." %}</div>
+            <figcaption><span class="anno anno--dim">The screen already on the wall</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
+          </figure>
         </div>
         <div class="sched__freq"><span class="sr-only">How often: </span>Every screen</div>
       </div>
@@ -368,7 +372,7 @@ description: A small player into any spare HDMI port and the screen your venue a
 
     <div class="btn-row" style="margin-top:clamp(24px,3vw,34px)">
       <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-      <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+      <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
     </div>
   </div>
 </section>
@@ -411,6 +415,11 @@ description: A small player into any spare HDMI port and the screen your venue a
             <button class="btn btn--ghost btn--small" type="button" data-pin-toggle aria-expanded="false" aria-controls="pinpad-demo">Show the PIN pad</button>
           </div>
         </div>
+
+        <figure class="shot" style="margin-top:var(--gap)">
+          <div class="shot__f">{% include pic.html src="screen-empty-room-before-opening" ratio="16/9" alt="An empty country pub lounge in the morning before opening, chairs still pushed in, the screen already up and running on the wall." %}</div>
+          <figcaption><span class="anno anno--dim">Ten in the morning - already up</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
+        </figure>
       </div>
 
       <div>

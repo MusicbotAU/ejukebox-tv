@@ -22,7 +22,7 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
 
         <div class="btn-row">
           <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-          <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+          <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
         </div>
 
         <p class="fx-fine">It runs on the screen the room already has. Nothing to hire, nothing to wheel in, nothing to set up on the night.</p>
@@ -30,23 +30,23 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
 
       <div>
         <div class="wall wall--3" data-wall role="img" aria-label="An illustration of a function photo wall filling up through the evening, timestamped from 9:41 pm onwards, with the newest photo marked fresh for its fifteen minutes of fame.">
-          <div class="wall__tile wall__tile--tall">{% include pic.html v="a" %}<span class="wall__stamp">9:41 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">9:41 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:42 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">9:43 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">9:44 pm</span></div>
-          <div class="wall__tile wall__tile--wide">{% include pic.html v="b" %}<span class="wall__stamp">9:46 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:48 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">9:51 pm</span></div>
-          <div class="wall__tile is-fresh">{% include pic.html v="a" %}<span class="wall__fresh">Fresh</span><span class="wall__stamp">9:52 pm</span></div>
-          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:52 pm</span></div>
+          <div class="wall__tile wall__tile--tall">{% include pic.html src="functions-couple-laughing-engagement" eager=true %}<span class="wall__stamp">9:41 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="functions-thirtieth-mates-picking-song" above=true %}<span class="wall__stamp">9:41 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-engagement-toast-tinsel" above=true %}<span class="wall__stamp">9:42 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-showing-phone-to-table" above=true %}<span class="wall__stamp">9:43 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-two-women-selfie-bistro" above=true %}<span class="wall__stamp">9:44 pm</span></div>
+          <div class="wall__tile wall__tile--wide">{% include pic.html src="functions-work-christmas-bistro-wide" above=true %}<span class="wall__stamp">9:46 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="functions-two-mates-arms-round-singing" above=true %}<span class="wall__stamp">9:48 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="functions-groom-and-father-at-bar" above=true %}<span class="wall__stamp">9:51 pm</span></div>
+          <div class="wall__tile is-fresh">{% include pic.html src="wall-ceiling-fan-group-selfie" above=true %}<span class="wall__fresh">Fresh</span><span class="wall__stamp">9:52 pm</span></div>
+          <div class="wall__tile">{% include pic.html src="functions-bride-shoes-off-dancing" above=true %}<span class="wall__stamp">9:52 pm</span></div>
         </div>
 
         <div class="set__strap">
           <span class="anno anno--dim">The wall - 9:41 pm onwards</span>
           <span class="anno anno--amber">Portrait + landscape</span>
         </div>
-        <p class="note" style="margin-top:10px">Illustration of the wall - the photos on this site are drawn, not venue photography.</p>
+        <p class="note" style="margin-top:10px">Illustrative - the photos on this site are AI generated, not photographs of real customers.</p>
       </div>
     </div>
   </div>
@@ -108,6 +108,11 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
       </div>
 
       <div>
+        <figure class="shot" style="margin-bottom:var(--gap)">
+          <div class="shot__f">{% include pic.html src="functions-room-set-up-before-guests" ratio="16/9" alt="A pub function room set up an hour before an event - tables laid, chairs straightened, one duty manager at the far end of the room." %}</div>
+          <figcaption><span class="anno anno--dim">5:30 pm - before anyone arrives</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
+        </figure>
+
         <div class="panel panel--accent">
           <blockquote class="fx-quote">
             <p>Give people that experience and they book again - and they tell their friends.</p>
@@ -155,8 +160,13 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
 
         <div class="btn-row">
           <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-          <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+          <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
         </div>
+
+        <figure class="shot" style="margin-top:clamp(24px,3vw,34px)">
+          <div class="shot__f">{% include pic.html src="functions-slideshow-wall-guests-pointing" ratio="16/9" alt="Guests at a function turning towards a large screen on the function room wall and pointing at the photo that has just gone up on it." %}</div>
+          <figcaption><span class="anno anno--dim">The bit that does the selling</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
+        </figure>
       </div>
 
       <div>
@@ -223,6 +233,11 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
           </div>
         </div>
         <p class="note" style="text-align:center">An illustration of the host's phone, not a screenshot.</p>
+
+        <figure class="shot" style="margin-top:clamp(24px,3vw,34px)">
+          <div class="shot__f">{% include pic.html src="functions-speech-room-watching" ratio="16/9" alt="The view from the back of a function room during a speech, over the heads of seated guests, everyone turned towards the man speaking at the far end." %}</div>
+          <figcaption><span class="anno anno--dim">10:00 pm - the music stopped cleanly</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -235,13 +250,14 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
     <div class="grid grid--split">
       <div>
         <div class="wall wall--3" data-wall aria-hidden="true">
-          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">2019</span></div>
-          <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">Bali</span></div>
-          <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">The dog</span></div>
-          <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">Her 21st</span></div>
-          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">Uni</span></div>
-          <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">Last winter</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-long-table-share-plates" %}<span class="wall__stamp">2019</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-beer-garden-golden-hour" %}<span class="wall__stamp">Bali</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-older-regulars-corner" %}<span class="wall__stamp">Nan and Pop</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-pool-table-mates" %}<span class="wall__stamp">Her 21st</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-late-night-corner-booth" %}<span class="wall__stamp">Uni</span></div>
+          <div class="wall__tile">{% include pic.html src="wall-winter-booth-raincoats" %}<span class="wall__stamp">Last winter</span></div>
         </div>
+        <p class="note" style="margin-top:10px">Illustrative - AI generated, not photographs of real customers.</p>
       </div>
 
       <div>
@@ -267,18 +283,19 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
 
     <div class="fx-crops">
       <figure class="fx-crop">
-        <div class="fx-crop__f">{% include pic.html v="b" ratio="16/9" %}</div>
+        <div class="fx-crop__f">{% include pic.html src="wall-schooner-toast-overhead" ratio="16/9" alt="Six hands of different ages pushing schooners and middies together over a round pub table, shot from directly above." %}</div>
         <figcaption class="anno anno--dim">The big TV - landscape</figcaption>
       </figure>
       <figure class="fx-crop">
-        <div class="fx-crop__f">{% include pic.html v="b" ratio="4/5" %}</div>
+        <div class="fx-crop__f">{% include pic.html src="wall-schooner-toast-overhead" ratio="4/5" %}</div>
         <figcaption class="anno anno--dim">The screen by the door - portrait</figcaption>
       </figure>
       <figure class="fx-crop fx-crop--sq">
-        <div class="fx-crop__f">{% include pic.html v="b" ratio="1" %}</div>
+        <div class="fx-crop__f">{% include pic.html src="wall-schooner-toast-overhead" ratio="1" %}</div>
         <figcaption class="anno fx-accent">Their feed - square crop</figcaption>
       </figure>
     </div>
+    <p class="note" style="margin-top:10px">One photo, three crops. Illustrative - AI generated, not a photograph of real customers.</p>
 
     <div class="panel panel--accent" style="margin-top:clamp(24px,3vw,36px)">
       <h3>Every guest who posts is posting your room</h3>
@@ -300,26 +317,26 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
       <div>
         <div class="gate fx-gate" data-gate role="img" aria-label="An illustration of the check: an incoming photo is scanned by AI, then either approved onto the wall or held back and never displayed.">
           <div class="gate__wall" aria-hidden="true">
-            {% include pic.html v="a" %}
-            {% include pic.html v="c" %}
-            {% include pic.html v="d" %}
-            {% include pic.html v="b" %}
+            {% include pic.html src="moderation-pass-birthday-table-night" thumb=true %}
+            {% include pic.html src="moderation-pass-front-bar-mates" thumb=true %}
+            {% include pic.html src="wall-family-bistro-lunch" thumb=true %}
+            {% include pic.html src="wall-grand-final-front-bar" thumb=true %}
           </div>
           <div class="gate__lane">
             <div class="gate__tile gate__tile--ok">
-              {% include pic.html v="b" %}
+              {% include pic.html src="moderation-pass-bistro-couple-winter" %}
               <span class="gate__scan"></span>
               <span class="gate__badge gate__badge--ok">Approved</span>
             </div>
             <div class="gate__tile gate__tile--held">
-              {% include pic.html v="d" %}
+              {% include pic.html src="moderation-hold-extreme-closeup-silly-face" %}
               <span class="gate__scan"></span>
               <span class="gate__badge gate__badge--held">Held</span>
             </div>
           </div>
           <span class="gate__caption">AI check</span>
         </div>
-        <p class="note" style="margin-top:12px">Every photo goes through this before it can reach the wall.</p>
+        <p class="note" style="margin-top:12px">Every photo goes through this before it can reach the wall. The photos shown here are illustrative - AI generated, not photographs of real customers.</p>
         <button class="playbtn" type="button" data-play="gate">Pause the demo</button>
       </div>
 
@@ -343,6 +360,17 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
    heading="A function, from the welcome slide to last drinks."
    body="A photo wall is hard to describe and obvious to watch. We are putting a film together of a full night - the wall filling up, the room noticing, the music stopping cleanly under the speeches - so you can see the whole thing run end to end."
 %}
+
+
+<!-- ========================================================= END OF NIGHT -->
+<section class="band band--tight" aria-label="The end of the night">
+  <div class="wrap wrap--narrow">
+    <figure class="shot">
+      <div class="shot__f">{% include pic.html src="functions-end-of-night-stacking-chairs" ratio="16/9" alt="A function room at the very end of the night, main lights on, chairs half stacked on a trolley and tablecloths pulled into a heap." %}</div>
+      <figcaption><span class="anno anno--dim">The end of the night - every photo kept</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
+    </figure>
+  </div>
+</section>
 
 
 <!-- ================================================================ CLOSER -->
