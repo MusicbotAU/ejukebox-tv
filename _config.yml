@@ -1,0 +1,48 @@
+# ejukebox.tv - Jekyll config for GitHub Pages.
+# Built server-side by GitHub Pages. No plugins, no Actions, no local build step.
+
+title: eJukebox TV
+tagline: The screen your venue already owns, running itself
+description: >-
+  A small player into any spare HDMI port and the screen your venue already owns
+  becomes a live display - guest photos on the wall about three seconds after
+  they are taken, announcements you type from your phone that design themselves,
+  your promos in the rotation, and prompts that teach every new customer how to
+  join in.
+
+url: "https://ejukebox.tv"
+baseurl: ""
+lang: en-AU
+timezone: Australia/Perth
+
+# Contact details are read by the nav, the CTA block and the footer.
+contact:
+  name: Marc Kean
+  company: MusicBot Pty Ltd
+  email: info@ejukebox.com.au
+  phone: "0401 777 223"
+  phone_link: "+61401777223"
+  main_site: "https://ejukebox.com.au"
+
+# ---------------------------------------------------------------------------
+# THE VIDEO SLOT
+# Drop a file into /assets/video/ and set url below. That is the whole job -
+# every video stage on the site fills at once and nothing else changes.
+# aspect accepts "16/9" for landscape footage or "9/16" for portrait phone
+# footage shot at a function. The frame adapts; the page does not reflow.
+# ---------------------------------------------------------------------------
+video:
+  url: ""
+  poster: ""
+  aspect: "16/9"
+  caption: "A Friday night, start to finish."
+
+markdown: kramdown
+plugins: []
+
+exclude:
+  - README.md
+  - .jekyll-cache
+  - Gemfile
+  - Gemfile.lock
+  - vendor

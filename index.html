@@ -1,0 +1,507 @@
+---
+layout: default
+title: eJukebox TV | The screen your venue already owns, running itself
+og_title: Your TV has been showing the same thing for years.
+description: A small player into any spare HDMI port and the screen your venue already owns becomes a live display - guest photos on the wall about three seconds after they are taken, announcements you type from your phone that design themselves, and prompts that teach every customer how to join in.
+---
+
+<!-- ======================================================= HERO / MARQUEE -->
+<section class="band band--flush band--spill" aria-labelledby="hero-h" style="padding-top:clamp(44px,6vw,84px)">
+  <div class="spill" aria-hidden="true">
+    <span class="spill__layer is-on" data-spill style="background-image:radial-gradient(1150px 640px at 50% 6%, rgba(255,179,71,.17), rgba(255,179,71,.05) 44%, transparent 74%)"></span>
+    <span class="spill__layer" data-spill></span>
+  </div>
+
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <h1 id="hero-h">Your TV has been showing the same thing for years.<br><span class="lit">Watch what else it can do.</span></h1>
+
+        <p class="lede">A small player into any spare HDMI port and the screen your venue already owns becomes a live display - your guests' photos on the wall about three seconds after they take them, announcements you type from your phone that design themselves, your promos in the rotation, and prompts that quietly teach every new customer how to join in.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
+          <a class="btn btn--ghost" href="{{ '/functions/' | relative_url }}">Doing a function?</a>
+        </div>
+
+        <button class="playbtn" type="button" data-play="marquee">Play the demo</button>
+      </div>
+
+      <div>
+        <div class="set set--hero" id="marquee">
+          <div class="set__frame">
+            <span class="set__shine" aria-hidden="true"></span>
+
+            <div class="set__glass" data-glass role="img" aria-label="A venue screen running its rotation: a guest photo, an AI-designed announcement slide, a venue promo and a QR prompt. Every so often a fresh guest photo cuts into the queue and goes up early.">
+
+              <div class="slide slide--photo is-on" data-slide="photo">
+                <div class="frame-photo">
+                  {% include pic.html v="a" ratio="4/5" %}
+                  <div class="frame-photo__cap">Sat 9:41 pm - a guest</div>
+                </div>
+                <span class="slide__onair"><i></i>On air</span>
+                <span class="slide__logo">Your logo</span>
+              </div>
+
+              <div class="slide slide--photo" data-slide="fresh">
+                <div class="frame-photo">
+                  {% include pic.html v="b" ratio="4/5" %}
+                  <div class="frame-photo__cap">Sat 9:44 pm - a guest</div>
+                </div>
+                <span class="slide__badge">New - up in 3s</span>
+                <span class="slide__onair"><i></i>On air</span>
+                <span class="slide__logo">Your logo</span>
+              </div>
+
+              <div class="slide slide--ai" data-slide="ai">
+                <div class="card-slide card-slide--ai">
+                  <div class="card-slide__kick">Typed at the bar</div>
+                  <div class="card-slide__big">Trivia starts<br>in 15</div>
+                  <div class="card-slide__sub">Designed by AI - up for 30 minutes</div>
+                </div>
+                <span class="slide__onair"><i></i>On air</span>
+              </div>
+
+              <div class="slide slide--promo" data-slide="promo">
+                <div class="card-slide">
+                  <div class="card-slide__kick">Thursday</div>
+                  <div class="card-slide__big">Schnitzel night<br>from 5pm</div>
+                  <div class="card-slide__sub">Your promo - scheduled 4 till 8</div>
+                </div>
+                <span class="slide__onair"><i></i>On air</span>
+              </div>
+
+              <div class="slide slide--qr" data-slide="qr">
+                <div class="qr-slide">
+                  <div class="qr" aria-hidden="true"></div>
+                  <div>
+                    <div class="qr-slide__t">Put your photo<br>on the big screen</div>
+                    <div class="qr-slide__s">Scan - snap - you are up in seconds</div>
+                  </div>
+                </div>
+                <span class="slide__onair"><i></i>On air</span>
+              </div>
+
+            </div>
+          </div>
+          <div class="set__shadow" aria-hidden="true"></div>
+          <div class="set__reflect" aria-hidden="true"></div>
+
+          <!-- the room, unlit, with the screen as the only light on it -->
+          <div class="silhouette" data-silhouette aria-hidden="true">
+            <svg viewBox="0 0 600 120" preserveAspectRatio="xMidYMax meet" focusable="false">
+              <!-- the room falls away from the screen: one close figure, three further back -->
+              <g fill="#04070a">
+                <path d="M228 120c0-30 20-48 46-48s46 18 46 48z"/>
+                <path d="M392 120c0-25 17-40 39-40s39 15 39 40z"/>
+                <path d="M516 120c0-21 14-33 32-33s32 12 32 33z"/>
+                <path d="M-40 120c0-44 40-70 92-70s92 26 92 70z"/>
+              </g>
+              <g class="head head--2"><circle cx="274" cy="52" r="24" fill="#04070a"/>
+                <path d="M274 28a24 24 0 0 1 24 24" fill="none" stroke="#ffb347" stroke-opacity=".3" stroke-width="2.6"/></g>
+              <g class="head head--3"><circle cx="431" cy="62" r="20" fill="#04070a"/>
+                <path d="M431 42a20 20 0 0 1 20 20" fill="none" stroke="#ffb347" stroke-opacity=".26" stroke-width="2.4"/></g>
+              <g class="head head--1"><circle cx="548" cy="70" r="16" fill="#04070a"/>
+                <path d="M548 54a16 16 0 0 1 16 16" fill="none" stroke="#ffb347" stroke-opacity=".24" stroke-width="2.2"/></g>
+              <g><circle cx="52" cy="40" r="36" fill="#04070a"/>
+                <path d="M52 4a36 36 0 0 1 36 36" fill="none" stroke="#ffb347" stroke-opacity=".2" stroke-width="3"/></g>
+              <rect x="0" y="106" width="600" height="14" fill="#02050a"/>
+              <rect x="0" y="104.4" width="600" height="1.6" fill="#ffb347" opacity=".22"/>
+            </svg>
+          </div>
+
+          <!-- THE PROGRAMME RAIL - what is on now and what is next -->
+          <div class="rail" aria-hidden="true">
+            <div class="rail__track" data-rail-track>
+              <span class="rail__chip is-now"><i class="rail__fill"></i><span class="rail__label">Guest photo</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">AI slide - 30 min</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Venue promo</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">QR prompt</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Guest photo</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Venue promo</span></span>
+            </div>
+          </div>
+
+          <div class="set__strap">
+            <span class="anno anno--dim">Any TV - any HDMI - 24/7</span>
+            <span class="anno anno--amber">Portrait + landscape</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================ THREE SECONDS + GATE -->
+<section class="band" aria-labelledby="three-h">
+  <div class="wrap">
+    <p class="eyebrow">The moment that matters</p>
+    <h2 id="three-h">Photo taken to photo on the wall: about three seconds.</h2>
+    <p class="sub">Fast enough that the guest is still holding their phone and looking at the screen when their own face lands on it. That is when the rest of the room turns around, and that is the bit no other screen in the building does.</p>
+
+    <div class="strip strip--gate">
+      <div class="strip__frame">
+        <div class="strip__t">0.0s</div>
+        <div class="strip__w">Snap</div>
+        <p class="strip__d">A guest scans the QR prompt on the screen and takes the photo right there in the browser. No app to download, no sign-up, no staff involved.</p>
+      </div>
+
+      <div class="strip__frame">
+        <div class="strip__t">~1s</div>
+        <div class="strip__w">Checked, then dressed</div>
+        <p class="strip__d">AI screens it for nudity, offensive gestures and anything tasteless <strong>before</strong> it can reach the wall. Anything questionable is held back, not displayed. What passes is branded with your logo and kept in both portrait and landscape.</p>
+        <div class="gate" data-gate role="img" aria-label="An illustration of the check: an incoming photo is scanned, then either approved onto the wall or held back and never shown." style="margin-top:16px">
+          <div class="gate__wall" aria-hidden="true">
+            {% include pic.html v="a" %}
+            {% include pic.html v="c" %}
+            {% include pic.html v="d" %}
+            {% include pic.html v="b" %}
+          </div>
+          <div class="gate__lane">
+            <div class="gate__tile gate__tile--ok">
+              {% include pic.html v="c" %}
+              <span class="gate__scan"></span>
+              <span class="gate__badge gate__badge--ok">Approved</span>
+            </div>
+            <div class="gate__tile gate__tile--held">
+              {% include pic.html v="d" %}
+              <span class="gate__scan"></span>
+              <span class="gate__badge gate__badge--held">Held</span>
+            </div>
+          </div>
+          <span class="gate__caption">AI check</span>
+        </div>
+      </div>
+
+      <div class="strip__frame">
+        <div class="strip__t">~3s</div>
+        <div class="strip__w">On the wall</div>
+        <p class="strip__d">The rotation cuts its current slide short and puts the new photo up. Not queued for later - up now, while they are still standing there.</p>
+      </div>
+
+      <div class="strip__frame">
+        <div class="strip__t">After</div>
+        <div class="strip__w">Fifteen minutes of fame</div>
+        <p class="strip__d">A fresh photo comes back around every few slides while the guest is still in the room, then settles into the normal rotation with everyone else's.</p>
+      </div>
+    </div>
+
+    <p class="note">Illustration - the photos on this site are drawn, not venue photography.</p>
+  </div>
+</section>
+
+
+<!-- ================================================ THE INSTANT COMPOSER -->
+<section class="band band--ai" id="composer" aria-labelledby="comp-h">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--ai">Instant slides</p>
+    <h2 id="comp-h">Type it. It designs itself.</h2>
+    <p class="sub">Standing at the bar at 11:20 with a phone in your hand is the worst possible time to open a design app. So don't. Type the sentence, tell it how long to stay up, and it is on the wall before you have put the phone back in your pocket - then it takes itself down.</p>
+
+    <div class="composer">
+      <div>
+        <div class="phone">
+          <div class="phone__bar">
+            <span class="anno anno--dim">Manager app</span>
+            <span class="anno anno--amber">11:20 pm</span>
+          </div>
+          <div class="phone__field" data-field>last drinks at 11:30</div>
+          <div class="phone__status" data-status>
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="anno anno--violet" data-status-text>on the wall</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="set">
+        <div class="set__frame">
+          <span class="set__shine" aria-hidden="true"></span>
+          <div class="set__glass">
+            <div class="aislide is-lit is-built" data-aislide data-design="a">
+              <div class="aislide__head" data-head><span class="aislide__word" style="--w:0">Last</span> <span class="aislide__word" style="--w:1">drinks</span> <span class="aislide__word" style="--w:2">11:30</span></div>
+              <div class="aislide__sub" data-sub>Bar closes at midnight. Get one more in.</div>
+              <span class="durpill" data-pill>Auto-removes in 30:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="set__shadow" aria-hidden="true"></div>
+        <div class="set__strap">
+          <span class="anno anno--violet">Designed by AI</span>
+          <span class="anno anno--dim">Saved for next time</span>
+        </div>
+      </div>
+
+      <p class="sr-only" aria-live="polite" data-live></p>
+    </div>
+
+    <div class="panel panel--ai deck" style="margin-top:clamp(22px,2.6vw,30px)">
+      <div>
+        <p class="anno anno--violet" style="margin-bottom:6px">Press one</p>
+        <p style="margin:0;color:var(--smoke);max-width:30em">Each one comes back designed differently, because it is designed - not a template with your words dropped into it.</p>
+        <button class="playbtn" type="button" data-play="composer">Play the demo</button>
+      </div>
+      <div class="presets" role="group" aria-label="Try one of these slides">
+        <button class="preset" type="button" data-preset aria-pressed="true">Last drinks 11:30</button>
+        <button class="preset" type="button" data-preset aria-pressed="false">Trivia in 15</button>
+        <button class="preset" type="button" data-preset aria-pressed="false">Happy hour till 6</button>
+        <button class="preset" type="button" data-preset aria-pressed="false">Kitchen closes 9</button>
+      </div>
+    </div>
+
+    <div class="grid grid--2" style="margin-top:clamp(28px,3.4vw,44px)">
+      <div class="panel panel--ai">
+        <h3>Build the set once</h3>
+        <p style="color:var(--smoke);margin:0">Every slide you make is kept. Last drinks, trivia night, the Sunday roast, the members' draw - fire any of them again with a tap. Your venue's own library, and it grows every week without anyone maintaining it.</p>
+      </div>
+      <div class="panel panel--ai">
+        <h3>It takes itself down</h3>
+        <p style="color:var(--smoke);margin:0">Set it for 15 minutes, 30, 60, or until you switch it off. Nobody has to remember to pull down last night's happy hour slide, because it removed itself at six.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================= ONE ROTATION -->
+<section class="band" aria-labelledby="rot-h">
+  <div class="wrap">
+    <p class="eyebrow">The programme</p>
+    <h2 id="rot-h">One rotation. Everything in it.</h2>
+    <p class="sub">Not nine separate systems with nine logins. One screen, one rotation, and everything below takes its turn in it.</p>
+
+    <div class="sched">
+      <div class="sched__head">
+        <div class="sched__slot">In the rotation</div>
+        <div class="sched__what">What it is</div>
+        <div class="sched__freq">How often</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Guest photo wall</div>
+        <div class="sched__what">
+          <h3>The room puts itself on the screen</h3>
+          <p>Guests scan, take a photo in the browser and it is on the wall about three seconds later, branded with your logo. It becomes the venue's memory - birthdays, wins, the regulars, the Sunday session.</p>
+        </div>
+        <div class="sched__freq">Every few slides</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Instant AI slides</div>
+        <div class="sched__what">
+          <h3>Type a sentence, get a designed slide</h3>
+          <p>Last drinks, trivia, a courtesy bus running late, the kitchen closing early. Type it, set how long it stays up, and it is on the wall in seconds. When the time is up it removes itself.</p>
+        </div>
+        <div class="sched__freq">On demand</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Saved slides</div>
+        <div class="sched__what">
+          <h3>Build the set once, fire it forever</h3>
+          <p>Every slide is kept and reusable. The Thursday roast slide you made in March goes back up this Thursday with one tap.</p>
+        </div>
+        <div class="sched__freq">One tap</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Your ads and promos</div>
+        <div class="sched__what">
+          <h3>The screen sells for you all night</h3>
+          <p>Specials, upcoming gigs, function packages, the members' draw. Your promos sit in the rotation between the photos, on a screen you already own and already pay the power on.</p>
+        </div>
+        <div class="sched__freq">In rotation</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Smart rotation</div>
+        <div class="sched__what">
+          <h3>Urgent things come round more often</h3>
+          <p>A 15-minute message earns a denser slot than an hour-long one, so the thing that matters right now actually gets seen. Fresh guest photos jump the queue entirely.</p>
+        </div>
+        <div class="sched__freq">Automatic</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">QR prompts</div>
+        <div class="sched__what">
+          <h3>It recruits the next customer for you</h3>
+          <p>Every third slide is a friendly call to action - add your photo, request a song. The screen constantly teaches people who walked in ten minutes ago how to join in, without a staff member saying a word.</p>
+        </div>
+        <div class="sched__freq">Every 3rd slide</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Scheduling</div>
+        <div class="sched__what">
+          <h3>It thinks in venue time</h3>
+          <p>Specials daily 4 till 6. The Anzac Day slide on the day only. The gig poster from now until Saturday night. Windows, daily rules and one-offs - set it and the screen follows the calendar.</p>
+        </div>
+        <div class="sched__freq">Daily - windows - one-off</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Every shape of screen</div>
+        <div class="sched__what">
+          <h3>Portrait and landscape, both kept</h3>
+          <p>A portrait screen by the bar and a widescreen TV on the wall each get the version that fills them properly. No stretched faces, no photo the size of a postage stamp between two black bars.</p>
+        </div>
+        <div class="sched__freq">Every screen</div>
+      </div>
+
+      <div class="sched__row">
+        <div class="sched__slot">Your brand on it</div>
+        <div class="sched__what">
+          <h3>Your logo on every frame, and on their feed</h3>
+          <p>Upload the logo once and it rides on every photo. The same photos come back as Instagram-ready crops, so a guest posting their night out is posting your room.</p>
+        </div>
+        <div class="sched__freq">Every photo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ======================================================== ROLL THE TAPE -->
+{% include video-stage.html %}
+
+
+<!-- =========================================== RELIABILITY - THE COLD ROOM -->
+<section class="band band--sober" aria-labelledby="rel-h">
+  <div class="wrap">
+    <p class="eyebrow">Runs itself</p>
+    <h2 id="rel-h">It runs itself, and you can still stop it from the car park.</h2>
+    <p class="sub">A screen in a public bar has to survive a busy Saturday with nobody looking after it, and still do exactly what a manager says the second they say it.</p>
+
+    <div class="grid grid--wide-split grid--top">
+      <div>
+        <div class="set set--mini" id="esc-demo">
+          <div class="set__frame">
+            <span class="set__shine" aria-hidden="true"></span>
+            <div class="set__glass" style="background:linear-gradient(165deg,#131c28,#0a121c)">
+              <div class="slide is-on">
+                <div class="card-slide">
+                  <div class="card-slide__kick" style="color:#ffb347">On the wall now</div>
+                  <div class="card-slide__big" style="color:#ffe0b0">The show keeps<br>running</div>
+                </div>
+              </div>
+              <span class="anno anno--dim esc-hint" data-esc-hint>Try it - press Esc</span>
+
+              <div class="pinpad" data-pinpad>
+                <span class="anno anno--amber">Manager PIN</span>
+                <div class="pinpad__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <div class="pinpad__grid" aria-hidden="true">
+                  <span class="pinpad__key">1</span><span class="pinpad__key">2</span><span class="pinpad__key">3</span>
+                  <span class="pinpad__key">4</span><span class="pinpad__key">5</span><span class="pinpad__key">6</span>
+                  <span class="pinpad__key">7</span><span class="pinpad__key">8</span><span class="pinpad__key">9</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="set__strap">
+            <span class="anno anno--dim">PIN-locked player</span>
+            <button class="btn btn--ghost btn--small" type="button" data-pin-toggle>Show the PIN pad</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <ul class="ticks">
+          <li><span><strong>The TV is PIN-locked.</strong> Walk up to the screen, press Escape, and you get a PIN pad - not a desktop, not a file manager, not somebody's browser tabs.</span></li>
+          <li><span><strong>It heals itself.</strong> A watchdog restarts the display if anything ever stops it, so a hiccup at 9pm on a Saturday does not become a black screen for the rest of the night.</span></li>
+          <li><span><strong>We watch the fleet.</strong> Players are monitored and managed remotely, so problems get spotted and fixed at our end rather than found by your staff.</span></li>
+          <li><span><strong>Approve or hide from your pocket.</strong> The manager app handles photos one at a time or in bulk, fires a slide, changes the schedule, and starts or stops the show from anywhere.</span></li>
+          <li><span><strong>Push notifications.</strong> The right people get told when something actually needs a decision. A glance at the phone, one tap, done.</span></li>
+          <li><span><strong>Sign-in without passwords.</strong> Staff get in with Google, Microsoft or Apple, organised into per-venue teams. Add a manager by email, remove someone the day they leave.</span></li>
+          <li><span><strong>Powers on with the venue.</strong> A compact player into any spare HDMI port. It starts when the room starts and runs around the clock with nobody touching it.</span></li>
+          <li><span><strong>Australian owned and supported.</strong> Built here, run here, and answered by a person on an Australian phone number.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================== ROADMAP -->
+<section class="band" aria-labelledby="road-h">
+  <div class="wrap">
+    <p class="eyebrow">Where this goes</p>
+    <h2 id="road-h">The screen is software now, so it can show anything.</h2>
+    <p class="sub">Once a TV takes its orders from the cloud instead of a USB stick, what is on it is just a decision. Today it is photos, slides, promos and prompts. Here is exactly what is live and what we are still building.</p>
+
+    <p class="anno anno--good" style="margin-bottom:12px">Live today</p>
+    <div class="tags" style="margin-bottom:34px">
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>Guest photo wall</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>Instant AI slides</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>Saved and reusable slides</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>Your own ads and promos</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>Smart rotation</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>QR prompts</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>Scheduling</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span>AI photo moderation</span>
+    </div>
+
+    <p class="anno anno--dim" style="margin-bottom:12px">On the way - not shipping yet</p>
+    <div class="tags">
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>News headlines between slides</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Live sport scores</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Weather for the beer garden</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Specials and menu boards</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Happy-hour countdowns</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Playing across the country live music map</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Functions and events promos feed</span>
+      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Community notices</span>
+    </div>
+
+    <p class="note">Everything marked &#9671; is on the roadmap and is not shipping yet. Nothing else on this page is a promise about the future - it is what the screen does today.</p>
+  </div>
+</section>
+
+
+<!-- ==================================================== FUNCTIONS HANDOFF -->
+<section class="band band--tight" aria-labelledby="fx-h">
+  <div class="wrap">
+    <div class="panel panel--amber">
+      <div class="grid grid--split">
+        <div>
+          <p class="eyebrow">Functions and events</p>
+          <h2 id="fx-h" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">The photo wall is the reason they book the room again.</h2>
+          <p style="color:var(--smoke)">Engagements, 40ths, the work Christmas party. Guests scan the QR on the table, take a photo, and it is on the big screen before they have sat back down. The room turns around and looks - and that happens again every few minutes all night.</p>
+          <div class="btn-row" style="margin-top:22px">
+            <a class="btn btn--primary" href="{{ '/functions/' | relative_url }}">See what a function looks like</a>
+          </div>
+        </div>
+        <div>
+          <div class="wall wall--3" data-wall aria-hidden="true">
+            <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">9:41 pm</span></div>
+            <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">9:41 pm</span></div>
+            <div class="wall__tile is-fresh">{% include pic.html v="c" %}<span class="wall__fresh">Fresh</span><span class="wall__stamp">9:44 pm</span></div>
+            <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">9:46 pm</span></div>
+            <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:48 pm</span></div>
+            <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">9:52 pm</span></div>
+          </div>
+          <p class="note" style="margin-top:12px">Illustration of the wall - not venue photography.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================ PLAYS WELL WITH MUSIC -->
+<section class="band band--tight" aria-labelledby="music-h">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow eyebrow--signal">Better together</p>
+    <h2 id="music-h" style="font-size:clamp(1.5rem,3vw,2.1rem)">Plays well with music.</h2>
+    <p class="sub">The screen stands on its own. Paired with the full eJukebox system it becomes one thing - the same QR code that puts a photo on the wall takes song requests too, and the music schedules itself alongside the screen: Friday night loud, Sunday session easy. If you want the music side of it, that lives at <a href="{{ site.contact.main_site }}">ejukebox.com.au</a>.</p>
+  </div>
+</section>
+
+
+<!-- =============================================================== CLOSER -->
+<section class="band band--tight band--flush" aria-label="Talk to us">
+  <div class="wrap">
+    {% include cta.html ghost="Doing a function?" ghost_href="/functions/" %}
+  </div>
+</section>

@@ -1,0 +1,19 @@
+<header class="topbar">
+  <div class="topbar__in">
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="eJukebox TV, home">
+      <span class="brand__e">e<em>Jukebox</em></span><span class="brand__tv">.tv</span>
+    </a>
+
+    <nav class="topnav" aria-label="Main">
+      <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-here" aria-current="page"{% endif %}>The screen</a>
+      <a href="{{ '/functions/' | relative_url }}"{% if page.url contains '/functions' %} class="is-here" aria-current="page"{% endif %}>Functions</a>
+      <a href="{{ '/demo/' | relative_url }}"{% if page.url contains '/demo' %} class="is-here" aria-current="page"{% endif %}>See it live</a>
+    </nav>
+
+    <p class="onair" aria-label="On air">
+      <span class="onair__dot" aria-hidden="true"></span>
+      <span class="onair__label">On air</span>
+      <span class="onair__clock" data-clock aria-hidden="true">00:00:00</span>
+    </p>
+  </div>
+</header>

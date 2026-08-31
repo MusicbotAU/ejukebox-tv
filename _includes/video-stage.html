@@ -1,0 +1,69 @@
+{% comment %}
+  ROLL THE TAPE - the video slot.
+
+  This reuses the exact TV chassis from the hero at full container width, so
+  the video reads as being ON the venue screen rather than embedded in a web
+  page. The aspect is reserved in BOTH the placeholder and the loaded state,
+  so nothing on the page reflows the day the file lands.
+
+  TO PUT A VIDEO IN: drop the file into /assets/video/ and set the url in
+  _config.yml. That is the whole job - every stage on the site fills at once.
+
+    video:
+      url: "/assets/video/a-night-at-the-pub.mp4"
+      poster: "/assets/video/poster.jpg"
+      aspect: "16/9"     # or "9/16" for portrait phone footage
+      caption: "A Friday night, start to finish."
+
+  Params (all optional, all override _config.yml for this one instance):
+    eyebrow, heading, body, caption, url, poster, aspect
+{% endcomment %}
+{% assign v_url    = include.url     | default: site.video.url %}
+{% assign v_poster = include.poster  | default: site.video.poster %}
+{% assign v_aspect = include.aspect  | default: site.video.aspect | default: "16/9" %}
+{% assign v_cap    = include.caption | default: site.video.caption %}
+
+<section class="band band--spill" aria-labelledby="tape-h">
+  <div class="wrap">
+    <p class="eyebrow">{{ include.eyebrow | default: "Roll the tape" }}</p>
+    <h2 id="tape-h">{{ include.heading | default: "See a night run start to finish." }}</h2>
+    <p class="sub">{{ include.body | default: "The screen does not really make sense until you watch it work a room - a photo landing, the slide that takes itself down, the prompt that pulls the next person in." }}</p>
+
+    <div class="set set--stage video-stage">
+      <div class="set__frame">
+        <span class="set__shine" aria-hidden="true"></span>
+        <div class="set__glass" style="--set-aspect:{{ v_aspect }}">
+          {% if v_url and v_url != "" %}
+            <video controls preload="metadata" playsinline{% if v_poster and v_poster != "" %} poster="{{ v_poster | relative_url }}"{% endif %}>
+              <source src="{{ v_url | relative_url }}" type="video/mp4">
+              <track kind="captions" label="English" srclang="en">
+              <p style="padding:24px;color:#8ea0b5">Your browser will not play this video. <a href="{{ v_url | relative_url }}">Download the file instead.</a></p>
+            </video>
+          {% else %}
+            <div class="video-poster" role="img" aria-label="A paused venue screen. The film is being shot now.">
+              <span class="video-poster__ring" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="34" height="34" focusable="false" aria-hidden="true">
+                  <path d="M9 6.5v11l9-5.5z" fill="#ffb347"></path>
+                </svg>
+              </span>
+              <span class="anno anno--amber">Footage - coming</span>
+              <p class="video-poster__line">A full night, end to end - the wall filling up, a slide going up from the bar, the room noticing.</p>
+              <span class="anno anno--dim">--:--</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="set__shadow" aria-hidden="true"></div>
+
+      <div class="video-stage__cap">
+        {% if v_url and v_url != "" %}
+          <span class="anno anno--dim">{{ v_cap }}</span>
+          <span class="anno anno--amber">Filmed in a real room</span>
+        {% else %}
+          <p style="margin:0;color:#8ea0b5;max-width:38em">The film is on its way. Want it sent to you the day it lands? Talk to us and we will put you on the list - and walk you through the live screen in the meantime.</p>
+          <a class="btn btn--primary btn--small" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

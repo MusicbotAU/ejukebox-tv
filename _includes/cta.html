@@ -1,0 +1,20 @@
+{% comment %}
+  The site closer. Every page ends on this.
+  Params (all optional):
+    heading  - the big line
+    body     - one paragraph under it
+    cta      - primary button label
+    href     - primary button target (defaults to /demo/)
+    ghost    - optional secondary button label
+    ghost_href - optional secondary target
+{% endcomment %}
+<div class="closer">
+  <h2>{{ include.heading | default: "Your TV is already on the wall. Let's switch it on properly." }}</h2>
+  <p>{{ include.body | default: "Tell us about the room - how many screens, where they hang, what is on them now - and we will show you exactly what yours would look like with your logo on it." }}</p>
+  <div class="btn-row">
+    <a class="btn btn--primary" href="{{ include.href | default: '/demo/' | relative_url }}">{{ include.cta | default: "See it on your screen" }}</a>
+    {% if include.ghost %}<a class="btn btn--ghost" href="{{ include.ghost_href | default: '/functions/' | relative_url }}">{{ include.ghost }}</a>{% endif %}
+    <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+  </div>
+  <p class="anno anno--dim closer__fine">{{ site.contact.email }}</p>
+</div>

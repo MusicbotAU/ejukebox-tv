@@ -1,0 +1,70 @@
+{% comment %}
+  A "photo", drawn entirely in CSS and SVG. Deliberately impressionistic -
+  a warm grade, string-light bokeh and a figure silhouette. It is never
+  passed off as real photography; walls that use it carry a mono label
+  saying so.
+
+  THE DAY REAL FUNCTION PHOTOGRAPHY EXISTS: replace the body of this include
+  with an <img>. Every wall, tile, frame and gate on the site updates at once
+  and no layout changes.
+
+  Params:
+    v      - a | b | c | d  (four grades and four figure groups)
+    ratio  - e.g. "4/5", "16/10", "1"  (optional; sets aspect-ratio inline)
+    class  - extra classes
+
+  The viewBox is square and the figures stand on its bottom edge, so the
+  square-ish crop that slice produces works in portrait, landscape and square
+  tiles alike.
+{% endcomment %}
+{% assign v = include.v | default: 'a' %}
+<div class="pic pic--{{ v }}{% if include.class %} {{ include.class }}{% endif %}"{% if include.ratio %} style="aspect-ratio:{{ include.ratio }}"{% endif %} aria-hidden="true">
+  <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMax slice" focusable="false" aria-hidden="true">
+    {% case v %}
+      {% when 'a' %}
+      <g fill="#080d14" opacity=".86">
+        <circle cx="74" cy="118" r="22"/>
+        <path d="M32 200c0-27 19-43 42-43s42 16 42 43z"/>
+        <circle cx="132" cy="130" r="17"/>
+        <path d="M100 200c0-21 14-33 32-33s32 12 32 33z"/>
+      </g>
+      <g fill="none" stroke="#ffb347" stroke-opacity=".34" stroke-width="2">
+        <path d="M52 118a22 22 0 0 1 22-22"/>
+        <path d="M115 130a17 17 0 0 1 17-17"/>
+      </g>
+      {% when 'b' %}
+      <g fill="#080d14" opacity=".86">
+        <circle cx="46" cy="134" r="16"/>
+        <path d="M16 200c0-20 13-32 30-32s30 12 30 32z"/>
+        <circle cx="102" cy="112" r="23"/>
+        <path d="M58 200c0-28 20-45 44-45s44 17 44 45z"/>
+        <circle cx="158" cy="136" r="15"/>
+        <path d="M130 200c0-19 12-30 28-30s28 11 28 30z"/>
+      </g>
+      <g fill="none" stroke="#ff8a3d" stroke-opacity=".32" stroke-width="2">
+        <path d="M79 112a23 23 0 0 1 23-23"/>
+        <path d="M143 136a15 15 0 0 1 15-15"/>
+      </g>
+      {% when 'c' %}
+      <g fill="#080d14" opacity=".84">
+        <circle cx="94" cy="104" r="26"/>
+        <path d="M46 200c0-33 22-52 48-52s48 19 48 52z"/>
+        <rect x="146" y="120" width="11" height="40" rx="5" transform="rotate(16 151 140)"/>
+      </g>
+      <g fill="none" stroke="#ffb347" stroke-opacity=".4" stroke-width="2.2">
+        <path d="M68 104a26 26 0 0 1 26-26"/>
+      </g>
+      {% when 'd' %}
+      <g fill="#080d14" opacity=".86">
+        <circle cx="64" cy="126" r="19"/>
+        <path d="M28 200c0-24 16-38 36-38s36 14 36 38z"/>
+        <circle cx="126" cy="116" r="21"/>
+        <path d="M86 200c0-26 18-41 40-41s40 15 40 41z"/>
+        <path d="M162 178c5-16 11-25 22-27v49h-26z"/>
+      </g>
+      <g fill="none" stroke="#4fd1f0" stroke-opacity=".28" stroke-width="2">
+        <path d="M105 116a21 21 0 0 1 21-21"/>
+      </g>
+    {% endcase %}
+  </svg>
+</div>

@@ -1,0 +1,33 @@
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__in">
+      <div>
+        <a class="brand" href="{{ '/' | relative_url }}">
+          <span class="brand__e">e<em>Jukebox</em></span><span class="brand__tv">.tv</span>
+        </a>
+        <p style="margin-top:10px;max-width:32em">The screen your venue already owns, running itself - guest photos, instant slides, your promos and the prompts that bring people in.</p>
+      </div>
+
+      <div>
+        <p class="anno anno--dim" style="margin-bottom:10px">Talk to us</p>
+        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a><br>
+        <a href="tel:{{ site.contact.phone_link }}">{{ site.contact.phone }}</a></p>
+      </div>
+
+      <div>
+        <p class="anno anno--dim" style="margin-bottom:10px">Pages</p>
+        <div class="site-footer__links" style="flex-direction:column;gap:6px">
+          <a href="{{ '/' | relative_url }}">The screen</a>
+          <a href="{{ '/functions/' | relative_url }}">Functions and events</a>
+          <a href="{{ '/demo/' | relative_url }}">See it live</a>
+          <a href="{{ site.contact.main_site }}">The music side of eJukebox</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-footer__legal">
+      <span>{{ site.contact.company }} - Australian owned, operated and supported.</span>
+      <span class="anno anno--dim">ejukebox.tv</span>
+    </div>
+  </div>
+</footer>

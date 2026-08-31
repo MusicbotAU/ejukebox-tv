@@ -1,0 +1,311 @@
+---
+layout: default
+permalink: /demo/
+title: See it live | eJukebox TV
+og_title: Let's put it on your screen.
+description: Fifteen minutes is enough. We can walk you through a live screen over a call, or bring it into the venue and plug it into the TV you are already looking at - either way you will see your own logo on it.
+---
+
+<style>
+/* ---------------------------------------------------------------------------
+   demo.html - page-scoped only. Prefix dm-. No new colours; tokens only.
+   --------------------------------------------------------------------------- */
+.dm-lines{display:grid;gap:15px;margin:24px 0 0}
+.dm-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;margin:0}
+.dm-line__k{min-width:118px;flex:none}
+.dm-line__v{font-family:var(--display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(1.08rem,2.1vw,1.42rem);color:var(--chalk);text-decoration:none;
+  overflow-wrap:anywhere}
+.dm-line__v:hover{color:var(--glow)}
+/* small print that is prose, not a label - mono stays reserved for timings,
+   states and labels */
+.dm-fine{color:var(--dim);font-size:.92rem;max-width:38em;margin-top:20px}
+.dm-fine:last-child{margin-bottom:0}
+</style>
+
+
+<!-- ================================================================== HERO -->
+<section class="band band--flush band--spill" aria-labelledby="dm-hero-h" style="padding-top:clamp(40px,5.4vw,76px)">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">See it live</p>
+        <h1 id="dm-hero-h">Let's put it <span class="lit">on your screen</span>.</h1>
+
+        <p class="lede">Fifteen minutes is enough. We can walk you through a live screen over a call, or bring it into the venue and plug it into the TV you are already looking at. Either way you will see your own logo on it, your specials on it, and your room's name in the corner - not a generic demo about somebody else's pub.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20time%20to%20ring%3A%20%0D%0A%0D%0A">Email us about your venue</a>
+          <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+        </div>
+
+        <p class="dm-fine">No obligation, no slide deck, and nobody will chase you for a fortnight afterwards.</p>
+      </div>
+
+      <div>
+        <div class="set set--mini">
+          <div class="set__frame">
+            <span class="set__shine" aria-hidden="true"></span>
+            <div class="set__glass" style="background:linear-gradient(160deg,#1d2739 0%,#0b1119 100%)">
+              <div class="slide is-on">
+                <div class="card-slide">
+                  <div class="card-slide__kick" style="color:#ffb347">Thursday</div>
+                  <div class="card-slide__big" style="color:#ffe6c2">Your room,<br>your specials</div>
+                  <div class="card-slide__sub" style="color:#c9a97f">Set up with your logo before the call</div>
+                </div>
+                <span class="slide__onair"><i></i>On air</span>
+                <span class="slide__logo">Your logo</span>
+              </div>
+            </div>
+          </div>
+          <div class="set__shadow" aria-hidden="true"></div>
+          <div class="set__reflect" aria-hidden="true"></div>
+          <div class="set__strap">
+            <span class="anno anno--dim">Any TV - any HDMI</span>
+            <span class="anno anno--amber">Branded before you see it</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================== WHAT A DEMO LOOKS LIKE -->
+<section class="band" aria-labelledby="dm-look-h">
+  <div class="wrap">
+    <p class="eyebrow">The fifteen minutes</p>
+    <h2 id="dm-look-h">What a demo actually looks like.</h2>
+    <p class="sub">There is no pitch deck and no discovery workshop. You tell us about the room, we put your name on a screen, and you watch it run.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__n">01 - Talk</div>
+        <h3>A call, or we come in</h3>
+        <p>Fifteen minutes on the phone about your room - how many screens, where they hang, what is on them now, and whether functions are a big part of what you do. If you are close enough, we would rather come in and see it.</p>
+      </div>
+
+      <div class="step">
+        <div class="step__n">02 - Watch</div>
+        <h3>Your room on the screen</h3>
+        <p>We run a live screen with your logo, your specials and your name on it. Take a photo on your own phone and watch it land on the screen a few seconds later. That is the bit that usually ends the conversation.</p>
+      </div>
+
+      <div class="step">
+        <div class="step__n">03 - Let it run</div>
+        <h3>See what your customers do</h3>
+        <p>Leave it going for a bit and watch what happens on a normal Thursday. People work the QR code out on their own - that is what the prompts are there for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================== CONTACT -->
+<section class="band band--tight" aria-labelledby="dm-contact-h">
+  <div class="wrap">
+    <div class="panel panel--amber">
+      <div class="grid grid--split grid--top">
+        <div>
+          <p class="eyebrow">Talk to us</p>
+          <h2 id="dm-contact-h" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">Email us, or just ring.</h2>
+          <p style="color:var(--smoke);max-width:34em">The email button below opens a message with the four things we need already listed in it. Fill in what you know, leave the rest, and send it. If it is easier to talk, the number rings a phone that gets answered.</p>
+
+          <div class="dm-lines">
+            <p class="dm-line">
+              <span class="anno anno--dim dm-line__k">Email</span>
+              <a class="dm-line__v" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20time%20to%20ring%3A%20%0D%0A%0D%0A">{{ site.contact.email }}</a>
+            </p>
+            <p class="dm-line">
+              <span class="anno anno--dim dm-line__k">Phone</span>
+              <a class="dm-line__v" href="tel:{{ site.contact.phone_link }}">{{ site.contact.phone }}</a>
+            </p>
+            <p class="dm-line">
+              <span class="anno anno--dim dm-line__k">Who you get</span>
+              <span class="dm-line__v">{{ site.contact.name }}, {{ site.contact.company }}</span>
+            </p>
+          </div>
+
+          <div class="btn-row" style="margin-top:26px">
+            <a class="btn btn--primary" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20time%20to%20ring%3A%20%0D%0A%0D%0A">Email us about your venue</a>
+            <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+          </div>
+
+          <p class="dm-fine">There is deliberately no form on this page. A form would put something in the middle of you and us, and we would rather you emailed a person or picked up the phone. Both go to the same two people.</p>
+        </div>
+
+        <div>
+          <p class="anno anno--amber" style="margin-bottom:14px">What to tell us</p>
+          <ul class="ticks" style="grid-template-columns:minmax(0,1fr)">
+            <li><span><strong>The venue and the town.</strong> Pub, club, bar, cafe, function room - and where it is.</span></li>
+            <li><span><strong>How many screens.</strong> Including the one in the corner nobody has switched on since the last grand final.</span></li>
+            <li><span><strong>What is on them now.</strong> Sport, a slideshow off a USB stick, a black screen, or nothing at all.</span></li>
+            <li><span><strong>When to ring.</strong> Before the lunch rush, after close, Tuesday afternoon - whatever suits the room.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================= WHAT WE WOULD NEED -->
+<section class="band band--sober" aria-labelledby="dm-need-h">
+  <div class="wrap">
+    <p class="eyebrow">On the day</p>
+    <h2 id="dm-need-h">What we would need from you.</h2>
+    <p class="sub">Short list, and none of it is a project.</p>
+
+    <ul class="ticks">
+      <li><span><strong>A spare HDMI port.</strong> On the TV you already have. The player is a compact box that plugs straight into it.</span></li>
+      <li><span><strong>Wifi it can reach, or a network point near the TV.</strong> The network point is the sturdier of the two if the screen is a long way from the office.</span></li>
+      <li><span><strong>Your logo.</strong> Whatever file you have. If the only copy is on a coaster, tell us and we will sort it out.</span></li>
+      <li><span><strong>About ten minutes of somebody's time.</strong> On the day it goes in. Not ten minutes a week afterwards - it looks after itself once it is running.</span></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- =================================================================== FAQ -->
+<section class="band" aria-labelledby="dm-faq-h">
+  <div class="wrap">
+    <p class="eyebrow">Straight answers</p>
+    <h2 id="dm-faq-h">The questions we actually get asked.</h2>
+    <p class="sub">Including the one about money, which is at the bottom and answered as honestly as we can answer it before we have seen your room.</p>
+
+    <div class="faq">
+      <details open>
+        <summary>Will it work with my TV?</summary>
+        <div class="faq__a">
+          <p>Almost certainly. If the screen has a spare HDMI port, the player goes into it the same way a set-top box does. It powers on with the venue and runs around the clock. If your setup is unusual - an old panel, a projector, a screen already fed by something else - tell us what it is and we will tell you straight whether it will work.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What if the internet drops?</summary>
+        <div class="faq__a">
+          <p>The player is built to keep the screen up on its own. A watchdog restarts the display if anything stops it, and the fleet is monitored at our end so a problem gets spotted here rather than found by your staff on a Saturday night.</p>
+          <p>Anything new - a fresh guest photo, a slide you just typed - has to come down the connection, so that is the part that waits. If the wifi at the far end of the room is patchy, say so on the call and we will look at a network point near the TV instead.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Who decides what photos go up?</summary>
+        <div class="faq__a">
+          <p>You do, and the AI screens everything first. Every guest photo is checked for nudity, offensive gestures and anything tasteless <strong>before</strong> it can reach the wall. What does not pass is held back, not displayed - it never gets as far as the screen.</p>
+          <p>On top of that, the manager app lets you approve or hide photos one at a time or in bulk, push notifications tell you when something needs a decision, and you can stop the whole show from your phone from anywhere.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can a staff member break it?</summary>
+        <div class="faq__a">
+          <p>Not easily. The TV is PIN-locked - press Escape at the screen and you get a PIN pad, not a desktop, not a file manager, not somebody's browser tabs. There is nothing to click out of and nothing to accidentally close.</p>
+          <p>Staff sign in without passwords, using Google, Microsoft or Apple, organised into per-venue teams. You add a manager by email and remove someone the day they leave.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Do I need to buy new screens?</summary>
+        <div class="faq__a">
+          <p>No. That is the whole point of it - it runs on the screens you already own and already pay the power on. A spare HDMI port is the requirement. If you later want a second screen, or a portrait one by the door, it slots into the same system and gets its own version of every photo.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Does it need the music system too?</summary>
+        <div class="faq__a">
+          <p>No. The screen stands on its own and plenty of rooms would only ever want the screen.</p>
+          <p>If you run eJukebox music as well, the two become one thing: the same QR code that puts a photo on the wall takes song requests, and at a function the host controls cover the music as well as the screen. The music side lives at <a href="{{ site.contact.main_site }}">ejukebox.com.au</a>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>What does it cost?</summary>
+        <div class="faq__a">
+          <p>It depends on how many screens you have and how the room is set up - one TV behind a bar is a different job from four screens, a function room and a portrait panel at the door.</p>
+          <p>So rather than put a number on a web page that turns out to be wrong for your venue, tell us about the room and we will price it properly. It takes one short conversation and you get a figure that actually holds.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Is it Australian?</summary>
+        <div class="faq__a">
+          <p>Yes. Built, run and supported here by {{ site.contact.company }}. When you ring the number on this page you get one of us, not a call centre and not a chat window that takes three days to come back to you.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================== WHAT HAPPENS AFTER YOU SAY YES -->
+<section class="band" aria-labelledby="dm-next-h">
+  <div class="wrap">
+    <p class="eyebrow">After you say yes</p>
+    <h2 id="dm-next-h">What happens next.</h2>
+    <p class="sub">Three steps, and only one of them is yours.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__n">01 - We set it up</div>
+        <h3>Configured before it leaves</h3>
+        <p>Your logo, your first slides, your schedule and your team's sign-ins are all set up remotely at our end. Nothing arrives as a box of parts and a manual.</p>
+      </div>
+
+      <div class="step">
+        <div class="step__n">02 - It arrives ready</div>
+        <h3>One box, one cable</h3>
+        <p>The player turns up already knowing which venue it belongs to and what it is meant to be showing. There is no setup wizard and no account to create on a TV remote.</p>
+      </div>
+
+      <div class="step">
+        <div class="step__n">03 - Plug it in</div>
+        <h3>It starts, and keeps starting</h3>
+        <p>Into the spare HDMI port. It comes up with your room on it, powers on with the venue every day after that, and from then on you drive it from your phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================== HONEST ROADMAP -->
+<section class="band band--tight" aria-labelledby="dm-road-h">
+  <div class="wrap">
+    <div class="panel panel--sober">
+      <p class="anno anno--dim" style="margin-bottom:12px">On the way - not shipping yet</p>
+      <h3 id="dm-road-h" style="font-size:1.24rem;margin-bottom:12px">So nothing on this site can be read as a promise</h3>
+      <p style="color:var(--smoke);max-width:46em">Everything described on this site is what the screen does today. The items below are on the roadmap and are <strong>not shipping yet</strong>. If any of them is the reason you are interested, say so and we will tell you honestly where it is up to rather than let you buy on the strength of it.</p>
+
+      <div class="tags" style="margin-top:22px">
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>News headlines between slides</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Live sport scores</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Weather for the beer garden</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Specials and menu boards</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Happy-hour countdowns</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Playing across the country live music map</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Functions and events promos feed</span>
+        <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span>Community notices</span>
+      </div>
+
+      <p class="note">Everything marked &#9671; is on the roadmap. The photo wall, the instant slides, the moderation, the scheduling and the manager app are live.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================ CLOSER -->
+<section class="band band--tight band--flush" aria-label="Talk to us">
+  <div class="wrap">
+    <div class="closer">
+      <h2>Your TV is already on the wall. Let's switch it on properly.</h2>
+      <p>Send us four lines about the room - the venue, the town, how many screens and what is on them now - and we will come back with what yours would look like running.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="mailto:{{ site.contact.email }}?subject=See%20it%20on%20our%20screen&amp;body=Venue%3A%20%0D%0ATown%3A%20%0D%0AHow%20many%20screens%3A%20%0D%0AWhat%20is%20on%20them%20now%3A%20%0D%0ABest%20time%20to%20ring%3A%20%0D%0A%0D%0A">Email us about your venue</a>
+        <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+        <a class="btn btn--ghost" href="{{ '/functions/' | relative_url }}">Doing a function?</a>
+      </div>
+      <p class="anno anno--dim closer__fine">{{ site.contact.email }}</p>
+    </div>
+  </div>
+</section>

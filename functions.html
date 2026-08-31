@@ -1,0 +1,407 @@
+---
+layout: default
+permalink: /functions/
+body_class: functions
+title: Functions and events | eJukebox TV
+og_title: Hand them a night they will still be talking about on Monday.
+description: Guests scan the QR code on the table, take a photo, and it is on the big screen before they have sat back down. Engagements, 40ths, the work Christmas party - the photo wall, the slideshow before anyone walks in, and host controls for whoever is running the night.
+---
+
+<style>
+/* ---------------------------------------------------------------------------
+   functions.html - page-scoped only. Prefix fx-.
+   The pink accent itself lives on body.functions in the layout, NOT here, so
+   --accent and --accent-line are already pink on this page. Nothing below
+   defines a colour of its own; it only reaches for the existing tokens.
+   --------------------------------------------------------------------------- */
+.fx-lit{color:var(--accent)}
+.fx-quote{margin:0;padding:2px 0 2px clamp(18px,2.4vw,28px);border-left:3px solid var(--accent-line)}
+.fx-quote p{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.12;
+  font-size:clamp(1.24rem,2.6vw,1.9rem);color:var(--chalk);margin:0}
+.fx-quote p + p{margin-top:14px;font-family:var(--body);font-weight:400;font-size:1rem;
+  letter-spacing:0;line-height:1.6;color:var(--smoke)}
+.fx-host{display:grid;gap:8px;margin-top:14px}
+.fx-ctl{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:12px 14px;border-radius:10px;background:var(--room);border:1px solid var(--line)}
+.fx-ctl__k{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--smoke)}
+.fx-ctl__v{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);white-space:nowrap}
+.fx-ctl--now{background:var(--room-3);border-color:var(--line-2)}
+.fx-ctl--now .fx-ctl__v{color:var(--chalk);font-family:var(--body);font-size:.95rem;
+  letter-spacing:0;text-transform:none}
+.fx-crops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);align-items:end}
+.fx-crop{margin:0}
+.fx-crop__f{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--room-2);
+  box-shadow:var(--inset)}
+.fx-crop__f .pic{border-radius:0}
+.fx-crop figcaption{margin-top:11px;display:block}
+.fx-stat{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,4.6vw,3.1rem);
+  letter-spacing:-.045em;line-height:1;color:var(--accent);margin:0 0 8px}
+.fx-accent{color:var(--accent)}
+/* small print that is prose, not a label - mono is reserved for timings,
+   states and labels, so this stays in the body face */
+.fx-fine{color:var(--dim);font-size:.92rem;max-width:36em;margin-top:20px}
+.fx-fine:last-child{margin-bottom:0}
+/* the gate sits in a wide column here, so it runs a size up from the inline
+   one on the home page. Sizes only - no new colours, no new behaviour. */
+.fx-gate{height:200px;gap:16px;padding:14px}
+.fx-gate .gate__wall{grid-template-columns:repeat(2,44px);gap:6px}
+.fx-gate .gate__tile{width:88px}
+.fx-gate.is-live .gate__tile{width:92px;margin-top:-61px}
+@media (max-width:620px){
+  .fx-gate{height:170px}
+  .fx-gate .gate__tile{width:74px}
+  .fx-gate.is-live .gate__tile{width:78px;margin-top:-52px}
+  .fx-crops{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fx-crop--sq{grid-column:span 2;max-width:54%}
+}
+</style>
+
+
+<!-- ============================================ HERO - THE WALL THAT FILLS -->
+<section class="band band--flush band--spill" aria-labelledby="fx-hero-h" style="padding-top:clamp(40px,5.4vw,76px)">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">Functions and events</p>
+        <h1 id="fx-hero-h">Hand them a night they will <span class="fx-lit">still be talking about on Monday</span>.</h1>
+
+        <p class="lede">Engagements, 40ths, the work Christmas party. Guests scan the QR code on the table, take a photo, and it is on the big screen before they have sat back down. The room turns around and looks. That is the moment - and it happens again every few minutes, all night.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
+          <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+        </div>
+
+        <p class="fx-fine">It runs on the screen the room already has. Nothing to hire, nothing to wheel in, nothing to set up on the night.</p>
+      </div>
+
+      <div>
+        <div class="wall wall--3" data-wall role="img" aria-label="An illustration of a function photo wall filling up through the evening, timestamped from 9:41 pm onwards, with the newest photo marked fresh for its fifteen minutes of fame.">
+          <div class="wall__tile wall__tile--tall">{% include pic.html v="a" %}<span class="wall__stamp">9:41 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">9:41 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:42 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">9:43 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">9:44 pm</span></div>
+          <div class="wall__tile wall__tile--wide">{% include pic.html v="b" %}<span class="wall__stamp">9:46 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:48 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">9:51 pm</span></div>
+          <div class="wall__tile is-fresh">{% include pic.html v="a" %}<span class="wall__fresh">Fresh</span><span class="wall__stamp">9:52 pm</span></div>
+          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">9:52 pm</span></div>
+        </div>
+
+        <div class="set__strap">
+          <span class="anno anno--dim">The wall - 9:41 pm onwards</span>
+          <span class="anno anno--amber">Portrait + landscape</span>
+        </div>
+        <p class="note" style="margin-top:10px">Illustration of the wall - the photos on this site are drawn, not venue photography.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================== HOW A NIGHT RUNS -->
+<section class="band" aria-labelledby="fx-run-h">
+  <div class="wrap">
+    <p class="eyebrow">The run sheet</p>
+    <h2 id="fx-run-h">How a function actually runs.</h2>
+    <p class="sub">One screen, one evening, nobody standing over it. This is a Saturday night engagement party in a function room, start to finish.</p>
+
+    <div class="grid grid--wide-split">
+      <div>
+        <div class="timerail">
+          <div class="timerail__row">
+            <div class="timerail__t">5:30 pm</div>
+            <h3>Before anyone arrives</h3>
+            <p>Their names are already on the screen, next to your logo. The room is set, the bar is stocked, and the first thing the family sees when they walk in is that somebody thought about them.</p>
+          </div>
+
+          <div class="timerail__row">
+            <div class="timerail__t">6:30 pm</div>
+            <h3>Arrivals - the slideshow</h3>
+            <p>The photos they sent through run as a slideshow while people find the bar and work out where they are sitting. Same screen. No laptop on a chair, no cable dangling off the end of the bar.</p>
+          </div>
+
+          <div class="timerail__row">
+            <div class="timerail__t">8:00 pm</div>
+            <h3>The wall opens</h3>
+            <p>QR cards on the tables. Somebody's aunt scans one to see what happens, and about three seconds later she is on the big screen. From then on it does not stop.</p>
+          </div>
+
+          <div class="timerail__row">
+            <div class="timerail__t">9:30 pm</div>
+            <h3>Host mode</h3>
+            <p>Whoever is running the night has the controls on their own phone. Skip straight to the song her dad asked for, at the moment he asks for it, without going looking for a staff member first.</p>
+          </div>
+
+          <div class="timerail__row">
+            <div class="timerail__t">10:00 pm</div>
+            <h3>Speeches</h3>
+            <p>The music stops cleanly at the end of a song, so the toast lands in a quiet room instead of over the top of a fade somebody pulled down halfway through a chorus.</p>
+          </div>
+
+          <div class="timerail__row">
+            <div class="timerail__t">11:30 pm</div>
+            <h3>Last drinks</h3>
+            <p>Typed at the bar in about eight seconds, designed by the time the phone is back in a pocket, up for half an hour, then gone on its own. Nobody has to remember to take it down.</p>
+          </div>
+
+          <div class="timerail__row">
+            <div class="timerail__t">Sunday morning</div>
+            <h3>The night is still there</h3>
+            <p>Every photo that went up is kept, in both shapes, with your logo on it. The room is already being reset for a christening and the whole night is still sitting there, ready to send back to them.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel panel--accent">
+          <blockquote class="fx-quote">
+            <p>Give people that experience and they book again - and they tell their friends.</p>
+            <p>In hospitality it is the little things that turn a one-off booking into a regular. This is one of the little things, and it happens over and over across a night, in front of a room full of people who all have something of their own coming up.</p>
+          </blockquote>
+        </div>
+
+        <div class="set set--mini" style="margin-top:var(--gap)">
+          <div class="set__frame">
+            <span class="set__shine" aria-hidden="true"></span>
+            <div class="set__glass" style="background:radial-gradient(600px 320px at 50% 8%,#3a1524 0%,#120a12 74%)">
+              <div class="slide is-on">
+                <div class="card-slide">
+                  <div class="card-slide__kick" style="color:#ff86b0">Tonight</div>
+                  <div class="card-slide__big" style="color:#ffdfe9">Sam &amp; Alex<br>are engaged</div>
+                  <div class="card-slide__sub" style="color:#e0a5bd">Welcome slide - up from 5:30</div>
+                </div>
+                <span class="slide__logo">Your logo</span>
+              </div>
+            </div>
+          </div>
+          <div class="set__shadow" aria-hidden="true"></div>
+          <div class="set__strap">
+            <span class="anno anno--dim">Their names, your room</span>
+            <span class="anno fx-accent">Set the week before</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ HOST MODE -->
+<section class="band" aria-labelledby="fx-host-h">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <p class="eyebrow">Host mode</p>
+        <h2 id="fx-host-h">Give the host the keys, just for the night.</h2>
+        <p class="sub">The person actually running the evening - the events coordinator, the best mate with the speeches, the brother who has appointed himself DJ - gets their own admin access for that night. Not your manager's login, and not a staff member trailing them around the room all evening.</p>
+
+        <ul class="ticks" style="grid-template-columns:minmax(0,1fr)">
+          <li><span><strong>Skip straight to the right song.</strong> The one her dad asked for, when he asks for it, without anyone having to go and find somebody behind the bar.</span></li>
+          <li><span><strong>Cue what is coming next.</strong> Line the first dance up while the speeches are still going, so there is no gap and nobody is scrolling a phone in front of a hundred people.</span></li>
+          <li><span><strong>Stop the music cleanly.</strong> At the end of a song, not halfway through one. The toast lands in a quiet room instead of over an awkward fade.</span></li>
+          <li><span><strong>Theirs for the night, not forever.</strong> The access is handed over for the evening. The host feels in control, and your system stays yours.</span></li>
+        </ul>
+
+        <p class="fx-fine">The song controls come with the eJukebox music system - the screen and the music are separate things that work as one. The music side lives at <a href="{{ site.contact.main_site }}">ejukebox.com.au</a>.</p>
+      </div>
+
+      <div>
+        <div class="phone" style="max-width:360px;margin-left:auto;margin-right:auto">
+          <div class="phone__bar">
+            <span class="anno anno--dim">Host - tonight only</span>
+            <span class="anno fx-accent">9:58 pm</span>
+          </div>
+
+          <div class="fx-host">
+            <div class="fx-ctl fx-ctl--now">
+              <span class="fx-ctl__k">Now playing</span>
+              <span class="fx-ctl__v">Track 4 of the set</span>
+            </div>
+            <div class="fx-ctl">
+              <span class="fx-ctl__k">Skip to</span>
+              <span class="fx-ctl__v">Her dad's song</span>
+            </div>
+            <div class="fx-ctl">
+              <span class="fx-ctl__k">Stop after this one</span>
+              <span class="fx-ctl__v">Speeches 10:00</span>
+            </div>
+            <div class="fx-ctl">
+              <span class="fx-ctl__k">Put a slide up</span>
+              <span class="fx-ctl__v">Cake at 10:30</span>
+            </div>
+          </div>
+
+          <div class="phone__status">
+            <span class="anno anno--dim">Handed over 6:00 pm - back to you at close</span>
+          </div>
+        </div>
+        <p class="note" style="text-align:center">An illustration of the host's phone, not a screenshot.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================ THE ARRIVALS SLIDESHOW -->
+<section class="band" aria-labelledby="fx-slide-h">
+  <div class="wrap">
+    <div class="grid grid--split">
+      <div>
+        <div class="wall wall--3" data-wall aria-hidden="true">
+          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">2019</span></div>
+          <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">Bali</span></div>
+          <div class="wall__tile">{% include pic.html v="d" %}<span class="wall__stamp">The dog</span></div>
+          <div class="wall__tile">{% include pic.html v="b" %}<span class="wall__stamp">Her 21st</span></div>
+          <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">Uni</span></div>
+          <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">Last winter</span></div>
+        </div>
+        <p class="note" style="margin-top:12px">Illustration - the photos they send you, running before the doors open.</p>
+      </div>
+
+      <div>
+        <p class="eyebrow">Before the doors open</p>
+        <h2 id="fx-slide-h">The slideshow that runs before anyone walks in.</h2>
+        <p class="sub">Upload the guest-of-honour photos the week before - the baby ones, the Bali ones, the ones the mother of the bride insisted on - and the screen runs them as people arrive and find the bar. When the room is full it hands over to the live wall and the night takes it from there.</p>
+        <p class="sub">Same screen, same player, nothing plugged in on the night. No laptop on a chair, no cable across a walkway, nobody's screensaver appearing at ten past eight.</p>
+        <div class="btn-row">
+          <a class="btn btn--ghost" href="{{ '/demo/' | relative_url }}">See how it gets set up</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =============================================================== BRANDED -->
+<section class="band" aria-labelledby="fx-brand-h">
+  <div class="wrap">
+    <p class="eyebrow">Branded both ways</p>
+    <h2 id="fx-brand-h">Branded for them, and for you.</h2>
+    <p class="sub">Their names on the welcome slide. Your logo on every photo that goes up. And because each photo is kept in more than one shape, the widescreen TV on the wall and the portrait screen by the door each get the version that fills them properly - no stretched faces, no postage stamp between two black bars.</p>
+
+    <div class="fx-crops">
+      <figure class="fx-crop">
+        <div class="fx-crop__f">{% include pic.html v="b" ratio="16/9" %}</div>
+        <figcaption class="anno anno--dim">The big TV - landscape</figcaption>
+      </figure>
+      <figure class="fx-crop">
+        <div class="fx-crop__f">{% include pic.html v="b" ratio="4/5" %}</div>
+        <figcaption class="anno anno--dim">The screen by the door - portrait</figcaption>
+      </figure>
+      <figure class="fx-crop fx-crop--sq">
+        <div class="fx-crop__f">{% include pic.html v="b" ratio="1" %}</div>
+        <figcaption class="anno fx-accent">Their feed - square crop</figcaption>
+      </figure>
+    </div>
+
+    <div class="panel panel--accent" style="margin-top:clamp(24px,3vw,36px)">
+      <h3>Every guest who posts is posting your room</h3>
+      <p style="color:var(--smoke);margin:0">The photos come back as Instagram-ready crops with your logo already sitting on them. A room full of people at a 40th, a good share of them posting something from the night, and the name of your venue rides along on every one of those posts. That is advertising that walks itself home.</p>
+    </div>
+
+    <p class="note">Illustration - one photo, three shapes.</p>
+  </div>
+</section>
+
+
+<!-- ================================================ WHY THIS WINS BOOKINGS -->
+<section class="band band--spill" aria-labelledby="fx-book-h">
+  <div class="wrap">
+    <p class="eyebrow">For the owner</p>
+    <h2 id="fx-book-h">Why this wins you the booking.</h2>
+
+    <div class="grid grid--split grid--top">
+      <div>
+        <p class="sub">Someone choosing where to hold their 30th is looking at four rooms that all look much the same. Same carpet, same package, same bain-marie. One of them puts their friends up on the big screen.</p>
+        <p class="sub">That is the whole argument. The host feels in control, because they have the controls. The guests get something they have not seen at the last four places they went. And the person who booked it spends the next fortnight showing people photos with your logo in the corner of them.</p>
+        <p class="sub"><strong>It makes you an easy yes.</strong> Not a discount and not a bigger platter - a reason to pick your room that the place down the road cannot match by dropping their price.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
+          <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel panel--raised">
+          <p class="anno fx-accent" style="margin-bottom:14px">Worth knowing</p>
+          <p class="fx-stat">+48.2%</p>
+          <p style="color:var(--smoke);margin:0 0 14px">More in sales at venues playing music, compared with venues without it.</p>
+          <p class="anno anno--dim">OneMusic Hospitality - Presto Report</p>
+          <p style="color:var(--smoke);font-size:.95rem;margin:18px 0 0;padding-top:18px;border-top:1px solid var(--line)">That figure is about the music, not the screen. We quote it because a function room is doing both jobs on the same night, and because it is the only number here we can point at a source for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =================================================== THE MODERATION GATE -->
+<section class="band band--sober" aria-labelledby="fx-safe-h">
+  <div class="wrap">
+    <p class="eyebrow">The honest bit</p>
+    <h2 id="fx-safe-h">A public screen at a party, with a bar tab.</h2>
+    <p class="sub">It is the first question every functions coordinator asks, and it should be. Here is the straight answer, with nothing dressed up.</p>
+
+    <div class="grid grid--wide-split">
+      <div>
+        <div class="gate fx-gate" data-gate role="img" aria-label="An illustration of the check: an incoming photo is scanned by AI, then either approved onto the wall or held back and never displayed.">
+          <div class="gate__wall" aria-hidden="true">
+            {% include pic.html v="a" %}
+            {% include pic.html v="c" %}
+            {% include pic.html v="d" %}
+            {% include pic.html v="b" %}
+          </div>
+          <div class="gate__lane">
+            <div class="gate__tile gate__tile--ok">
+              {% include pic.html v="b" %}
+              <span class="gate__scan"></span>
+              <span class="gate__badge gate__badge--ok">Approved</span>
+            </div>
+            <div class="gate__tile gate__tile--held">
+              {% include pic.html v="d" %}
+              <span class="gate__scan"></span>
+              <span class="gate__badge gate__badge--held">Held</span>
+            </div>
+          </div>
+          <span class="gate__caption">AI check</span>
+        </div>
+        <p class="note" style="margin-top:12px">Every photo goes through this before it can reach the wall.</p>
+      </div>
+
+      <div>
+        <ul class="ticks" style="grid-template-columns:minmax(0,1fr)">
+          <li><span><strong>AI screens every photo before it can reach the wall.</strong> Nudity, offensive gestures, anything tasteless. Held back, not displayed - it never gets as far as the screen for somebody to have to take it down in front of a room.</span></li>
+          <li><span><strong>You still have the final say.</strong> The manager app approves or hides photos one at a time, or clears a batch in bulk when a table gets carried away.</span></li>
+          <li><span><strong>Push notifications when it needs a person.</strong> A glance at the phone, one tap, and it is dealt with from the other side of the room.</span></li>
+          <li><span><strong>You can stop the whole show from anywhere.</strong> Start it, stop it or change what is on it from a phone, from the car park.</span></li>
+          <li><span><strong>The TV itself is locked.</strong> Press Escape at the screen and you get a PIN pad - not a desktop, not a file manager, not somebody's browser tabs.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================= ROLL THE TAPE -->
+{% include video-stage.html
+   heading="A function, from the welcome slide to last drinks."
+   body="A photo wall is hard to describe and obvious to watch. We are filming a real night so you can see the whole thing - the wall filling up, the room noticing, the music stopping cleanly under the speeches."
+%}
+
+
+<!-- ================================================================ CLOSER -->
+<section class="band band--tight band--flush" aria-label="Talk to us">
+  <div class="wrap">
+    {% include cta.html
+       heading="Got a big one booked? Let's have it running before then."
+       body="Tell us the date and what the room looks like. If it is far enough out we can have the screen set up, branded and tested well before anyone walks in - so you can put it in front of the next enquiry as a reason to book you."
+       cta="See it on your screen"
+       ghost="How the screen works"
+       ghost_href="/" %}
+  </div>
+</section>
