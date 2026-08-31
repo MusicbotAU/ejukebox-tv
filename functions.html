@@ -2,62 +2,11 @@
 layout: default
 permalink: /functions/
 body_class: functions
+page_css: css-fx.html
 title: Functions and events | eJukebox TV
 og_title: Hand them a night they will still be talking about on Monday.
 description: Guests scan the QR code on the table, take a photo, and it is on the big screen before they have sat back down. Engagements, 40ths, the work Christmas party - the photo wall, the slideshow before anyone walks in, and host controls for whoever is running the night.
 ---
-
-<style>
-/* ---------------------------------------------------------------------------
-   functions.html - page-scoped only. Prefix fx-.
-   The pink accent itself lives on body.functions in the layout, NOT here, so
-   --accent and --accent-line are already pink on this page. Nothing below
-   defines a colour of its own; it only reaches for the existing tokens.
-   --------------------------------------------------------------------------- */
-.fx-lit{color:var(--accent)}
-.fx-quote{margin:0;padding:2px 0 2px clamp(18px,2.4vw,28px);border-left:3px solid var(--accent-line)}
-.fx-quote p{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.12;
-  font-size:clamp(1.24rem,2.6vw,1.9rem);color:var(--chalk);margin:0}
-.fx-quote p + p{margin-top:14px;font-family:var(--body);font-weight:400;font-size:1rem;
-  letter-spacing:0;line-height:1.6;color:var(--smoke)}
-.fx-host{display:grid;gap:8px;margin-top:14px}
-.fx-ctl{display:flex;align-items:center;justify-content:space-between;gap:14px;
-  padding:12px 14px;border-radius:10px;background:var(--room);border:1px solid var(--line)}
-.fx-ctl__k{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--smoke)}
-.fx-ctl__v{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--accent);white-space:nowrap}
-.fx-ctl--now{background:var(--room-3);border-color:var(--line-2)}
-.fx-ctl--now .fx-ctl__v{color:var(--chalk);font-family:var(--body);font-size:.95rem;
-  letter-spacing:0;text-transform:none}
-.fx-crops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);align-items:end}
-.fx-crop{margin:0}
-.fx-crop__f{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--room-2);
-  box-shadow:var(--inset)}
-.fx-crop__f .pic{border-radius:0}
-.fx-crop figcaption{margin-top:11px;display:block}
-.fx-stat{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,4.6vw,3.1rem);
-  letter-spacing:-.045em;line-height:1;color:var(--accent);margin:0 0 8px}
-.fx-accent{color:var(--accent)}
-/* small print that is prose, not a label - mono is reserved for timings,
-   states and labels, so this stays in the body face */
-.fx-fine{color:var(--dim);font-size:.92rem;max-width:36em;margin-top:20px}
-.fx-fine:last-child{margin-bottom:0}
-/* the gate sits in a wide column here, so it runs a size up from the inline
-   one on the home page. Sizes only - no new colours, no new behaviour. */
-.fx-gate{height:200px;gap:16px;padding:14px}
-.fx-gate .gate__wall{grid-template-columns:repeat(2,44px);gap:6px}
-.fx-gate .gate__tile{width:88px}
-.fx-gate.is-live .gate__tile{width:92px;margin-top:-61px}
-@media (max-width:620px){
-  .fx-gate{height:170px}
-  .fx-gate .gate__tile{width:74px}
-  .fx-gate.is-live .gate__tile{width:78px;margin-top:-52px}
-  .fx-crops{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .fx-crop--sq{grid-column:span 2;max-width:54%}
-}
-</style>
-
 
 <!-- ============================================ HERO - THE WALL THAT FILLS -->
 <section class="band band--flush band--spill" aria-labelledby="fx-hero-h" style="padding-top:clamp(40px,5.4vw,76px)">
@@ -69,9 +18,11 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
 
         <p class="lede">Engagements, 40ths, the work Christmas party. Guests scan the QR code on the table, take a photo, and it is on the big screen before they have sat back down. The room turns around and looks. That is the moment - and it happens again every few minutes, all night.</p>
 
+        <p class="trustline">Someone choosing where to hold their 30th is looking at four rooms that all look much the same. One of them puts their friends up on the big screen. That is why this is a revenue argument and not a nice feature.</p>
+
         <div class="btn-row">
           <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-          <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
+          <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
         </div>
 
         <p class="fx-fine">It runs on the screen the room already has. Nothing to hire, nothing to wheel in, nothing to set up on the night.</p>
@@ -151,7 +102,7 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
           <div class="timerail__row">
             <div class="timerail__t">Sunday morning</div>
             <h3>The night is still there</h3>
-            <p>Every photo that went up is kept, in both shapes, with your logo on it. The room is already being reset for a christening and the whole night is still sitting there, ready to send back to them.</p>
+            <p>Every photo that went up is kept, in both shapes, with your logo on it. The room is already being reset for a christening and the whole night is still sitting there.</p>
           </div>
         </div>
       </div>
@@ -183,6 +134,38 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
             <span class="anno anno--dim">Their names, your room</span>
             <span class="anno fx-accent">Set the week before</span>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================ WHY THIS WINS BOOKINGS -->
+<section class="band band--spill" aria-labelledby="fx-book-h">
+  <div class="wrap">
+    <p class="eyebrow">For the owner</p>
+    <h2 id="fx-book-h">Why this wins you the booking.</h2>
+
+    <div class="grid grid--split grid--top">
+      <div>
+        <p class="sub">Four rooms, same carpet, same package, same bain-marie. The one that puts their friends up on the big screen is the one they remember, and the one they tell people about.</p>
+        <p class="sub">The host feels in control, because they have the controls. The guests get something they have not seen at the last four places they went. And the person who booked it spends the next fortnight showing people photos with your logo in the corner of them.</p>
+        <p class="sub"><strong>It makes you an easy yes.</strong> Not a discount and not a bigger platter - a reason to pick your room that the place down the road cannot match by dropping their price.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
+          <a class="btn btn--ghost" href="mailto:{{ site.contact.email }}">Email us</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel panel--raised">
+          <p class="anno fx-accent" style="margin-bottom:14px">Worth knowing</p>
+          <p class="fx-stat">+48.2%</p>
+          <p style="color:var(--smoke);margin:0 0 14px">More in sales at venues playing music, compared with venues without it.</p>
+          <p class="anno anno--dim">OneMusic Hospitality - Presto Report</p>
+          <p style="color:var(--smoke);font-size:.95rem;margin:18px 0 0;padding-top:18px;border-top:1px solid var(--line)">That figure is about the music, not the screen - we quote it because a function room is doing both jobs on the same night. Everything else on this page is a description of what the software does, not a claim about your takings.</p>
         </div>
       </div>
     </div>
@@ -259,7 +242,6 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
           <div class="wall__tile">{% include pic.html v="c" %}<span class="wall__stamp">Uni</span></div>
           <div class="wall__tile">{% include pic.html v="a" %}<span class="wall__stamp">Last winter</span></div>
         </div>
-        <p class="note" style="margin-top:12px">Illustration - the photos they send you, running before the doors open.</p>
       </div>
 
       <div>
@@ -303,39 +285,6 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
       <p style="color:var(--smoke);margin:0">The photos come back as Instagram-ready crops with your logo already sitting on them. A room full of people at a 40th, a good share of them posting something from the night, and the name of your venue rides along on every one of those posts. That is advertising that walks itself home.</p>
     </div>
 
-    <p class="note">Illustration - one photo, three shapes.</p>
-  </div>
-</section>
-
-
-<!-- ================================================ WHY THIS WINS BOOKINGS -->
-<section class="band band--spill" aria-labelledby="fx-book-h">
-  <div class="wrap">
-    <p class="eyebrow">For the owner</p>
-    <h2 id="fx-book-h">Why this wins you the booking.</h2>
-
-    <div class="grid grid--split grid--top">
-      <div>
-        <p class="sub">Someone choosing where to hold their 30th is looking at four rooms that all look much the same. Same carpet, same package, same bain-marie. One of them puts their friends up on the big screen.</p>
-        <p class="sub">That is the whole argument. The host feels in control, because they have the controls. The guests get something they have not seen at the last four places they went. And the person who booked it spends the next fortnight showing people photos with your logo in the corner of them.</p>
-        <p class="sub"><strong>It makes you an easy yes.</strong> Not a discount and not a bigger platter - a reason to pick your room that the place down the road cannot match by dropping their price.</p>
-
-        <div class="btn-row">
-          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-          <a class="btn btn--ghost" href="tel:{{ site.contact.phone_link }}">Ring {{ site.contact.phone }}</a>
-        </div>
-      </div>
-
-      <div>
-        <div class="panel panel--raised">
-          <p class="anno fx-accent" style="margin-bottom:14px">Worth knowing</p>
-          <p class="fx-stat">+48.2%</p>
-          <p style="color:var(--smoke);margin:0 0 14px">More in sales at venues playing music, compared with venues without it.</p>
-          <p class="anno anno--dim">OneMusic Hospitality - Presto Report</p>
-          <p style="color:var(--smoke);font-size:.95rem;margin:18px 0 0;padding-top:18px;border-top:1px solid var(--line)">That figure is about the music, not the screen. We quote it because a function room is doing both jobs on the same night, and because it is the only number here we can point at a source for.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -371,12 +320,14 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
           <span class="gate__caption">AI check</span>
         </div>
         <p class="note" style="margin-top:12px">Every photo goes through this before it can reach the wall.</p>
+        <button class="playbtn" type="button" data-play="gate">Pause the demo</button>
       </div>
 
       <div>
         <ul class="ticks" style="grid-template-columns:minmax(0,1fr)">
           <li><span><strong>AI screens every photo before it can reach the wall.</strong> Nudity, offensive gestures, anything tasteless. Held back, not displayed - it never gets as far as the screen for somebody to have to take it down in front of a room.</span></li>
           <li><span><strong>You still have the final say.</strong> The manager app approves or hides photos one at a time, or clears a batch in bulk when a table gets carried away.</span></li>
+          <li><span><strong>Anything can come down on the spot.</strong> A guest who changes their mind tells a staff member and it is off the wall in a tap - one photo, or a whole table's worth in bulk.</span></li>
           <li><span><strong>Push notifications when it needs a person.</strong> A glance at the phone, one tap, and it is dealt with from the other side of the room.</span></li>
           <li><span><strong>You can stop the whole show from anywhere.</strong> Start it, stop it or change what is on it from a phone, from the car park.</span></li>
           <li><span><strong>The TV itself is locked.</strong> Press Escape at the screen and you get a PIN pad - not a desktop, not a file manager, not somebody's browser tabs.</span></li>
@@ -390,7 +341,7 @@ description: Guests scan the QR code on the table, take a photo, and it is on th
 <!-- ========================================================= ROLL THE TAPE -->
 {% include video-stage.html
    heading="A function, from the welcome slide to last drinks."
-   body="A photo wall is hard to describe and obvious to watch. We are filming a real night so you can see the whole thing - the wall filling up, the room noticing, the music stopping cleanly under the speeches."
+   body="A photo wall is hard to describe and obvious to watch. We are putting a film together of a full night - the wall filling up, the room noticing, the music stopping cleanly under the speeches - so you can see the whole thing run end to end."
 %}
 
 

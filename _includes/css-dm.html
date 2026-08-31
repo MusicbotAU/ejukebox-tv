@@ -1,0 +1,17 @@
+<style>
+/* ---------------------------------------------------------------------------
+   css-dm.html - page-scoped CSS for /demo/. Prefix dm-. No new colours; tokens only.
+   Pulled into <head> by the layout via `page_css: css-dm.html` in front matter.
+   --------------------------------------------------------------------------- */
+.dm-lines{display:grid;gap:15px;margin:24px 0 0}
+.dm-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;margin:0}
+.dm-line__k{min-width:118px;flex:none}
+.dm-line__v{font-family:var(--display);font-weight:700;letter-spacing:-.02em;
+  font-size:clamp(1.08rem,2.1vw,1.42rem);color:var(--chalk);text-decoration:none;
+  overflow-wrap:anywhere}
+.dm-line__v:hover{color:var(--glow)}
+/* small print that is prose, not a label - mono stays reserved for timings,
+   states and labels */
+.dm-fine{color:var(--dim);font-size:.92rem;max-width:38em;margin-top:20px}
+.dm-fine:last-child{margin-bottom:0}
+</style>

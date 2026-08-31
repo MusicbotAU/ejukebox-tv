@@ -1,5 +1,17 @@
 <footer class="site-footer">
   <div class="wrap">
+
+    <!-- the loud route back to the parent site -->
+    <div class="parentcard">
+      <img class="parentcard__logo" src="{{ '/assets/ejukebox-logo.png' | relative_url }}"
+           alt="eJukebox" width="89" height="44" loading="lazy" decoding="async">
+      <div>
+        <p class="parentcard__t">This is the screen side of eJukebox.</p>
+        <p class="parentcard__s">The music, the channels, the zones and the 30 day free trial all live on the main site. The screen and the music are built to run together, and most venues take both.</p>
+      </div>
+      <a class="btn btn--ghost parentcard__go" href="{{ site.family.parent }}">Go to ejukebox.com.au</a>
+    </div>
+
     <div class="site-footer__in">
       <div>
         <a class="brand" href="{{ '/' | relative_url }}">
@@ -10,8 +22,8 @@
 
       <div>
         <p class="anno anno--dim" style="margin-bottom:10px">Talk to us</p>
-        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a><br>
-        <a href="tel:{{ site.contact.phone_link }}">{{ site.contact.phone }}</a></p>
+        <p><a href="mailto:{{ site.contact.email }}">{{ site.contact.email }}</a></p>
+        <p style="margin-top:6px"><a href="{{ '/demo/' | relative_url }}">Ask for a demo</a></p>
       </div>
 
       <div>
@@ -20,7 +32,14 @@
           <a href="{{ '/' | relative_url }}">The screen</a>
           <a href="{{ '/functions/' | relative_url }}">Functions and events</a>
           <a href="{{ '/demo/' | relative_url }}">See it live</a>
-          <a href="{{ site.contact.main_site }}">The music side of eJukebox</a>
+        </div>
+      </div>
+
+      <div>
+        <p class="anno anno--dim" style="margin-bottom:10px">The rest of eJukebox</p>
+        <div class="site-footer__links" style="flex-direction:column;gap:6px">
+          <a href="{{ site.family.parent }}">Main site - ejukebox.com.au</a>
+          <a href="{{ site.family.music }}">The music - ejukebox.music</a>
         </div>
       </div>
     </div>

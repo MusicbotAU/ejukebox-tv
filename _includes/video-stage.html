@@ -14,20 +14,25 @@
       poster: "/assets/video/poster.jpg"
       aspect: "16/9"     # or "9/16" for portrait phone footage
       caption: "A Friday night, start to finish."
+      badge: ""          # OPTIONAL second caption, empty on purpose. Nothing
+                         # is claimed about where the footage was shot unless
+                         # Marc types that claim himself.
+      captions: ""       # path to a .vtt subtitle file, if one exists
 
   Params (all optional, all override _config.yml for this one instance):
-    eyebrow, heading, body, caption, url, poster, aspect
+    eyebrow, heading, body, caption, badge, url, poster, aspect
 {% endcomment %}
 {% assign v_url    = include.url     | default: site.video.url %}
 {% assign v_poster = include.poster  | default: site.video.poster %}
 {% assign v_aspect = include.aspect  | default: site.video.aspect | default: "16/9" %}
 {% assign v_cap    = include.caption | default: site.video.caption %}
+{% assign v_badge  = include.badge   | default: site.video.badge %}
 
 <section class="band band--spill" aria-labelledby="tape-h">
   <div class="wrap">
     <p class="eyebrow">{{ include.eyebrow | default: "Roll the tape" }}</p>
     <h2 id="tape-h">{{ include.heading | default: "See a night run start to finish." }}</h2>
-    <p class="sub">{{ include.body | default: "The screen does not really make sense until you watch it work a room - a photo landing, the slide that takes itself down, the prompt that pulls the next person in." }}</p>
+    <p class="sub">{{ include.body | default: "We are cutting a film of a full night - a photo landing, the slide that takes itself down, the prompt that pulls the next person in. Until it lands, the fastest way to see it is on your own screen: fifteen minutes, your logo on it." }}</p>
 
     <div class="set set--stage video-stage">
       <div class="set__frame">
@@ -35,12 +40,12 @@
         <div class="set__glass" style="--set-aspect:{{ v_aspect }}">
           {% if v_url and v_url != "" %}
             <video controls preload="metadata" playsinline{% if v_poster and v_poster != "" %} poster="{{ v_poster | relative_url }}"{% endif %}>
-              <source src="{{ v_url | relative_url }}" type="video/mp4">
-              <track kind="captions" label="English" srclang="en">
+              <source src="{{ v_url | relative_url }}">
+              {% if site.video.captions and site.video.captions != "" %}<track kind="captions" label="English" srclang="en" src="{{ site.video.captions | relative_url }}" default>{% endif %}
               <p style="padding:24px;color:#8ea0b5">Your browser will not play this video. <a href="{{ v_url | relative_url }}">Download the file instead.</a></p>
             </video>
           {% else %}
-            <div class="video-poster" role="img" aria-label="A paused venue screen. The film is being shot now.">
+            <div class="video-poster" role="img" aria-label="A paused venue screen, standing in for the film that is being cut.">
               <span class="video-poster__ring" aria-hidden="true">
                 <svg viewBox="0 0 24 24" width="34" height="34" focusable="false" aria-hidden="true">
                   <path d="M9 6.5v11l9-5.5z" fill="#ffb347"></path>
@@ -48,7 +53,7 @@
               </span>
               <span class="anno anno--amber">Footage - coming</span>
               <p class="video-poster__line">A full night, end to end - the wall filling up, a slide going up from the bar, the room noticing.</p>
-              <span class="anno anno--dim">--:--</span>
+              <span class="anno anno--amber">--:--</span>
             </div>
           {% endif %}
         </div>
@@ -58,9 +63,9 @@
       <div class="video-stage__cap">
         {% if v_url and v_url != "" %}
           <span class="anno anno--dim">{{ v_cap }}</span>
-          <span class="anno anno--amber">Filmed in a real room</span>
+          {% if v_badge and v_badge != "" %}<span class="anno anno--amber">{{ v_badge }}</span>{% endif %}
         {% else %}
-          <p style="margin:0;color:#8ea0b5;max-width:38em">The film is on its way. Want it sent to you the day it lands? Talk to us and we will put you on the list - and walk you through the live screen in the meantime.</p>
+          <p style="margin:0;color:#8ea0b5;max-width:38em">You do not have to wait for the film. We will run a live screen with your logo on it and you can watch the whole thing happen in about fifteen minutes.</p>
           <a class="btn btn--primary btn--small" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
         {% endif %}
       </div>

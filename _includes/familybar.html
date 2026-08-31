@@ -1,0 +1,15 @@
+<!-- The eJukebox family switcher. Same markup on ejukebox.tv and ejukebox.music -
+     only site.family.current changes. Keeps the parent site one click away from
+     every page rather than buried in the footer. -->
+<div class="fambar">
+  <div class="fambar__in">
+    <img class="fambar__logo" src="{{ '/assets/ejukebox-logo.png' | relative_url }}"
+         alt="eJukebox" width="48" height="24" decoding="async">
+    <span class="fambar__label">Part of eJukebox</span>
+    <nav class="fambar__nav" aria-label="eJukebox sites">
+      <a class="is-parent" href="{{ site.family.parent }}">Main site &rarr;</a>
+      <a href="{{ site.family.music }}"{% if site.family.current == 'music' %} class="is-here" aria-current="true"{% endif %}>Music</a>
+      <a href="{{ site.family.tv }}"{% if site.family.current == 'tv' %} class="is-here" aria-current="true"{% endif %}>TV</a>
+    </nav>
+  </div>
+</div>

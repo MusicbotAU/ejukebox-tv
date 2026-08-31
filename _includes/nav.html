@@ -1,3 +1,4 @@
+{% include familybar.html %}
 <header class="topbar">
   <div class="topbar__in">
     <a class="brand" href="{{ '/' | relative_url }}" aria-label="eJukebox TV, home">
@@ -10,10 +11,11 @@
       <a href="{{ '/demo/' | relative_url }}"{% if page.url contains '/demo' %} class="is-here" aria-current="page"{% endif %}>See it live</a>
     </nav>
 
-    <p class="onair" aria-label="On air">
+    <p class="onair">
       <span class="onair__dot" aria-hidden="true"></span>
-      <span class="onair__label">On air</span>
-      <span class="onair__clock" data-clock aria-hidden="true">00:00:00</span>
+      <span class="sr-only">On air</span>
+      <span class="onair__label" aria-hidden="true">On air</span>
+      <span class="onair__clock" data-clock aria-hidden="true">00:00</span>
     </p>
   </div>
 </header>

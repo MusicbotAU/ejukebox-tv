@@ -14,7 +14,7 @@
 <meta property="og:title" content="{{ page.og_title | default: page.title | default: site.title }}">
 <meta property="og:description" content="{{ page.description | default: site.description | strip_newlines }}">
 <meta property="og:locale" content="en_AU">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23080c12'/%3E%3Crect x='4.5' y='7' width='23' height='14.5' rx='2.5' fill='%23ffb347'/%3E%3Crect x='7' y='9.5' width='18' height='9.5' rx='1.5' fill='%23080c12'/%3E%3Ccircle cx='16' cy='14.2' r='2.6' fill='%23ffb347'/%3E%3Crect x='12.5' y='23.5' width='7' height='2' rx='1' fill='%238ea0b5'/%3E%3C/svg%3E">
 
@@ -43,6 +43,7 @@
      .stack-lg              vertical rhythm helper
    TYPE
      h1 h2 h3, .lede, .sub, .lit (amber-lit words in a heading)
+     .trustline             one line of provenance under a lede
      .eyebrow               mono section kicker, uses --accent
      .anno                  THE mono annotation. Uppercase, .18em, .72rem.
                             Timings, states and labels ONLY. Never prose.
@@ -51,14 +52,14 @@
    CONTROLS
      .btn .btn--primary .btn--ghost .btn--small
      .btn-row               CTA cluster with wrap
-     .playbtn               "Play the demo" - only visible under reduced motion
+     .playbtn               the pause/play control for every demo on the page
    SURFACES
      .panel .panel--raised .panel--amber .panel--ai .panel--sober .panel--flush
      .chip                  small mono state chip     .chip--good .chip--violet
      .tag .tag--live .tag--road   roadmap tags render cooler and lower contrast
      .note                  small mono footnote line
    THE SCREEN (one object, three scales)
-     .set .set--hero .set--stage .set--mini
+     .set .set--stage .set--mini
        .set__frame .set__glass .set__shine .set__shadow .set__reflect .set__strap
      .slide .slide--photo .slide--ai .slide--promo .slide--qr   (marquee slides)
      .qr                    conic-gradient QR block
@@ -100,7 +101,7 @@
   /* text */
   --chalk:#edf2f7;
   --smoke:#8ea0b5;
-  --dim:#5c6e84;
+  --dim:#7c8fa6;
 
   /* THREE accents, used as a strict semantic language, never decoratively.
      amber  = the venue, the human, the light the screen throws on the wall
@@ -134,6 +135,10 @@
   --ease:cubic-bezier(.4,0,.2,1);
   --pop:cubic-bezier(.34,1.4,.64,1);
   --inset:inset 0 1px 0 rgba(255,255,255,.045);
+
+  /* a ghost button has no fill, so its border is the only thing that says
+     "control". It needs 3:1 in its own right - --line-2 is decorative only. */
+  --btn-ghost-line:#516f93;
 }
 
 body.functions{
@@ -163,6 +168,7 @@ button{font:inherit;color:inherit}
 a{color:var(--signal);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{color:var(--chalk)}
 :focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:4px}
+main:focus{outline:none}
 
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
   clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
@@ -181,6 +187,34 @@ body::after{
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:180px 180px;
 }
+
+/* ---------------------------------------------------------- family bar ---- */
+/* Makes the parent-and-children relationship obvious in the first second,
+   instead of leaving it to a line of small print in the footer. Scrolls away
+   with the page - only the topbar below it is sticky. */
+.fambar{background:var(--room-2);border-bottom:1px solid var(--line)}
+.fambar__in{display:flex;align-items:center;gap:clamp(9px,2vw,16px);flex-wrap:wrap;
+  max-width:1140px;margin:0 auto;padding:7px clamp(18px,3vw,28px)}
+.fambar__logo{height:29px;width:auto;display:block;flex:none}
+.fambar__label{font-family:var(--mono);font-size:.65rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--dim);flex:none}
+.fambar__nav{display:flex;gap:4px;margin-left:auto;align-items:center;flex-wrap:wrap}
+.fambar__nav a{font-size:.8rem;color:var(--smoke);text-decoration:none;white-space:nowrap;
+  padding:4px 11px;border-radius:var(--r-pill);border:1px solid transparent}
+.fambar__nav a:hover{color:var(--chalk);background:var(--room-3)}
+.fambar__nav a.is-here{color:var(--chalk);border-color:var(--line-2);background:var(--room-3)}
+.fambar__nav a.is-parent{color:var(--glow);border-color:rgba(255,179,71,.34)}
+.fambar__nav a.is-parent:hover{background:rgba(255,179,71,.09);color:var(--glow)}
+
+/* the footer's parent block - the second, louder route back to the mothership */
+.parentcard{border:1px solid var(--line-2);border-radius:var(--r);background:var(--room-2);
+  padding:22px 24px;margin-bottom:34px;display:flex;align-items:center;
+  gap:clamp(14px,3vw,26px);flex-wrap:wrap}
+.parentcard__logo{height:44px;width:auto;display:block;flex:none}
+.parentcard__t{font-family:var(--display);font-weight:700;font-size:1.06rem;margin:0 0 3px}
+.parentcard__s{color:var(--smoke);font-size:.92rem;margin:0;max-width:44em}
+.parentcard__go{margin-left:auto;flex:none}
+@media (max-width:640px){ .parentcard__go{margin-left:0} }
 
 /* -------------------------------------------------------------- topbar ---- */
 .topbar{
@@ -254,6 +288,10 @@ h3{font-size:1.14rem;line-height:1.25;letter-spacing:-.02em;font-weight:700;marg
 .sub{color:var(--smoke);max-width:36em;margin:0 0 34px}
 .sub strong{color:var(--chalk);font-weight:600}
 .sub:last-child{margin-bottom:0}
+/* one line of provenance, sitting high on a page under the lede */
+.trustline{color:var(--smoke);font-size:.97rem;max-width:34em;margin:0 0 28px;
+  padding-left:15px;border-left:2px solid var(--accent-line)}
+.trustline strong{color:var(--chalk);font-weight:600}
 p{margin:0 0 16px}
 p:last-child{margin-bottom:0}
 
@@ -280,17 +318,30 @@ p:last-child{margin-bottom:0}
 .btn--primary{background:linear-gradient(180deg,var(--glow) 0%,var(--glow-hot) 130%);
   color:var(--glow-ink);box-shadow:0 14px 34px -16px rgba(255,179,71,.7)}
 .btn--primary:hover{transform:translateY(-1px);color:var(--glow-ink)}
-.btn--ghost{border-color:var(--line-2);color:var(--chalk)}
+.btn--ghost{border-color:var(--btn-ghost-line);color:var(--chalk)}
 .btn--ghost:hover{border-color:var(--signal);color:var(--chalk)}
 .btn--small{padding:9px 16px;font-size:.9rem;border-radius:10px}
 .btn-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .btn-row .anno{margin-left:4px}
-.playbtn{display:none}
-html.rm .playbtn{display:inline-flex;margin-top:14px;
+.playbtn{display:none;align-items:center;gap:9px;margin-top:14px;
   font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--glow);border:1px solid rgba(255,179,71,.4);background:rgba(255,179,71,.07);
-  border-radius:var(--r-pill);padding:9px 16px;cursor:pointer}
-html.rm.motion-on .playbtn{display:none}
+  border-radius:var(--r-pill);padding:9px 16px;cursor:pointer;
+  transition:background-color 160ms var(--ease)}
+html.js .playbtn{display:inline-flex}
+.playbtn:hover{background:rgba(255,179,71,.16)}
+.playbtn::before{content:"";flex:none;width:9px;height:10px;
+  background:linear-gradient(currentColor 0 0) 0 0/3px 100% no-repeat,
+             linear-gradient(currentColor 0 0) 100% 0/3px 100% no-repeat}
+html.motion-off .playbtn::before{background:currentColor;
+  clip-path:polygon(0 0,100% 50%,0 100%)}
+
+/* When the demo is paused - by the button, or by prefers-reduced-motion
+   before anyone has pressed play - every looping decoration stops too. */
+html.motion-off .onair__dot,
+html.motion-off .slide__onair i,
+html.motion-off .phone__field .caret,
+html.motion-off .phone__status .dots i{animation:none}
 
 /* ------------------------------------------------------------ surfaces ---- */
 .panel{background:var(--room-2);border:1px solid var(--line);border-radius:var(--r);
@@ -321,7 +372,7 @@ html.rm.motion-on .playbtn{display:none}
 /* roadmap renders cooler and lower contrast so the hierarchy does the work
    even for a reader who never reads the legend */
 .tag--road{color:#7d8fa6;background:#0b1119;border-color:#1a2431}
-.tag--road .dia{color:#48607e;font-size:.8em}
+.tag--road .dia{color:#7d8fa6;font-size:.8em}
 
 /* ============================================================== THE SET ====
    One object at three scales: hero TV, in-page video stage, mini frame.
@@ -375,7 +426,7 @@ html.rm.motion-on .playbtn{display:none}
 .slide__onair i{width:6px;height:6px;border-radius:50%;background:var(--glow);
   animation:pulse 2.4s ease-in-out infinite}
 .slide__logo{position:absolute;right:6%;bottom:6.5%;font-family:var(--mono);font-size:.58rem;
-  letter-spacing:.2em;text-transform:uppercase;color:rgba(237,242,247,.45)}
+  letter-spacing:.2em;text-transform:uppercase;color:rgba(237,242,247,.62)}
 
 .card-slide{text-align:center;max-width:86%}
 .card-slide__kick{font-family:var(--mono);font-size:clamp(.6rem,1.2vw,.76rem);letter-spacing:.2em;
@@ -707,6 +758,9 @@ html.rm.motion-on .playbtn{display:none}
   font-family:var(--display);font-weight:700;font-size:1.05rem;letter-spacing:-.02em;
   display:flex;align-items:center;gap:14px}
 .faq summary::-webkit-details-marker{display:none}
+/* .faq clips to its radius, so the ring is drawn inside the row instead of
+   being cut off on both edges. The padding leaves plenty of room for it. */
+.faq summary:focus-visible{outline-offset:-4px}
 .faq summary::after{content:"";margin-left:auto;flex:none;width:9px;height:9px;
   border-right:2px solid var(--glow);border-bottom:2px solid var(--glow);
   transform:rotate(45deg);transition:transform 200ms var(--ease)}
@@ -735,7 +789,7 @@ html.rm.motion-on .playbtn{display:none}
 .video-poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
   justify-content:center;gap:16px;text-align:center;
   background:
-    radial-gradient(38% 46% at 50% 42%,rgba(255,179,71,.16),transparent 70%),
+    radial-gradient(38% 46% at 50% 42%,rgba(255,179,71,.10),transparent 70%),
     radial-gradient(90% 100% at 50% 120%,rgba(79,209,240,.07),transparent 68%),
     radial-gradient(120% 130% at 50% 38%,#18222f 0%,#080d14 72%)}
 .video-poster::after{content:"";position:absolute;inset:0;pointer-events:none;
@@ -745,8 +799,11 @@ html.rm.motion-on .playbtn{display:none}
   border:1px solid rgba(255,179,71,.55);display:flex;align-items:center;justify-content:center;
   background:rgba(255,179,71,.06);
   box-shadow:0 0 70px -10px rgba(255,179,71,.55),inset 0 1px 0 rgba(255,255,255,.08)}
-.video-poster__line{max-width:34em;color:var(--smoke);font-size:.98rem;margin:0}
+.video-poster__line{max-width:34em;color:var(--chalk);font-size:.98rem;margin:0}
 .video-stage video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
+/* the glass clips to its radius, so both rings are drawn inside the frame */
+.video-stage video:focus-visible,
+.video-stage .set__glass a:focus-visible{outline-offset:-4px}
 
 /* --------------------------------------------------------------- closer ---- */
 .closer{position:relative;overflow:hidden;text-align:center;border-radius:var(--r-lg);
@@ -764,6 +821,8 @@ html.rm.motion-on .playbtn{display:none}
   padding:clamp(34px,4vw,52px) 0 clamp(40px,5vw,60px);color:var(--smoke);font-size:.9rem}
 .site-footer__in{display:flex;flex-wrap:wrap;gap:26px;justify-content:space-between;align-items:flex-start}
 .site-footer a{color:var(--smoke)}
+/* SC 2.5.8 - the two contact links stack, so they get their own target */
+.site-footer p a{display:inline-block;padding:4px 0}
 .site-footer a:hover{color:var(--chalk)}
 .site-footer__links{display:flex;flex-wrap:wrap;gap:8px 22px}
 .site-footer__legal{margin-top:26px;padding-top:20px;border-top:1px solid var(--line);
@@ -831,6 +890,7 @@ html.rm.motion-on .playbtn{display:none}
   html:not(.motion-on) .rail::after{display:none}
 }
 </style>
+{% if page.page_css %}{% include {{ page.page_css }} %}{% endif %}
 </head>
 
 <body class="{{ page.body_class }}">
@@ -838,7 +898,7 @@ html.rm.motion-on .playbtn{display:none}
 
 {% include nav.html %}
 
-<main id="main">
+<main id="main" tabindex="-1">
 {{ content }}
 </main>
 
@@ -849,50 +909,107 @@ html.rm.motion-on .playbtn{display:none}
   "use strict";
   var doc = document, root = doc.documentElement;
   var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  root.classList.add('js');
   if (RM) root.classList.add('rm');
-  function motionOK(){ return !RM || root.classList.contains('motion-on'); }
+
+  /* ================================================== THE MOTION CONTROL ===
+     WCAG 2.2.2 - Pause, Stop, Hide. Everything on this site that moves by
+     itself registers here, and every "Pause the demo" button on the page
+     drives all of it at once. prefers-reduced-motion is not a separate mode:
+     it simply starts the same control in the paused position.
+     ======================================================================== */
+  var subs = [], motionOn = !RM;
+  function motionOK(){ return motionOn; }
+  function onMotion(fn){ subs.push(fn); }
+
+  function paintButtons(){
+    var btns = doc.querySelectorAll('[data-play]');
+    Array.prototype.forEach.call(btns, function(b){
+      b.textContent = motionOn ? 'Pause the demo' : 'Play the demo';
+    });
+  }
+  function applyClasses(){
+    root.classList.toggle('motion-on', motionOn);
+    root.classList.toggle('motion-off', !motionOn);
+  }
+  function setMotion(on){
+    motionOn = !!on;
+    applyClasses();
+    paintButtons();
+    for (var i = 0; i < subs.length; i++) subs[i](motionOn);
+  }
+  applyClasses();
 
   /* ---------------------------------------------------------- the clock --- */
+  /* HH:MM only, so the visible value changes once a minute rather than every
+     second. Paused means paused: no interval at all. */
   (function(){
     var el = doc.querySelector('[data-clock]');
     if (!el) return;
     function pad(n){ return (n < 10 ? '0' : '') + n; }
     function tick(){
       var d = new Date();
-      el.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+      el.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes());
     }
+    var iv = null;
+    /* auto-updating information needs a way to stop it, so the clock only
+       ticks on a page that carries a pause control. Everywhere else it is
+       rendered once and left alone. */
+    var controllable = !!doc.querySelector('[data-play]');
+    function stop(){ if (iv){ clearInterval(iv); iv = null; } }
+    function start(){ tick(); if (!iv) iv = setInterval(tick, 15000); }
     tick();
-    setInterval(tick, RM ? 30000 : 1000);
+    if (motionOK() && controllable) start();
+    onMotion(function(on){ (on && controllable) ? start() : stop(); });
   })();
 
   /* ------------------------------------------------- walls fill on scroll --- */
   (function(){
     var walls = doc.querySelectorAll('[data-wall]');
     if (!walls.length) return;
+    function fillAll(){
+      Array.prototype.forEach.call(walls, function(w){
+        w.classList.remove('is-reveal');
+        w.classList.add('is-full');
+      });
+    }
     Array.prototype.forEach.call(walls, function(w){
       Array.prototype.forEach.call(w.children, function(tile, i){
         if (!tile.style.getPropertyValue('--i')) tile.style.setProperty('--i', i);
       });
-      if (!motionOK() || !('IntersectionObserver' in window)) { w.classList.add('is-full'); return; }
-      w.classList.add('is-reveal');
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if (e.isIntersecting){ w.classList.add('is-full'); io.disconnect(); }
-        });
-      }, { threshold: 0.2 });
-      io.observe(w);
     });
+    if (!motionOK() || !('IntersectionObserver' in window)){ fillAll(); }
+    else {
+      Array.prototype.forEach.call(walls, function(w){
+        w.classList.add('is-reveal');
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(e){
+            if (e.isIntersecting){ w.classList.add('is-full'); io.disconnect(); }
+          });
+        }, { threshold: 0.2 });
+        io.observe(w);
+      });
+    }
+    onMotion(function(on){ if (!on) fillAll(); });
   })();
 
   /* ---------------------------------- moderation gate: run only when seen --- */
   (function(){
     var gates = doc.querySelectorAll('[data-gate]');
-    if (!gates.length) return;
-    if (!motionOK() || !('IntersectionObserver' in window)) return;
+    if (!gates.length || !('IntersectionObserver' in window)) return;
+    function sync(){
+      Array.prototype.forEach.call(gates, function(g){
+        g.classList.toggle('is-live', g.getAttribute('data-onscreen') === '1' && motionOK());
+      });
+    }
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ e.target.classList.toggle('is-live', e.isIntersecting); });
+      entries.forEach(function(e){
+        e.target.setAttribute('data-onscreen', e.isIntersecting ? '1' : '0');
+      });
+      sync();
     }, { threshold: 0.25 });
     Array.prototype.forEach.call(gates, function(g){ io.observe(g); });
+    onMotion(sync);
   })();
 
   /* ================================================== THE MARQUEE ========== */
@@ -979,8 +1096,9 @@ html.rm.motion-on .playbtn{display:none}
       }
     }
 
-    /* (re)start whatever is at the head of the queue. Scrolling away and back
-       continues the programme rather than winding it back to the first slide. */
+    /* (re)start whatever is at the head of the queue. Scrolling away and back,
+       or pausing and playing again, continues the programme rather than
+       winding it back to the first slide. */
     function startCurrent(){
       var chip = track.firstElementChild;
       if (!chip) return;
@@ -1056,6 +1174,7 @@ html.rm.motion-on .playbtn{display:none}
     }
 
     function stop(){
+      if (!running) return;
       running = false;
       clearTimeout(timer); clearInterval(cutTimer);
       if (busy){ clearTimeout(swap); finishSwap(); }
@@ -1068,24 +1187,21 @@ html.rm.motion-on .playbtn{display:none}
       cutTimer = setInterval(injectCut, 24000);
     }
 
-    /* only ever runs while it is on screen */
+    /* runs only while it is on screen AND the demo is playing */
+    var visible = false;
+    function sync(){ if (visible && motionOK()) start(); else stop(); }
+    onMotion(sync);
+
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if (e.isIntersecting){ if (motionOK()) start(); }
-          else { stop(); }
-        });
+        entries.forEach(function(e){ visible = e.isIntersecting; });
+        sync();
       }, { threshold: 0, rootMargin: '140px 0px' });
       io.observe(set);
-    } else if (motionOK()){
-      start();
+    } else {
+      visible = true;
+      sync();
     }
-
-    var play = doc.querySelector('[data-play="marquee"]');
-    if (play) play.addEventListener('click', function(){
-      root.classList.add('motion-on');
-      start();
-    });
   })();
 
   /* ============================== THE INSTANT SLIDE COMPOSER =============== */
@@ -1101,7 +1217,8 @@ html.rm.motion-on .playbtn{display:none}
     var pill   = comp.querySelector('[data-pill]');
     var live   = comp.querySelector('[data-live]');
     var btns   = comp.querySelectorAll('[data-preset]');
-    if (!field || !slide || !head || !sub || !pill) return;
+    var stext  = status && status.querySelector('[data-status-text]');
+    if (!field || !slide || !head || !sub || !pill || !status || !stext) return;
 
     var SETS = [
       { type:'last drinks at 11:30',    design:'a', head:'Last drinks 11:30', sub:'Bar closes at midnight. Get one more in.',        mins:30 },
@@ -1110,12 +1227,14 @@ html.rm.motion-on .playbtn{display:none}
       { type:'kitchen closes at 9',     design:'d', head:'Kitchen closes at 9', sub:'Last food orders in the bistro at ten to.',     mins:30 }
     ];
 
-    var idx = 0, running = false, seen = false;
+    var idx = 0;
     var t = [], countdown = null;
     function clearAll(){ t.forEach(clearTimeout); t = []; clearInterval(countdown); }
     function later(fn, ms){ t.push(setTimeout(fn, ms)); }
     function pad(n){ return (n < 10 ? '0' : '') + n; }
 
+    /* paint() runs on every auto-cycle, so it never speaks. The live region is
+       written from the preset handler only, in response to a user action. */
     function paint(set){
       slide.setAttribute('data-design', set.design);
       head.innerHTML = '';
@@ -1129,8 +1248,6 @@ html.rm.motion-on .playbtn{display:none}
       });
       sub.textContent = set.sub;
       pill.textContent = 'AUTO-REMOVES IN ' + set.mins + ':00';
-      if (live) live.textContent = 'Slide designed: ' + set.head + '. ' + set.sub +
-        ' It takes itself down in ' + set.mins + ' minutes.';
     }
 
     function countFrom(mins){
@@ -1162,12 +1279,12 @@ html.rm.motion-on .playbtn{display:none}
       markButtons(i);
       slide.classList.remove('is-lit','is-built');
       status.classList.remove('is-thinking');
-      status.querySelector('[data-status-text]').textContent = '';
+      stext.textContent = '';
 
       if (!motionOK()){
         field.innerHTML = '';
         field.appendChild(doc.createTextNode(set.type));
-        status.querySelector('[data-status-text]').textContent = 'on the wall';
+        stext.textContent = 'on the wall';
         paint(set);
         slide.classList.add('is-lit','is-built');
         return;
@@ -1191,10 +1308,10 @@ html.rm.motion-on .playbtn{display:none}
 
       function design(){
         status.classList.add('is-thinking');
-        status.querySelector('[data-status-text]').textContent = 'designing';
+        stext.textContent = 'designing';
         later(function(){
           status.classList.remove('is-thinking');
-          status.querySelector('[data-status-text]').textContent = 'on the wall';
+          stext.textContent = 'on the wall';
           paint(set);
           finish(set);
           if (auto) later(function(){ run((idx + 1) % SETS.length, true); }, 9200);
@@ -1202,34 +1319,38 @@ html.rm.motion-on .playbtn{display:none}
       }
     }
 
+    var visible = false, userDriven = false, autoRunning = false;
+    function stopAll(){ clearAll(); autoRunning = false; }
+    function sync(){
+      if (!motionOK()){ stopAll(); run(idx, false); return; }
+      if (visible && !userDriven && !autoRunning){ autoRunning = true; run(idx, true); }
+      else if (!visible){ stopAll(); }
+    }
+    onMotion(sync);
+
+    /* a preset is a request to read one slide, not to opt into the animation */
     Array.prototype.forEach.call(btns, function(b, i){
       b.addEventListener('click', function(){
-        if (root.classList.contains('rm')) root.classList.add('motion-on');
-        running = true;
+        userDriven = true;
+        stopAll();
         run(i, false);
+        if (live) live.textContent = 'Slide designed: ' + SETS[i].head + '. ' + SETS[i].sub +
+          ' It takes itself down in ' + SETS[i].mins + ' minutes.';
       });
     });
 
-    function boot(){ if (!seen){ seen = true; run(0, true); } }
-
     if ('IntersectionObserver' in window){
       var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if (e.isIntersecting){ if (motionOK()) boot(); }
-          else { clearAll(); if (!running) seen = false; }
-        });
+        entries.forEach(function(e){ visible = e.isIntersecting; });
+        sync();
       }, { threshold: 0, rootMargin: '-60px 0px' });
       io.observe(comp);
+    } else {
+      visible = true;
     }
 
     /* the still frame has to sell it on its own */
     if (!motionOK()) run(0, false);
-
-    var play = doc.querySelector('[data-play="composer"]');
-    if (play) play.addEventListener('click', function(){
-      root.classList.add('motion-on');
-      run(0, true);
-    });
   })();
 
   /* ================================================== PRESS ESCAPE ======== */
@@ -1244,15 +1365,17 @@ html.rm.motion-on .playbtn{display:none}
 
     function open(){
       pad.classList.add('is-up');
+      pad.setAttribute('aria-hidden', 'false');
       if (hint) hint.textContent = 'PIN REQUIRED - THE SHOW KEEPS RUNNING';
-      if (btn) btn.textContent = 'Hide the PIN pad';
+      if (btn){ btn.textContent = 'Hide the PIN pad'; btn.setAttribute('aria-expanded', 'true'); }
     }
     function close(){
       pad.classList.remove('is-up');
+      pad.setAttribute('aria-hidden', 'true');
       if (hint) hint.textContent = 'TRY IT - PRESS ESC';
-      if (btn) btn.textContent = 'Show the PIN pad';
+      if (btn){ btn.textContent = 'Show the PIN pad'; btn.setAttribute('aria-expanded', 'false'); }
     }
-    function toggle(){ pad.classList.contains('is-up') ? close() : open(); }
+    function toggle(){ if (pad.classList.contains('is-up')) close(); else open(); }
 
     if (btn) btn.addEventListener('click', toggle);
 
@@ -1272,6 +1395,16 @@ html.rm.motion-on .playbtn{display:none}
       }, { threshold: 0.4 });
       io.observe(scene);
     }
+  })();
+
+  /* ------------------------------------------ wire the pause/play buttons -- */
+  (function(){
+    var btns = doc.querySelectorAll('[data-play]');
+    if (!btns.length) return;
+    Array.prototype.forEach.call(btns, function(b){
+      b.addEventListener('click', function(){ setMotion(!motionOK()); });
+    });
+    paintButtons();
   })();
 })();
 </script>

@@ -1,0 +1,51 @@
+<style>
+/* ---------------------------------------------------------------------------
+   css-fx.html - page-scoped CSS for /functions/. Prefix fx-.
+   Pulled into <head> by the layout via `page_css: css-fx.html` in front matter.
+   The pink accent itself lives on body.functions in the layout, NOT here, so
+   --accent and --accent-line are already pink on this page. Nothing below
+   defines a colour of its own; it only reaches for the existing tokens.
+   --------------------------------------------------------------------------- */
+.fx-lit{color:var(--accent)}
+.fx-quote{margin:0;padding:2px 0 2px clamp(18px,2.4vw,28px);border-left:3px solid var(--accent-line)}
+.fx-quote p{font-family:var(--display);font-weight:800;letter-spacing:-.03em;line-height:1.12;
+  font-size:clamp(1.24rem,2.6vw,1.9rem);color:var(--chalk);margin:0}
+.fx-quote p + p{margin-top:14px;font-family:var(--body);font-weight:400;font-size:1rem;
+  letter-spacing:0;line-height:1.6;color:var(--smoke)}
+.fx-host{display:grid;gap:8px;margin-top:14px}
+.fx-ctl{display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:12px 14px;border-radius:10px;background:var(--room);border:1px solid var(--line)}
+.fx-ctl__k{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--smoke)}
+.fx-ctl__v{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);white-space:nowrap}
+.fx-ctl--now{background:var(--room-3);border-color:var(--line-2)}
+.fx-ctl--now .fx-ctl__v{color:var(--chalk);font-family:var(--body);font-size:.95rem;
+  letter-spacing:0;text-transform:none}
+.fx-crops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);align-items:end}
+.fx-crop{margin:0}
+.fx-crop__f{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--room-2);
+  box-shadow:var(--inset)}
+.fx-crop__f .pic{border-radius:0}
+.fx-crop figcaption{margin-top:11px;display:block}
+.fx-stat{font-family:var(--display);font-weight:800;font-size:clamp(2.1rem,4.6vw,3.1rem);
+  letter-spacing:-.045em;line-height:1;color:var(--accent);margin:0 0 8px}
+.fx-accent{color:var(--accent)}
+/* small print that is prose, not a label - mono is reserved for timings,
+   states and labels, so this stays in the body face */
+.fx-fine{color:var(--dim);font-size:.92rem;max-width:36em;margin-top:20px}
+.fx-fine:last-child{margin-bottom:0}
+/* the gate sits in a wide column here, so it runs a size up from the inline
+   one on the home page. Sizes only - no new colours, no new behaviour. */
+.fx-gate{height:200px;gap:16px;padding:14px}
+.fx-gate .gate__wall{grid-template-columns:repeat(2,44px);gap:6px}
+.fx-gate .gate__tile{width:88px}
+.fx-gate.is-live .gate__tile{width:92px;margin-top:-61px}
+@media (max-width:620px){
+  .fx-gate{height:170px}
+  .fx-gate .gate__tile{width:74px}
+  .fx-gate.is-live .gate__tile{width:78px;margin-top:-52px}
+  .fx-crops{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fx-crop--sq{grid-column:span 2;max-width:54%}
+}
+</style>

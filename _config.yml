@@ -1,5 +1,6 @@
 # ejukebox.tv - Jekyll config for GitHub Pages.
-# Built server-side by GitHub Pages. No plugins, no Actions, no local build step.
+# Built server-side by GitHub Pages. Whitelisted plugins only, no Actions, no
+# local build step.
 
 title: eJukebox TV
 tagline: The screen your venue already owns, running itself
@@ -19,10 +20,16 @@ timezone: Australia/Perth
 contact:
   name: Marc Kean
   company: MusicBot Pty Ltd
-  email: info@ejukebox.com.au
-  phone: "0401 777 223"
-  phone_link: "+61401777223"
+  email: info@ejukebox.tv
   main_site: "https://ejukebox.com.au"
+
+# The eJukebox family. Drives the switcher bar at the top of every page and the
+# parent block in the footer. "current" marks which sibling this site is.
+family:
+  current: "tv"
+  parent: "https://ejukebox.com.au"
+  music: "https://ejukebox.music"
+  tv: "https://ejukebox.tv"
 
 # ---------------------------------------------------------------------------
 # THE VIDEO SLOT
@@ -36,9 +43,18 @@ video:
   poster: ""
   aspect: "16/9"
   caption: "A Friday night, start to finish."
+  # OPTIONAL second caption on the stage. Left empty on purpose - nothing is
+  # claimed about where or how the footage was shot unless it is typed here.
+  badge: ""
+  # Path to a .vtt captions file, if there is one. Empty means no track tag.
+  captions: ""
 
 markdown: kramdown
-plugins: []
+
+# jekyll-sitemap is on the GitHub Pages whitelist, so it runs server-side with
+# no Actions and no local build. It writes /sitemap.xml and /robots.txt.
+plugins:
+  - jekyll-sitemap
 
 exclude:
   - README.md
