@@ -83,13 +83,17 @@ the same control in the paused position and the button reads "Play the demo" ins
 
 Every frame on the site has to read correctly while paused. That is the design gate.
 
-## No form on /demo/
+## How people reach us
 
-GitHub Pages has no backend, so the demo page uses a pre-filled `mailto:` (venue, town,
-how many screens, what is on them now, best way to reach you). No phone number is published on
-this site by design - Marc's mobile attracts cold calls. Says
-plainly why there is no form. **This measurably costs conversions** and is worth
-revisiting once `info@ejukebox.tv` is live and a form endpoint has been chosen.
+Every route to us is the form in `_includes/contactform.html`, which posts to the Azure
+Function. There is deliberately no email address and no phone number anywhere on either
+site - not in the pages, not in the structured data, not in a `mailto:` fallback, and not
+in this repo. Publishing either attracts scrapers and cold calls, which is the whole point
+of the rule. The form fails visibly and offers a retry rather than falling back to a
+`mailto:`, because a fallback would put an address in the page source.
+
+If the form endpoint ever needs changing, change it in the include. Do not add a
+`mailto:` or a `tel:` as a stopgap.
 
 ## House rules for anything added here
 

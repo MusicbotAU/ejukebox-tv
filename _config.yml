@@ -19,7 +19,7 @@ timezone: Australia/Perth
 # Contact details are read by the nav, the CTA block and the footer.
 # No email address is published on this site by design - publishing one
 # attracts scrapers. Every route to us is the form, which posts to the Azure
-# Function and lands at info@ejukebox.tv / info@ejukebox.music.
+# Function and lands in the eJukebox inbox.
 contact:
   name: Marc Kean
   company: MusicBot Pty Ltd
@@ -43,8 +43,18 @@ family:
 video:
   url: ""
   poster: ""
+  # ISO 8601, e.g. 2026-09-15. Google treats uploadDate as required on a
+  # VideoObject, so the structured data will not emit one until this is set -
+  # and it will not emit without url and poster either. All three or nothing.
+  upload_date: ""
   aspect: "16/9"
   caption: "A Friday night, start to finish."
+  # VideoObject description in the structured data. Write it for the footage
+  # that is actually supplied - it used to be hardcoded in the schema template
+  # as prose about a photo wall filling up, which would have been a plain false
+  # claim about whatever video got dropped in later. Empty means the property
+  # is left out entirely rather than emitted blank.
+  description: ""
   # OPTIONAL second caption on the stage. Left empty on purpose - nothing is
   # claimed about where or how the footage was shot unless it is typed here.
   badge: ""

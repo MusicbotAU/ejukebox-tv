@@ -1,0 +1,12 @@
+# ejukebox.tv
+# A real file at the repo root, not the one-line default jekyll-sitemap writes
+# when no robots.txt exists. Copied verbatim by Jekyll - do not add front matter.
+#
+# Everything on this site is meant to be crawled, including /assets/img, so
+# there are no Disallow rules. Blocking the images would only stop the venue
+# photography turning up in Google Images.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ejukebox.tv/sitemap.xml

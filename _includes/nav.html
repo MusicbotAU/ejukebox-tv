@@ -9,6 +9,7 @@
       <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} class="is-here" aria-current="page"{% endif %}>The screen</a>
       <a href="{{ '/functions/' | relative_url }}"{% if page.url contains '/functions' %} class="is-here" aria-current="page"{% endif %}>Functions</a>
       <a href="{{ '/demo/' | relative_url }}"{% if page.url contains '/demo' %} class="is-here" aria-current="page"{% endif %}>See it live</a>
+      <a href="{{ '/contact/' | relative_url }}"{% if page.url contains '/contact' %} class="is-here" aria-current="page"{% endif %}>Talk to us</a>
     </nav>
 
     <p class="onair">

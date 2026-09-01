@@ -1,0 +1,197 @@
+{% comment %}
+  ===========================================================================
+  STRUCTURED DATA - one JSON-LD graph per page, emitted in <head>.
+  ===========================================================================
+
+  RULES THIS FILE OBEYS, AND MUST KEEP OBEYING:
+
+    - NO telephone. NO email address. Not here, not anywhere. Structured data
+      is page source like everything else and the scrapers read it first. The
+      no-contact-details rule on this site explicitly covers this file.
+    - NO price, NO Offer carrying a price, NO availability. The site publishes
+      no figures, so neither does its markup.
+    - NO AggregateRating, NO Review, NO award, NO "trusted by N venues". There
+      are no reviews on this site to mark up. Inventing them is a manual-action
+      risk and it is dishonest.
+    - Service, never Product. Product invites Google to look for offers, price,
+      availability and reviews - all four of which we must not supply - and it
+      produces "missing field: price" warnings in Search Console forever.
+      Service has no required commerce fields.
+    - Nothing is marked up that a reader cannot see on the page.
+
+  THE ORGANIZATION @id IS THE PARENT SITE ID, ON PURPOSE.
+  eJukebox is one company on three domains. Reusing
+  https://ejukebox.com.au/#organization merges them into a single entity so the
+  age and trust the parent has built carry across. Minting
+  https://ejukebox.tv/#organization would create a third organisation competing
+  with our own brand. For the merge to be reciprocal the parent needs
+  ejukebox.tv and ejukebox.music added to ITS sameAs - that change lives in the
+  ejukebox.com.au repo, not this one.
+
+  BECAUSE THE @id IS SHARED, THIS NODE STATES THE MINIMUM AND NOTHING ELSE.
+  Anything restated here that the parent also states is a chance for the two to
+  disagree, and a merged node with two values for one property is worse than no
+  value. The parent already publishes legalName, the full postal address and a
+  logo ImageObject at https://ejukebox.com.au/#logo. So none of those are
+  repeated here - deliberately. Do not "improve" this node by adding them back;
+  add them to the parent instead. The parent writes the company as "Musicbot
+  Pty Ltd" while our own footer prints "MusicBot Pty Ltd" - that casing is
+  unsettled, which is exactly why legalName is not asserted from here.
+
+  OPEN QUESTION, MARC'S CALL, NOT A CODE FIX.
+  The parent's node at that @id carries telephone and email. This site
+  publishes neither and never will, and nothing in this file or in any page
+  here exposes them - a scraper reading ejukebox.tv finds nothing. But a
+  consumer that merges the graph by @id, which is the whole point of sharing
+  it, will attach the parent's phone and address to the eJukebox TV entity.
+  That is the one place where the no-contact-details rule and the
+  single-entity strategy pull against each other. Accepting it costs nothing
+  new, because the parent already publishes both openly. The alternative is to
+  mint our own @id here and link the parent with sameAs + parentOrganization,
+  which gives up the merge. Left as the merge, on purpose. Revisit only with a
+  decision, not a tidy-up.
+
+  NO potentialAction / SearchAction, DELIBERATELY. This site has no search page,
+  no search box and no search endpoint, so the usual copy-pasted SearchAction
+  would point Google at a URL that 404s - a plain false statement in structured
+  data. Google also retired the Sitelinks Searchbox result in late 2024, so even
+  a truthful one now buys nothing. Do not put it back in.
+
+  PER-PAGE FRONT MATTER THAT DRIVES THIS FILE:
+    schema_service: screen | functions   attaches the matching Service node
+    schema_faq: true  +  faq_set: demo   FAQPage built from _data/faq.yml
+    breadcrumb: Functions and events     leaf label; omit it on the homepage
+    date: 2026-09-01 12:00:00 +0800      becomes dateModified here, and lastmod
+                                         in the sitemap
+{% endcomment %}
+{%- assign org_id   = "https://ejukebox.com.au/#organization" -%}
+{%- assign site_id  = site.url | append: "/#website" -%}
+{%- assign page_abs = page.url | absolute_url -%}
+{%- assign page_id  = page_abs | append: "#webpage" -%}
+{%- assign og_img   = "/assets/og-image.jpg" | absolute_url -%}
+{%- comment -%} The parent's Organization node writes its url WITH a trailing slash. Match it exactly - two values differing only by a slash is a dedup hazard on a shared @id. site.family.parent must stay slash-less for the plain hrefs elsewhere. {%- endcomment -%}
+{%- assign parent_url = site.family.parent | append: "/" -%}
+{%- assign page_desc = page.description | default: site.description | strip_newlines | strip -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ org_id }}",
+      "name": "eJukebox",
+      "url": "{{ parent_url }}",
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      {% comment %} Trailing slashes to match "url" above and the canonical each site emits. One entity should not identify itself by two spellings of the same address. Note the merge is one-directional until ejukebox.tv and ejukebox.music are added to the PARENT's sameAs, which today lists only the Facebook and X profiles - that change lives in the ejukebox.com.au repo. {% endcomment %}"sameAs": [
+        "{{ site.family.parent }}/",
+        "{{ site.family.music }}/",
+        "{{ site.family.tv }}/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site_id }}",
+      "url": "{{ site.url }}/",
+      "name": {{ site.title | jsonify }},
+      "description": {{ site.description | strip_newlines | strip | jsonify }},
+      "inLanguage": "en-AU",
+      "publisher": { "@id": "{{ org_id }}" }
+    },
+    {
+      "@type": "{% if page.url == '/contact/' %}ContactPage{% else %}WebPage{% endif %}",
+      "@id": "{{ page_id }}",
+      "url": "{{ page_abs }}",
+      "name": {{ page.title | default: site.title | jsonify }},
+      "description": {{ page_desc | jsonify }},
+      "isPartOf": { "@id": "{{ site_id }}" },
+      "publisher": { "@id": "{{ org_id }}" },
+      "inLanguage": "en-AU",{% if page.date %}
+      "dateModified": "{{ page.date | date_to_xmlschema }}",{% endif %}
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "@id": "{{ page_abs }}#primaryimage",
+        "url": "{{ og_img }}",
+        "width": 1200,
+        "height": 630,
+        "caption": "eJukebox TV - a wide screen lit up over the crowd in a busy Australian pub"
+      }{% comment %} Every optional property below leads with its own comma and primaryImageOfPage above stays comma-free, so any combination of the three still closes the object legally. Putting the comma on the END of an optional line emits a trailing comma the moment the next one is absent - invalid JSON, and silent on the page. {% endcomment %}{% if page.breadcrumb %},
+      "breadcrumb": { "@id": "{{ page_abs }}#breadcrumb" }{% endif %}{% if page.schema_service %},
+      "about": { "@id": "{{ site.url }}/#service-{{ page.schema_service }}" }{% endif %}{% if page.schema_faq %},
+      "mainEntity": { "@id": "{{ page_abs }}#faq" }{% endif %}
+    }{% comment %} A one-item BreadcrumbList is ignored by Google and says nothing, so the homepage emits none at all - matching ejukebox.music. The trail only exists on a page that sets `breadcrumb:`. {% endcomment %}{% if page.breadcrumb %},
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ page_abs }}#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "eJukebox TV", "item": "{{ site.url }}/" },
+        { "@type": "ListItem", "position": 2, "name": {{ page.breadcrumb | jsonify }}, "item": "{{ page_abs }}" }
+      ]
+    }{% endif %}{% if page.schema_service == "screen" %},
+    {
+      "@type": "Service",
+      "@id": "{{ site.url }}/#service-screen",
+      "name": "eJukebox TV venue screen system",
+      "serviceType": "Digital signage and guest photo wall for licensed venues",
+      "description": "A compact player into a spare HDMI port turns a screen the venue already owns into a live display - guest photos on the wall about three seconds after they are taken and AI-screened before they appear, announcements typed from a phone that design themselves, venue promos and join-in prompts in one rotation, scheduling that runs without anyone touching it, and a manager app that can stop the show from anywhere.",
+      "provider": { "@id": "{{ org_id }}" },
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "audience": { "@type": "BusinessAudience", "name": "Pubs, clubs, bars, hotels, cafes and function rooms" },
+      "url": "{{ site.url }}/",
+      "image": "{{ og_img }}",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "What the screen does",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Guest photo wall", "description": "A guest scans the QR prompt on the screen and takes a photo in the browser - no app, no sign-up - and it is on the big screen about three seconds later." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI photo moderation", "description": "Every guest photo is checked for nudity, offensive gestures and anything tasteless before it can reach the wall. What does not pass is held back, never displayed." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instant announcement slides", "description": "Type a line from a phone and the slide designs itself, goes up in the rotation, and takes itself down when it expires." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venue promos and scheduling", "description": "Promos, daily rules, one-off windows and join-in prompts in one rotation, kept in both portrait and landscape." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manager app", "description": "Approve or hide photos, start and stop the show, and manage per-venue staff teams from a phone, from anywhere." } }
+        ]
+      }
+    }{% endif %}{% if page.schema_service == "functions" %},
+    {
+      "@type": "Service",
+      "@id": "{{ site.url }}/#service-functions",
+      "name": "eJukebox TV for weddings, functions and events",
+      "serviceType": "Function room photo wall, arrival slideshow and host controls",
+      "description": "For weddings, engagements, birthdays and work Christmas parties: guests scan the QR code on the table and their photo is on the big screen before they have sat back down, a branded slideshow runs before anyone walks in, and whoever is running the night gets host controls for that evening only.",
+      "provider": { "@id": "{{ org_id }}" },
+      "areaServed": { "@type": "Country", "name": "Australia" },
+      "audience": { "@type": "BusinessAudience", "name": "Venues running weddings, functions and events" },
+      "url": "{{ site.url }}/functions/",
+      "image": "{{ og_img }}",
+      "isRelatedTo": { "@id": "{{ site.url }}/#service-screen" }
+    }{% endif %}{% if page.schema_faq %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ page_abs }}#faq",
+      "isPartOf": { "@id": "{{ page_id }}" },
+      "inLanguage": "en-AU",
+      "mainEntity": [
+{%- assign faqs = site.data.faq[page.faq_set] -%}
+{%- for f in faqs %}
+        {
+          "@type": "Question",
+          "name": {{ f.q | jsonify }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ f.a | join: " " | strip_html | strip_newlines | strip | jsonify }}
+          }
+        }{% unless forloop.last %},{% endunless %}
+{%- endfor %}
+      ]
+    }{% endif %}{% comment %} All three clauses test != "" on purpose. Liquid treats "" as TRUTHY, so a bare `and site.video.upload_date` would pass on an empty string and emit "uploadDate": "" - invalid, and a required field for Google. {% endcomment %}{% if page.url == "/" and site.video.url != "" and site.video.poster != "" and site.video.upload_date != "" %},
+    {
+      "@type": "VideoObject",
+      "@id": "{{ site.url }}/#video",
+      "name": {{ site.video.caption | jsonify }},{% if site.video.description != "" %}
+      "description": {{ site.video.description | jsonify }},{% endif %}
+      "thumbnailUrl": "{{ site.video.poster | absolute_url }}",
+      "uploadDate": "{{ site.video.upload_date }}",
+      "contentUrl": "{{ site.video.url | absolute_url }}",
+      "publisher": { "@id": "{{ org_id }}" }
+    }{% endif %}
+  ]
+}
+</script>

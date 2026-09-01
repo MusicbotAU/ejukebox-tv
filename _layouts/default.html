@@ -4,19 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{ page.title | default: site.title }}</title>
-<meta name="description" content="{{ page.description | default: site.description | strip_newlines }}">
+<meta name="description" content="{{ page.description | default: site.description | strip_newlines | strip }}">
 <link rel="canonical" href="{{ page.url | absolute_url }}">
+{%- if page.noindex %}
+<meta name="robots" content="noindex,follow">
+{%- endif %}
 <meta name="theme-color" content="#080c12">
+
+{%- comment -%}
+  THE SHARE CARD.
+  assets/og-image.jpg is 1200x630 - the size LinkedIn and X want for a large
+  card, and comfortably over Facebook's 600x315 floor. Declaring the real width
+  and height stops the scraper guessing, and summary_large_image is what makes
+  X and Slack render the banner instead of a postage stamp. Slack and several
+  other scrapers read the twitter namespace before the og one, which is why
+  both are written out in full. A page can override the image with `og_image:`
+  in its front matter without this file changing.
+
+  ONLY SET og_image_alt ON A PAGE THAT ALSO SETS og_image. Every page shares
+  one card, so a per-page alt just gives one file five different descriptions,
+  and the temptation is to describe what the page is about rather than what is
+  in the picture. The default below describes the card itself and nothing else -
+  the card shows a lit screen over a crowded bar, not a photo wall, so it must
+  not say photo wall.
+{%- endcomment -%}
+{%- assign og_image = page.og_image | default: '/assets/og-image.jpg' | absolute_url -%}
+{%- assign og_alt = page.og_image_alt | default: 'eJukebox TV - a wide screen lit up over the crowd in a busy Australian pub' -%}
+{%- assign share_desc = page.description | default: site.description | strip_newlines | strip -%}
+{%- assign share_title = page.og_title | default: page.title | default: site.title -%}
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="{{ site.title }}">
 <meta property="og:url" content="{{ page.url | absolute_url }}">
-<meta property="og:title" content="{{ page.og_title | default: page.title | default: site.title }}">
-<meta property="og:description" content="{{ page.description | default: site.description | strip_newlines }}">
+<meta property="og:title" content="{{ share_title }}">
+<meta property="og:description" content="{{ share_desc }}">
 <meta property="og:locale" content="en_AU">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="{{ og_image }}">
+<meta property="og:image:secure_url" content="{{ og_image }}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ og_alt }}">
 
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ share_title }}">
+<meta name="twitter:description" content="{{ share_desc }}">
+<meta name="twitter:image" content="{{ og_image }}">
+<meta name="twitter:image:alt" content="{{ og_alt }}">
+
+{%- comment -%}
+  ICONS. The data URI stays first because it paints instantly with no request.
+  The files under it exist because Google Search will not use a data-URI
+  favicon - it wants one at a URL Googlebot can fetch - and because iOS puts a
+  blank tile on the home screen without an apple-touch-icon. All of them are
+  rendered from assets/favicon.svg by _tools/make-icons.py.
+{%- endcomment -%}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23080c12'/%3E%3Crect x='4.5' y='7' width='23' height='14.5' rx='2.5' fill='%23ffb347'/%3E%3Crect x='7' y='9.5' width='18' height='9.5' rx='1.5' fill='%23080c12'/%3E%3Ccircle cx='16' cy='14.2' r='2.6' fill='%23ffb347'/%3E%3Crect x='12.5' y='23.5' width='7' height='2' rx='1' fill='%238ea0b5'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/favicon-32.png' | relative_url }}">
+<link rel="apple-touch-icon" href="{{ '/assets/apple-touch-icon.png' | relative_url }}">
+<link rel="manifest" href="{{ '/site.webmanifest' | relative_url }}">
+
+{%- comment -%}
+  Structured data. Skipped on /404.html - a WebPage node that describes an
+  error page as legitimate content is noise, and that page is noindex anyway.
+{%- endcomment -%}
+{%- unless page.url == '/404.html' %}
+{% include schema.html %}
+{%- endunless %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

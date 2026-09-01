@@ -1,0 +1,40 @@
+---
+layout: null
+sitemap: false
+---
+{%- comment -%}
+  THE SITEMAP.
+
+  This file replaces the one jekyll-sitemap generates. The plugin skips its own
+  generator whenever a sitemap.xml already exists in the source, so this is the
+  file that ships - and it is here because the plugin's default emits a bare
+  <loc> per page and nothing else. In particular it only writes <lastmod> from
+  `last_modified_at`, never from `date`, so a page with only a date in its front
+  matter silently gets no freshness signal at all.
+
+  Every page drives its own row from front matter:
+    last_modified_at:  overrides date. Use it when the copy changes.
+    date:              the fallback, and what most pages carry.
+    changefreq:        defaults to monthly.
+    priority:          defaults to 0.7.
+    sitemap: false     keeps a page out entirely.
+
+  /404.html is excluded explicitly as well as by its own `sitemap: false` - an
+  error page has no business in a sitemap, and on a four-page site one junk URL
+  would be a quarter of the index.
+{%- endcomment -%}
+{%- assign pages = site.html_pages | where_exp:'p','p.sitemap != false' | where_exp:'p','p.url != "/404.html"' | sort: 'url' -%}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for p in pages %}
+  <url>
+    <loc>{{ p.url | replace:'/index.html','/' | absolute_url | xml_escape }}</loc>
+{%- assign lastmod = p.last_modified_at | default: p.date -%}
+{%- if lastmod %}
+    <lastmod>{{ lastmod | date_to_xmlschema }}</lastmod>
+{%- endif %}
+    <changefreq>{{ p.changefreq | default: 'monthly' }}</changefreq>
+    <priority>{{ p.priority | default: '0.7' }}</priority>
+  </url>
+{%- endfor %}
+</urlset>
