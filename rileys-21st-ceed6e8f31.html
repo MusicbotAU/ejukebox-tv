@@ -80,6 +80,28 @@ date: 2026-09-13 12:00:00 +0800
   .ev-when{position:absolute;left:8px;bottom:7px;z-index:2;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;
            color:#fff;background:rgba(6,9,14,.6);padding:3px 7px;border-radius:999px;
            -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+  /* The track that was on the speakers when the shutter went. Sits under the tile rather than over
+     the picture - it is often a long title and would cover somebody's face. */
+  .ev-cell{display:flex;flex-direction:column;gap:5px;min-width:0}
+  .ev-song{font-size:.74rem;line-height:1.32;color:var(--smoke);padding:0 2px;
+           display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+  /* ---- the setlist ---- */
+  .ev-find{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px}
+  .ev-find input{flex:1 1 260px;min-width:0;font:inherit;font-size:.95rem;color:var(--chalk);
+                 background:var(--room-2);border:1px solid var(--line-2);border-radius:999px;padding:11px 18px}
+  .ev-find input::placeholder{color:var(--dim)}
+  .ev-find input:focus{outline:none;border-color:var(--glow)}
+  .ev-find .count{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+  .ev-list{margin-top:16px;border-top:1px solid var(--line)}
+  .ev-list .row{display:flex;align-items:baseline;gap:14px;padding:11px 2px;border-bottom:1px solid var(--line)}
+  .ev-list .row[hidden]{display:none}
+  .ev-list .tm{flex:0 0 68px;font-family:var(--mono);font-size:.72rem;color:var(--signal)}
+  .ev-list .nm{flex:1 1 auto;min-width:0;color:var(--chalk)}
+  .ev-list .nm i{font-style:normal;color:var(--smoke)}
+  .ev-list .rep{flex:0 0 auto;font-family:var(--mono);font-size:.68rem;color:var(--glow-ink);background:var(--glow);
+                border-radius:999px;padding:2px 8px}
+  .ev-list .none{padding:22px 2px;color:var(--smoke)}
 
   .ev-ded{display:grid;gap:13px;margin-top:24px;max-width:760px}
   .ev-ded article{display:flex;flex-wrap:wrap;align-items:center;gap:15px;background:var(--room-2);border:1px solid var(--line);
@@ -96,15 +118,22 @@ date: 2026-09-13 12:00:00 +0800
   .ev-more button:hover{border-color:var(--glow);color:var(--glow)}
 
   /* ---- lightbox ---- */
-  .ev-box{position:fixed;inset:0;z-index:130;background:rgba(4,6,10,.95);display:none;align-items:center;justify-content:center;padding:3vmin}
+  /* touch-action:none because the swipe below needs the horizontal gesture; the browser would
+     otherwise claim it for panning and the photo would never move. */
+  .ev-box{position:fixed;inset:0;z-index:130;background:rgba(4,6,10,.95);display:none;align-items:center;justify-content:center;
+          padding:3vmin;touch-action:none}
   .ev-box.on{display:flex}
-  .ev-box .shot{width:100%;height:100%;background:center/contain no-repeat}
+  .ev-box .shot{width:100%;height:100%;background:center/contain no-repeat;will-change:transform,opacity}
+  .ev-box .shot.settle{transition:transform .22s cubic-bezier(.22,.61,.36,1),opacity .22s ease}
   .ev-box button{position:absolute;cursor:pointer;background:var(--room-3);color:var(--chalk);border:1px solid var(--line-2);border-radius:50%}
   .ev-box .x{top:14px;right:16px;width:46px;height:46px;font-size:1.3rem;line-height:1}
   .ev-box .nav{top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:1.5rem}
   .ev-box .prev{left:14px} .ev-box .next{right:14px}
+  /* On a touch screen the arrows are redundant and in the way of the picture. */
+  @media (hover:none) and (pointer:coarse){ .ev-box .nav{display:none} }
   .ev-box .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--mono);font-size:.72rem;
                letter-spacing:.1em;color:var(--smoke)}
+  @media (prefers-reduced-motion:reduce){ .ev-box .shot.settle{transition:none} }
 
   .ev-guard,.ev-guard *{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
   html{scroll-behavior:smooth}
@@ -124,6 +153,7 @@ date: 2026-09-13 12:00:00 +0800
   <div class="wrap">
     <a href="#sec-story" data-sec="sec-story">The night</a>
     <a href="#sec-photos" data-sec="sec-photos">Photos <b id="ev-c-photos"></b></a>
+    <a href="#sec-songs" data-sec="sec-songs">Songs <b id="ev-c-songs"></b></a>
     <a href="#sec-voices" data-sec="sec-voices">Dedications <b id="ev-c-voices"></b></a>
     <a href="#sec-album" data-sec="sec-album">The album <b id="ev-c-album"></b></a>
     <a href="#top" class="ev-top" id="ev-backtop" aria-label="Back to the top">&uarr; Top</a>
@@ -153,8 +183,21 @@ date: 2026-09-13 12:00:00 +0800
   <div class="wrap">
     <p class="eyebrow">On the screen</p>
     <h2 id="ev-night-h">The night.</h2>
-    <p class="sub">Taken by the people in the room and put straight up on the wall, in the order they arrived.</p>
+    <p class="sub">Taken by the people in the room and put straight up on the wall, in the order they arrived. Under each one is the track that was actually playing when it was taken.</p>
     <div class="ev-grid ev-guard" id="ev-guest"></div>
+  </div>
+</section>
+
+<section class="band band--tight" id="sec-songs" aria-labelledby="ev-songs-h">
+  <div class="wrap">
+    <p class="eyebrow">Chosen by the room</p>
+    <h2 id="ev-songs-h">Every song that was asked for.</h2>
+    <p class="sub">In the order they were requested. Anything asked for more than once carries a count.</p>
+    <div class="ev-find">
+      <input type="search" id="ev-filter" placeholder="Filter by artist or title&hellip;" aria-label="Filter the songs by artist or title" autocomplete="off">
+      <span class="count" id="ev-filter-n"></span>
+    </div>
+    <div class="ev-list" id="ev-songs"></div>
   </div>
 </section>
 
@@ -219,18 +262,47 @@ date: 2026-09-13 12:00:00 +0800
     var r = shown[at];
     if (!r) return;
     shot.style.backgroundImage = 'url("' + base + r.src + '")';
-    cap.textContent = (r.at ? r.at + '  ·  ' : '') + (at + 1) + ' of ' + shown.length;
+    cap.textContent = (r.at ? r.at + '  ·  ' : '') + (r.song ? r.song + '  ·  ' : '') + (at + 1) + ' of ' + shown.length;
+    // Fetch the two either side so a swipe lands on a picture that is already there.
+    [at - 1, at + 1].forEach(function (i) {
+      var n = shown[(i + shown.length) % shown.length];
+      if (n) { var im = new Image(); im.src = base + n.src; }
+    });
   }
+  function rest() { shot.style.transform = 'translate(0,0)'; shot.style.opacity = '1'; }
   function step(n) { if (shown.length) { at = (at + n + shown.length) % shown.length; paint(); } }
-  function close() { box.classList.remove('on'); document.body.style.overflow = ''; }
+
+  /* Move to the next photo and slide it in from the side the gesture came from, so the arrows and
+     a swipe feel like the same action rather than a jump cut. */
+  function slide(n) {
+    if (shown.length < 2) return;
+    var w = box.clientWidth || 400;
+    step(n);
+    shot.classList.remove('settle');
+    shot.style.transform = 'translateX(' + (n > 0 ? w : -w) + 'px)';
+    shot.style.opacity = '1';
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { shot.classList.add('settle'); rest(); });
+    });
+  }
+  function close() {
+    box.classList.remove('on');
+    document.body.style.overflow = '';
+    shot.classList.remove('settle');
+    rest();
+  }
 
   function tile(rec, list, index) {
+    var cell = document.createElement('div');
+    cell.className = 'ev-cell';
+
     var d = document.createElement('div');
     d.className = 'ev-tile';
     d.dataset.src = base + rec.src;
     d.setAttribute('role', 'button');
     d.setAttribute('tabindex', '0');
-    d.setAttribute('aria-label', rec.at ? ('Photo taken at ' + rec.at) : 'Photo');
+    d.setAttribute('aria-label',
+      (rec.at ? 'Photo taken at ' + rec.at : 'Photo') + (rec.song ? ', playing ' + rec.song : ''));
     if (rec.at) {
       var t = document.createElement('span');
       t.className = 'ev-when';
@@ -241,19 +313,83 @@ date: 2026-09-13 12:00:00 +0800
     d.addEventListener('click', open);
     d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
     lazy.observe(d);
-    return d;
+    cell.appendChild(d);
+
+    if (rec.song) {
+      var s = document.createElement('p');
+      s.className = 'ev-song';
+      s.textContent = rec.song;
+      cell.appendChild(s);
+    }
+    return cell;
   }
 
   document.getElementById('ev-close').addEventListener('click', close);
-  document.getElementById('ev-prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
-  document.getElementById('ev-next').addEventListener('click', function (e) { e.stopPropagation(); step(1); });
-  box.addEventListener('click', function (e) { if (e.target === box || e.target === shot) close(); });
+  document.getElementById('ev-prev').addEventListener('click', function (e) { e.stopPropagation(); slide(-1); });
+  document.getElementById('ev-next').addEventListener('click', function (e) { e.stopPropagation(); slide(1); });
   document.addEventListener('keydown', function (e) {
     if (!box.classList.contains('on')) return;
     if (e.key === 'Escape') close();
-    if (e.key === 'ArrowLeft') step(-1);
-    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') slide(-1);
+    if (e.key === 'ArrowRight') slide(1);
   });
+
+  /**
+   * SWIPE (Marc, 13 Sep 2026: "it would be good to have it so we can just swipe photos left and
+   * right, it'll be much easier").
+   *
+   * Pointer events rather than touch events, so the same code covers a finger, a trackpad drag and
+   * a mouse - one path to get wrong instead of three. The photo follows the finger while the
+   * gesture is live, which is what tells somebody it is working before they have finished moving.
+   *
+   * Three ways it can end: far enough sideways, or a quick flick that did not travel far, moves a
+   * photo; a decent drag downwards closes, the way every photo viewer on a phone behaves; anything
+   * else springs back. A tap that never moved falls through to "close", which is how the backdrop
+   * used to work and is why the old click handler is gone - it would have fired on every swipe.
+   */
+  var grab = null;
+  var TAP = 8;
+
+  box.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('button')) return;          // the arrows and the X keep their own job
+    grab = { x: e.clientX, y: e.clientY, dx: 0, dy: 0, id: e.pointerId, t: Date.now() };
+    shot.classList.remove('settle');
+    if (box.setPointerCapture) { try { box.setPointerCapture(e.pointerId); } catch (err) {} }
+  });
+
+  box.addEventListener('pointermove', function (e) {
+    if (!grab || e.pointerId !== grab.id) return;
+    grab.dx = e.clientX - grab.x;
+    grab.dy = e.clientY - grab.y;
+    if (Math.abs(grab.dx) >= Math.abs(grab.dy)) {
+      shot.style.transform = 'translateX(' + grab.dx + 'px)';
+      shot.style.opacity = '1';
+    } else if (grab.dy > 0) {
+      shot.style.transform = 'translateY(' + grab.dy + 'px)';
+      shot.style.opacity = String(Math.max(0.3, 1 - grab.dy / 460));
+    }
+  });
+
+  function letGo(e) {
+    if (!grab || (e && e.pointerId !== grab.id)) return;
+    var dx = grab.dx, dy = grab.dy, ms = Date.now() - grab.t;
+    grab = null;
+    shot.classList.add('settle');
+
+    if (Math.abs(dx) < TAP && Math.abs(dy) < TAP) { close(); return; }   // a tap, not a drag
+
+    var reach = Math.min(110, (box.clientWidth || 400) * 0.16);
+    var flick = ms < 320 && Math.abs(dx) > 42;
+    if (Math.abs(dx) > Math.abs(dy) && (Math.abs(dx) > reach || flick)) {
+      slide(dx < 0 ? 1 : -1);                 // dragged left = next
+    } else if (dy > 120 && dy > Math.abs(dx)) {
+      close();
+    } else {
+      rest();                                  // not far enough - spring back
+    }
+  }
+  box.addEventListener('pointerup', letGo);
+  box.addEventListener('pointercancel', letGo);
 
   /* The guards. Not a lock - a screenshot always wins - but every one-click way out is gone. */
   document.addEventListener('contextmenu', function (e) {
@@ -311,6 +447,56 @@ date: 2026-09-13 12:00:00 +0800
         more.parentNode.remove();
       });
     }
+
+    /* The setlist, with a filter that just hides rows - 33 of them, so there is nothing to gain
+       from rebuilding the list on every keystroke, and hiding keeps the request order intact. */
+    var songs = d.songs || [];
+    document.getElementById('ev-c-songs').textContent = songs.length;
+    var list = document.getElementById('ev-songs');
+    var rows = songs.map(function (s) {
+      var row = document.createElement('div');
+      row.className = 'row';
+      row.dataset.hay = ((s.artist || '') + ' ' + (s.title || '')).toLowerCase();
+      row.innerHTML = '<span class="tm"></span><span class="nm"></span>';
+      row.querySelector('.tm').textContent = s.at || '';
+      var nm = row.querySelector('.nm');
+      nm.textContent = s.title || '';
+      if (s.artist) {
+        var by = document.createElement('i');
+        by.textContent = '  ·  ' + s.artist;
+        nm.appendChild(by);
+      }
+      if (s.n > 1) {
+        var rep = document.createElement('span');
+        rep.className = 'rep';
+        rep.textContent = '×' + s.n;                 // asked for more than once
+        rep.title = 'Requested ' + s.n + ' times';
+        row.appendChild(rep);
+      }
+      list.appendChild(row);
+      return row;
+    });
+    var none = document.createElement('p');
+    none.className = 'none';
+    none.hidden = true;
+    none.textContent = 'No song matches that.';
+    list.appendChild(none);
+
+    var filter = document.getElementById('ev-filter');
+    var fcount = document.getElementById('ev-filter-n');
+    function applyFilter() {
+      var q = filter.value.trim().toLowerCase();
+      var hits = 0;
+      rows.forEach(function (r) {
+        var on = !q || r.dataset.hay.indexOf(q) !== -1;
+        r.hidden = !on;
+        if (on) hits++;
+      });
+      none.hidden = hits > 0;
+      fcount.textContent = q ? (hits + ' of ' + rows.length) : (rows.length + ' songs');
+    }
+    filter.addEventListener('input', applyFilter);
+    applyFilter();
 
     var dd = document.getElementById('ev-ded');
     voices.forEach(function (v) {
