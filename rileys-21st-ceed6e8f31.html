@@ -1,0 +1,249 @@
+---
+layout: default
+permalink: /rileys-21st-ceed6e8f31/
+title: Riley's 21st - Club Buffalo, 12 September 2026
+og_title: Riley's 21st
+description: The photos and voice dedications from Riley's 21st at Club Buffalo, Saturday 12 September 2026.
+noindex: true
+sitemap: false
+date: 2026-09-13 12:00:00 +0800
+---
+
+{%- comment -%}
+  A PRIVATE EVENT HANDOVER PAGE.
+
+  What this is: everything the room made on the night, handed back to the person whose night it
+  was. Guest photos off the wall, the voice dedications people recorded with their song requests,
+  and the album that played between them.
+
+  Reachable only by its URL. `noindex: true` writes the robots meta tag, `sitemap: false` keeps it
+  out of sitemap.xml, and it is deliberately linked from no menu - the address is the key. The
+  address is also unguessable on purpose (the hex suffix), because there is no login here.
+
+  The photos live in the `events` container on the ejukeboxdisplays storage account, copied there
+  from the venue's own slideshow container so that resetting the venue screen cannot take them
+  away. Everything on the page is driven by manifest.json next to them, so re-running the event
+  export updates the page with no edit here.
+
+  WHY THE PHOTOS ARE NOT <img> TAGS (Marc, 13 Sep 2026: "disable the right clicking... the whole
+  point is to bring people to our site"). They are background images on a div with a transparent
+  shield over the top, so the browser's own "Save image as" and "Copy image" never appear, dragging
+  one to the desktop does nothing, and iOS long-press does not offer to save. A determined person
+  can still screenshot, and nothing in a browser can stop that - this raises the effort enough that
+  the easy path is to come back to the page, which is the point. The photos also carry the venue
+  and eJukebox branding baked in by the watermarker, so a screenshot travels with the brand on it.
+{%- endcomment -%}
+
+<style>
+  /* Scoped to this page; the site's own variables carry the palette. */
+  .ev-hero{padding:clamp(44px,6vw,86px) 0 clamp(26px,3vw,38px)}
+  .ev-hero h1{margin:0 0 .28em}
+  .ev-where{color:var(--smoke);font-size:clamp(1rem,1.6vw,1.18rem);margin:0}
+  .ev-stats{display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,54px);margin:30px 0 0;padding:0;list-style:none}
+  .ev-stats div{display:flex;flex-direction:column;gap:2px}
+  .ev-stats b{font-family:var(--display);font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1;color:var(--glow);font-weight:600}
+  .ev-stats span{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+  .ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,46vw),1fr));gap:clamp(8px,1.1vw,14px);margin-top:26px}
+  .ev-tile{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--room-3) center/cover no-repeat;
+           border:1px solid var(--line);cursor:zoom-in;transition:transform .18s ease,border-color .18s ease}
+  .ev-tile:hover,.ev-tile:focus-visible{transform:translateY(-2px);border-color:var(--glow);outline:none}
+  .ev-tile::after{content:"";position:absolute;inset:0}      /* the shield: every pointer event lands here, never on the picture */
+  .ev-when{position:absolute;left:8px;bottom:7px;z-index:2;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+           color:#fff;background:rgba(6,9,14,.62);padding:3px 7px;border-radius:999px;backdrop-filter:blur(3px)}
+
+  .ev-ded{display:grid;gap:14px;margin-top:26px;max-width:760px}
+  .ev-ded article{display:flex;flex-wrap:wrap;align-items:center;gap:14px;background:var(--room-2);border:1px solid var(--line);
+                  border-radius:14px;padding:16px 18px}
+  .ev-ded .t{flex:1 1 240px;min-width:0}
+  .ev-ded .song{font-weight:650;color:var(--chalk)}
+  .ev-ded .artist{color:var(--smoke);font-size:.94rem}
+  .ev-ded time{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--signal)}
+  .ev-ded audio{flex:1 1 260px;min-width:220px;height:38px}
+
+  .ev-more{margin-top:22px}
+  .ev-more button{font:inherit;cursor:pointer;background:var(--room-3);color:var(--chalk);border:1px solid var(--line-2);
+                  border-radius:999px;padding:11px 22px}
+  .ev-more button:hover{border-color:var(--glow);color:var(--glow)}
+
+  /* lightbox */
+  .ev-box{position:fixed;inset:0;z-index:120;background:rgba(4,6,10,.94);display:none;align-items:center;justify-content:center;padding:3vmin}
+  .ev-box.on{display:flex}
+  .ev-box .shot{width:100%;height:100%;background:center/contain no-repeat}
+  .ev-box .shot::after{content:"";position:absolute;inset:0}
+  .ev-box button{position:absolute;top:14px;right:16px;width:46px;height:46px;border-radius:50%;cursor:pointer;
+                 background:var(--room-3);color:var(--chalk);border:1px solid var(--line-2);font-size:1.3rem;line-height:1}
+  .ev-box .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:1.5rem}
+  .ev-box .prev{left:14px} .ev-box .next{right:14px;top:50%}
+  .ev-box .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--mono);font-size:.74rem;
+               letter-spacing:.1em;color:var(--smoke)}
+
+  /* Nothing in here is selectable, draggable, or long-pressable into a save sheet. */
+  .ev-guard,.ev-guard *{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
+  @media (prefers-reduced-motion:reduce){.ev-tile{transition:none}.ev-tile:hover{transform:none}}
+</style>
+
+<section class="band band--flush ev-hero" aria-labelledby="ev-h">
+  <div class="wrap">
+    <p class="eyebrow">Club Buffalo &middot; private event</p>
+    <h1 id="ev-h">Riley&rsquo;s 21st.</h1>
+    <p class="ev-where">Saturday 12 September 2026. Everything the room made on the night &mdash; the photos that went up on the screen, and the dedications people recorded with their songs.</p>
+    <div class="ev-stats">
+      <div><b id="ev-n-guest">&mdash;</b><span>photos from the night</span></div>
+      <div><b id="ev-n-ded">&mdash;</b><span>voice dedications</span></div>
+      <div><b id="ev-n-songs">&mdash;</b><span>songs requested</span></div>
+      <div><b id="ev-span">&mdash;</b><span>first to last request</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--tight" aria-labelledby="ev-night-h">
+  <div class="wrap">
+    <p class="eyebrow">On the screen</p>
+    <h2 id="ev-night-h">The night.</h2>
+    <p class="sub">Taken by the people in the room and put straight up on the wall, in the order they arrived.</p>
+    <div class="ev-grid ev-guard" id="ev-guest"></div>
+  </div>
+</section>
+
+<section class="band band--sober" aria-labelledby="ev-ded-h">
+  <div class="wrap">
+    <p class="eyebrow">In their own voice</p>
+    <h2 id="ev-ded-h">The dedications.</h2>
+    <p class="sub">Recorded on the night and played to the room just before the song it was for.</p>
+    <div class="ev-ded" id="ev-ded"></div>
+  </div>
+</section>
+
+<section class="band band--tight" aria-labelledby="ev-album-h">
+  <div class="wrap">
+    <p class="eyebrow">Between the photos</p>
+    <h2 id="ev-album-h">The album that played.</h2>
+    <p class="sub">The pictures that ran on the screen through the night, in the order they were given to us.</p>
+    <div class="ev-grid ev-guard" id="ev-album"></div>
+    <p class="ev-more"><button type="button" id="ev-more">Show all of them</button></p>
+  </div>
+</section>
+
+<div class="ev-box ev-guard" id="ev-box" role="dialog" aria-modal="true" aria-label="Photo">
+  <div class="shot" id="ev-shot"></div>
+  <button type="button" class="nav prev" id="ev-prev" aria-label="Previous photo">&#8249;</button>
+  <button type="button" class="nav next" id="ev-next" aria-label="Next photo">&#8250;</button>
+  <button type="button" id="ev-close" aria-label="Close">&times;</button>
+  <p class="cap" id="ev-cap"></p>
+</div>
+
+<script>
+(function () {
+  var MANIFEST = 'https://ejukeboxdisplays.blob.core.windows.net/events/rileys-21st-ceed6e8f31/manifest.json';
+  var ALBUM_FIRST = 24;                       // the rest arrive on the button, so the page opens fast
+  var guest = [], album = [], base = '', shown = [], at = 0;
+
+  /* Load a tile's picture only when it is nearly on screen. 181 photos at full size is tens of
+     megabytes; on a phone at a party that is the difference between a page and a wait. */
+  var lazy = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.style.backgroundImage = 'url("' + e.target.dataset.src + '")';
+      lazy.unobserve(e.target);
+    });
+  }, { rootMargin: '600px 0px' });
+
+  function tile(rec, list, index) {
+    var d = document.createElement('div');
+    d.className = 'ev-tile';
+    d.dataset.src = base + rec.src;
+    d.setAttribute('role', 'button');
+    d.setAttribute('tabindex', '0');
+    d.setAttribute('aria-label', rec.at ? ('Photo taken at ' + rec.at) : 'Photo');
+    if (rec.at) {
+      var t = document.createElement('span');
+      t.className = 'ev-when';
+      t.textContent = rec.at;
+      d.appendChild(t);
+    }
+    function open() { shown = list; at = index; paint(); box.classList.add('on'); document.body.style.overflow = 'hidden'; }
+    d.addEventListener('click', open);
+    d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    lazy.observe(d);
+    return d;
+  }
+
+  var box = document.getElementById('ev-box');
+  var shot = document.getElementById('ev-shot');
+  var cap = document.getElementById('ev-cap');
+
+  function paint() {
+    var r = shown[at];
+    if (!r) return;
+    shot.style.backgroundImage = 'url("' + base + r.src + '")';
+    cap.textContent = (r.at ? r.at + '  ·  ' : '') + (at + 1) + ' of ' + shown.length;
+  }
+  function step(n) { if (!shown.length) return; at = (at + n + shown.length) % shown.length; paint(); }
+  function close() { box.classList.remove('on'); document.body.style.overflow = ''; }
+
+  document.getElementById('ev-close').addEventListener('click', close);
+  document.getElementById('ev-prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
+  document.getElementById('ev-next').addEventListener('click', function (e) { e.stopPropagation(); step(1); });
+  box.addEventListener('click', function (e) { if (e.target === box || e.target === shot) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!box.classList.contains('on')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+
+  /* The guards. None of this is a lock - a screenshot always wins - but it removes every one-click
+     route out of the page, which is what was asked for. */
+  document.addEventListener('contextmenu', function (e) {
+    if (e.target.closest && e.target.closest('.ev-guard')) e.preventDefault();
+  });
+  document.addEventListener('dragstart', function (e) {
+    if (e.target.closest && e.target.closest('.ev-guard')) e.preventDefault();
+  });
+  document.addEventListener('keydown', function (e) {
+    // Ctrl/Cmd+S would offer to save the whole page, images and all.
+    if ((e.ctrlKey || e.metaKey) && String(e.key).toLowerCase() === 's') e.preventDefault();
+  });
+
+  fetch(MANIFEST, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
+    base = d.base; guest = d.guest || []; album = d.album || [];
+
+    document.getElementById('ev-n-guest').textContent = guest.length;
+    document.getElementById('ev-n-ded').textContent = (d.dedications || []).length;
+    document.getElementById('ev-n-songs').textContent = d.songsRequested || '—';
+    document.getElementById('ev-span').textContent = (d.firstRequest || '') && (d.firstRequest + ' – ' + d.lastRequest);
+
+    var g = document.getElementById('ev-guest');
+    guest.forEach(function (r, i) { g.appendChild(tile(r, guest, i)); });
+
+    var a = document.getElementById('ev-album');
+    album.slice(0, ALBUM_FIRST).forEach(function (r, i) { a.appendChild(tile(r, album, i)); });
+    var more = document.getElementById('ev-more');
+    if (album.length <= ALBUM_FIRST) { more.parentNode.remove(); }
+    else {
+      more.textContent = 'Show all ' + album.length;
+      more.addEventListener('click', function () {
+        album.slice(ALBUM_FIRST).forEach(function (r, i) { a.appendChild(tile(r, album, ALBUM_FIRST + i)); });
+        more.parentNode.remove();
+      });
+    }
+
+    var dd = document.getElementById('ev-ded');
+    (d.dedications || []).forEach(function (v) {
+      var el = document.createElement('article');
+      el.innerHTML =
+        '<div class="t"><div class="song"></div><div class="artist"></div><time></time></div>' +
+        '<audio controls preload="none" controlsList="nodownload"></audio>';
+      el.querySelector('.song').textContent = v.song || 'Dedication';
+      el.querySelector('.artist').textContent = v.artist || '';
+      el.querySelector('time').textContent = v.at || '';
+      el.querySelector('audio').src = base + v.src;
+      dd.appendChild(el);
+    });
+  }).catch(function () {
+    document.getElementById('ev-guest').innerHTML =
+      '<p class="sub">These photos could not be loaded just now. Please try again in a moment.</p>';
+  });
+})();
+</script>
