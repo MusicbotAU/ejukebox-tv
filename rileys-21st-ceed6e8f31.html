@@ -12,84 +12,136 @@ date: 2026-09-13 12:00:00 +0800
 {%- comment -%}
   A PRIVATE EVENT HANDOVER PAGE.
 
-  What this is: everything the room made on the night, handed back to the person whose night it
-  was. Guest photos off the wall, the voice dedications people recorded with their song requests,
-  and the album that played between them.
+  Everything the room made on the night, handed back to the person whose night it was. Reachable
+  only by its URL: `noindex` writes the robots tag, `sitemap: false` keeps it out of sitemap.xml,
+  and nothing links to it. The hex suffix IS the key - there is no login.
 
-  Reachable only by its URL. `noindex: true` writes the robots meta tag, `sitemap: false` keeps it
-  out of sitemap.xml, and it is deliberately linked from no menu - the address is the key. The
-  address is also unguessable on purpose (the hex suffix), because there is no login here.
+  THE PICTURES ARE THE INSTAGRAM RENDER, NOT THE TOUCHSCREEN ONE (Marc, 13 Sep 2026). The venue
+  frame carries "Touch screen to request songs" across the top of every photo, which is right on a
+  TV in a pub and reads as an advert on a page you have handed to a family. The ig render is the
+  same photo at 4:5, edge to edge, with the venue and eJukebox marks small along the foot - so the
+  branding survives a screenshot without shouting.
 
-  The photos live in the `events` container on the ejukeboxdisplays storage account, copied there
-  from the venue's own slideshow container so that resetting the venue screen cannot take them
-  away. Everything on the page is driven by manifest.json next to them, so re-running the event
-  export updates the page with no edit here.
+  THE STORY IS DELIBERATELY UNDERSTATED (Marc: "keep it subtle, because after all it's Riley's
+  birthday - we're not here to take any credit, although they had fun because of us"). So no
+  product words anywhere: the capability is carried entirely by what actually happened - the room
+  picked thirty-three songs, the photos were on the wall seconds after they were taken, three
+  people heard their own voice over the PA. A reader takes the point without being sold to.
 
-  WHY THE PHOTOS ARE NOT <img> TAGS (Marc, 13 Sep 2026: "disable the right clicking... the whole
-  point is to bring people to our site"). They are background images on a div with a transparent
-  shield over the top, so the browser's own "Save image as" and "Copy image" never appear, dragging
-  one to the desktop does nothing, and iOS long-press does not offer to save. A determined person
-  can still screenshot, and nothing in a browser can stop that - this raises the effort enough that
-  the easy path is to come back to the page, which is the point. The photos also carry the venue
-  and eJukebox branding baked in by the watermarker, so a screenshot travels with the brand on it.
+  NAVIGATION (Marc: "you've got to scroll all the way down through thousands of photos to get to
+  the voice tracks"). A sticky strip under the site's own topbar, which is itself sticky at
+  z-index 100 - hence --ev-top, measured at runtime, so this bar parks directly beneath it at any
+  width. The active section is driven by an IntersectionObserver rather than scroll maths.
+
+  WHY THE PHOTOS ARE NOT <img> TAGS. Background images behind a transparent shield: no "Save image
+  as", no drag-to-desktop, no iOS long-press save. A screenshot always wins and nothing in a
+  browser changes that - this removes the one-click routes, which is the ask.
 {%- endcomment -%}
 
 <style>
-  /* Scoped to this page; the site's own variables carry the palette. */
-  .ev-hero{padding:clamp(44px,6vw,86px) 0 clamp(26px,3vw,38px)}
-  .ev-hero h1{margin:0 0 .28em}
-  .ev-where{color:var(--smoke);font-size:clamp(1rem,1.6vw,1.18rem);margin:0}
-  .ev-stats{display:flex;flex-wrap:wrap;gap:clamp(18px,4vw,54px);margin:30px 0 0;padding:0;list-style:none}
-  .ev-stats div{display:flex;flex-direction:column;gap:2px}
-  .ev-stats b{font-family:var(--display);font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1;color:var(--glow);font-weight:600}
-  .ev-stats span{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+  .ev-hero{padding:clamp(40px,5.4vw,74px) 0 clamp(20px,2.4vw,30px)}
+  .ev-hero h1{margin:0 0 .3em}
+  .ev-lede{color:var(--smoke);font-size:clamp(1.02rem,1.7vw,1.22rem);max-width:34em;margin:0}
 
-  .ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(220px,46vw),1fr));gap:clamp(8px,1.1vw,14px);margin-top:26px}
-  .ev-tile{position:relative;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--room-3) center/cover no-repeat;
+  /* ---- the sticky section bar ---- */
+  .ev-jump{position:sticky;top:var(--ev-top,60px);z-index:90;background:rgba(8,12,18,.92);
+           -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+           border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ev-jump .wrap{display:flex;align-items:center;gap:8px;overflow-x:auto;scrollbar-width:none;padding-top:9px;padding-bottom:9px}
+  .ev-jump .wrap::-webkit-scrollbar{display:none}
+  .ev-jump a{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+             font-family:var(--mono);font-size:.72rem;letter-spacing:.11em;text-transform:uppercase;
+             color:var(--smoke);background:transparent;border:1px solid transparent;border-radius:999px;
+             padding:8px 14px;transition:color .16s ease,background .16s ease,border-color .16s ease}
+  .ev-jump a:hover{color:var(--chalk);border-color:var(--line-2)}
+  .ev-jump a.on{color:var(--glow-ink);background:var(--glow);border-color:var(--glow)}
+  .ev-jump a b{font-family:var(--body);font-weight:700;font-size:.78rem;opacity:.62}
+  .ev-jump a.on b{opacity:.72}
+  .ev-top{margin-left:auto;flex:0 0 auto}
+
+  /* ---- the story ---- */
+  .ev-story p{color:var(--smoke);max-width:33em;font-size:clamp(1rem,1.5vw,1.1rem);margin:0 0 1.05em}
+  .ev-story p:last-child{margin-bottom:0}
+  .ev-story strong{color:var(--chalk);font-weight:650}
+  .ev-sign{font-family:var(--display);font-size:clamp(1.35rem,2.6vw,1.9rem);color:var(--glow);margin-top:30px !important}
+
+  .ev-stats{display:flex;flex-wrap:wrap;gap:clamp(20px,4.4vw,58px);margin:28px 0 0;padding:0;list-style:none}
+  .ev-stats div{display:flex;flex-direction:column;gap:3px}
+  .ev-stats b{font-family:var(--display);font-size:clamp(1.7rem,3.3vw,2.45rem);line-height:1;color:var(--glow);font-weight:600}
+  .ev-stats span{font-family:var(--mono);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim)}
+
+  /* ---- galleries ---- */
+  .ev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(210px,45vw),1fr));gap:clamp(8px,1.05vw,13px);margin-top:24px}
+  .ev-tile{position:relative;aspect-ratio:4/5;border-radius:12px;overflow:hidden;background:var(--room-3) center/cover no-repeat;
            border:1px solid var(--line);cursor:zoom-in;transition:transform .18s ease,border-color .18s ease}
   .ev-tile:hover,.ev-tile:focus-visible{transform:translateY(-2px);border-color:var(--glow);outline:none}
-  .ev-tile::after{content:"";position:absolute;inset:0}      /* the shield: every pointer event lands here, never on the picture */
-  .ev-when{position:absolute;left:8px;bottom:7px;z-index:2;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
-           color:#fff;background:rgba(6,9,14,.62);padding:3px 7px;border-radius:999px;backdrop-filter:blur(3px)}
+  .ev-tile::after{content:"";position:absolute;inset:0}   /* the shield - pointer events never reach the picture */
+  /* The -webkit- prefix is not optional: iOS Safari is most of the audience for a party page. */
+  .ev-when{position:absolute;left:8px;bottom:7px;z-index:2;font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;
+           color:#fff;background:rgba(6,9,14,.6);padding:3px 7px;border-radius:999px;
+           -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 
-  .ev-ded{display:grid;gap:14px;margin-top:26px;max-width:760px}
-  .ev-ded article{display:flex;flex-wrap:wrap;align-items:center;gap:14px;background:var(--room-2);border:1px solid var(--line);
+  .ev-ded{display:grid;gap:13px;margin-top:24px;max-width:760px}
+  .ev-ded article{display:flex;flex-wrap:wrap;align-items:center;gap:15px;background:var(--room-2);border:1px solid var(--line);
                   border-radius:14px;padding:16px 18px}
-  .ev-ded .t{flex:1 1 240px;min-width:0}
+  .ev-ded .t{flex:1 1 230px;min-width:0}
   .ev-ded .song{font-weight:650;color:var(--chalk)}
-  .ev-ded .artist{color:var(--smoke);font-size:.94rem}
-  .ev-ded time{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:var(--signal)}
-  .ev-ded audio{flex:1 1 260px;min-width:220px;height:38px}
+  .ev-ded .artist{color:var(--smoke);font-size:.93rem}
+  .ev-ded time{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--signal)}
+  .ev-ded audio{flex:1 1 250px;min-width:210px;height:38px}
 
-  .ev-more{margin-top:22px}
+  .ev-more{margin-top:20px}
   .ev-more button{font:inherit;cursor:pointer;background:var(--room-3);color:var(--chalk);border:1px solid var(--line-2);
                   border-radius:999px;padding:11px 22px}
   .ev-more button:hover{border-color:var(--glow);color:var(--glow)}
 
-  /* lightbox */
-  .ev-box{position:fixed;inset:0;z-index:120;background:rgba(4,6,10,.94);display:none;align-items:center;justify-content:center;padding:3vmin}
+  /* ---- lightbox ---- */
+  .ev-box{position:fixed;inset:0;z-index:130;background:rgba(4,6,10,.95);display:none;align-items:center;justify-content:center;padding:3vmin}
   .ev-box.on{display:flex}
   .ev-box .shot{width:100%;height:100%;background:center/contain no-repeat}
-  .ev-box .shot::after{content:"";position:absolute;inset:0}
-  .ev-box button{position:absolute;top:14px;right:16px;width:46px;height:46px;border-radius:50%;cursor:pointer;
-                 background:var(--room-3);color:var(--chalk);border:1px solid var(--line-2);font-size:1.3rem;line-height:1}
-  .ev-box .nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:1.5rem}
-  .ev-box .prev{left:14px} .ev-box .next{right:14px;top:50%}
-  .ev-box .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--mono);font-size:.74rem;
+  .ev-box button{position:absolute;cursor:pointer;background:var(--room-3);color:var(--chalk);border:1px solid var(--line-2);border-radius:50%}
+  .ev-box .x{top:14px;right:16px;width:46px;height:46px;font-size:1.3rem;line-height:1}
+  .ev-box .nav{top:50%;transform:translateY(-50%);width:52px;height:52px;font-size:1.5rem}
+  .ev-box .prev{left:14px} .ev-box .next{right:14px}
+  .ev-box .cap{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--mono);font-size:.72rem;
                letter-spacing:.1em;color:var(--smoke)}
 
-  /* Nothing in here is selectable, draggable, or long-pressable into a save sheet. */
   .ev-guard,.ev-guard *{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none}
-  @media (prefers-reduced-motion:reduce){.ev-tile{transition:none}.ev-tile:hover{transform:none}}
+  html{scroll-behavior:smooth}
+  [id^="sec-"]{scroll-margin-top:calc(var(--ev-top,60px) + 58px)}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.ev-tile{transition:none}.ev-tile:hover{transform:none}}
 </style>
 
 <section class="band band--flush ev-hero" aria-labelledby="ev-h">
   <div class="wrap">
-    <p class="eyebrow">Club Buffalo &middot; private event</p>
+    <p class="eyebrow">Club Buffalo &middot; Saturday 12 September 2026</p>
     <h1 id="ev-h">Riley&rsquo;s 21st.</h1>
-    <p class="ev-where">Saturday 12 September 2026. Everything the room made on the night &mdash; the photos that went up on the screen, and the dedications people recorded with their songs.</p>
+    <p class="ev-lede">Everything the room made that night &mdash; the photos that went up on the screen as they were taken, and the dedications people recorded for each other.</p>
+  </div>
+</section>
+
+<nav class="ev-jump" id="ev-jump" aria-label="Jump to a section">
+  <div class="wrap">
+    <a href="#sec-story" data-sec="sec-story">The night</a>
+    <a href="#sec-photos" data-sec="sec-photos">Photos <b id="ev-c-photos"></b></a>
+    <a href="#sec-voices" data-sec="sec-voices">Dedications <b id="ev-c-voices"></b></a>
+    <a href="#sec-album" data-sec="sec-album">The album <b id="ev-c-album"></b></a>
+    <a href="#top" class="ev-top" id="ev-backtop" aria-label="Back to the top">&uarr; Top</a>
+  </div>
+</nav>
+
+<section class="band band--tight ev-story" id="sec-story" aria-labelledby="ev-story-h">
+  <div class="wrap">
+    <p class="eyebrow">How it went</p>
+    <h2 id="ev-story-h">A room that picked its own music.</h2>
+    <p>The first request landed at <strong>nineteen minutes past eight</strong>. Cotton Eye Joe &mdash; somebody had to.</p>
+    <p>From there until twenty to midnight, <strong>thirty-three songs</strong> went up, and every one of them was chosen by somebody standing in the room. Hilltop Hoods into Tone Loc into Wu-Tang, which is not an order any DJ would have written down beforehand, and exactly the order a room full of people actually wanted.</p>
+    <p>The photos kept pace. <strong>Eighty of them</strong> were up on the big screen before the night was out, the first at eight minutes past six and the last just before eleven, most of them on the wall within seconds of being taken.</p>
+    <p>And three people did the thing hardly anybody does. They picked a song, recorded a message to go with it, and the whole room heard their voice just before the track dropped. Those three are on this page, exactly as they went out.</p>
+    <p>None of it came off a playlist written in advance. It was just what the room wanted next, all night.</p>
+    <p class="ev-sign">Happy 21st, Riley.</p>
     <div class="ev-stats">
-      <div><b id="ev-n-guest">&mdash;</b><span>photos from the night</span></div>
+      <div><b id="ev-n-guest">&mdash;</b><span>photos on the screen</span></div>
       <div><b id="ev-n-ded">&mdash;</b><span>voice dedications</span></div>
       <div><b id="ev-n-songs">&mdash;</b><span>songs requested</span></div>
       <div><b id="ev-span">&mdash;</b><span>first to last request</span></div>
@@ -97,7 +149,7 @@ date: 2026-09-13 12:00:00 +0800
   </div>
 </section>
 
-<section class="band band--tight" aria-labelledby="ev-night-h">
+<section class="band band--tight" id="sec-photos" aria-labelledby="ev-night-h">
   <div class="wrap">
     <p class="eyebrow">On the screen</p>
     <h2 id="ev-night-h">The night.</h2>
@@ -106,16 +158,16 @@ date: 2026-09-13 12:00:00 +0800
   </div>
 </section>
 
-<section class="band band--sober" aria-labelledby="ev-ded-h">
+<section class="band band--sober" id="sec-voices" aria-labelledby="ev-ded-h">
   <div class="wrap">
     <p class="eyebrow">In their own voice</p>
     <h2 id="ev-ded-h">The dedications.</h2>
-    <p class="sub">Recorded on the night and played to the room just before the song it was for.</p>
+    <p class="sub">Recorded on the night and played to the room just before the song each one was for.</p>
     <div class="ev-ded" id="ev-ded"></div>
   </div>
 </section>
 
-<section class="band band--tight" aria-labelledby="ev-album-h">
+<section class="band band--tight" id="sec-album" aria-labelledby="ev-album-h">
   <div class="wrap">
     <p class="eyebrow">Between the photos</p>
     <h2 id="ev-album-h">The album that played.</h2>
@@ -129,25 +181,48 @@ date: 2026-09-13 12:00:00 +0800
   <div class="shot" id="ev-shot"></div>
   <button type="button" class="nav prev" id="ev-prev" aria-label="Previous photo">&#8249;</button>
   <button type="button" class="nav next" id="ev-next" aria-label="Next photo">&#8250;</button>
-  <button type="button" id="ev-close" aria-label="Close">&times;</button>
+  <button type="button" class="x" id="ev-close" aria-label="Close">&times;</button>
   <p class="cap" id="ev-cap"></p>
 </div>
 
 <script>
 (function () {
   var MANIFEST = 'https://ejukeboxdisplays.blob.core.windows.net/events/rileys-21st-ceed6e8f31/manifest.json';
-  var ALBUM_FIRST = 24;                       // the rest arrive on the button, so the page opens fast
-  var guest = [], album = [], base = '', shown = [], at = 0;
+  var ALBUM_FIRST = 24;
+  var base = '', shown = [], at = 0;
 
-  /* Load a tile's picture only when it is nearly on screen. 181 photos at full size is tens of
-     megabytes; on a phone at a party that is the difference between a page and a wait. */
-  var lazy = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
+  /* Park the section bar directly under the site's own sticky topbar, whatever height it is at
+     this width. Re-measured on resize because the topbar wraps on a narrow screen. */
+  function measure() {
+    var bar = document.querySelector('.topbar');
+    document.documentElement.style.setProperty('--ev-top', ((bar && bar.offsetHeight) || 60) + 'px');
+  }
+  measure();
+  window.addEventListener('resize', measure);
+  window.addEventListener('load', measure);
+
+  /* Load a tile's picture only as it comes near the viewport. 181 photos at full size is tens of
+     megabytes, which on a phone is the difference between a page and a wait. */
+  var lazy = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
       if (!e.isIntersecting) return;
       e.target.style.backgroundImage = 'url("' + e.target.dataset.src + '")';
       lazy.unobserve(e.target);
     });
-  }, { rootMargin: '600px 0px' });
+  }, { rootMargin: '700px 0px' });
+
+  var box = document.getElementById('ev-box');
+  var shot = document.getElementById('ev-shot');
+  var cap = document.getElementById('ev-cap');
+
+  function paint() {
+    var r = shown[at];
+    if (!r) return;
+    shot.style.backgroundImage = 'url("' + base + r.src + '")';
+    cap.textContent = (r.at ? r.at + '  ·  ' : '') + (at + 1) + ' of ' + shown.length;
+  }
+  function step(n) { if (shown.length) { at = (at + n + shown.length) % shown.length; paint(); } }
+  function close() { box.classList.remove('on'); document.body.style.overflow = ''; }
 
   function tile(rec, list, index) {
     var d = document.createElement('div');
@@ -169,19 +244,6 @@ date: 2026-09-13 12:00:00 +0800
     return d;
   }
 
-  var box = document.getElementById('ev-box');
-  var shot = document.getElementById('ev-shot');
-  var cap = document.getElementById('ev-cap');
-
-  function paint() {
-    var r = shown[at];
-    if (!r) return;
-    shot.style.backgroundImage = 'url("' + base + r.src + '")';
-    cap.textContent = (r.at ? r.at + '  ·  ' : '') + (at + 1) + ' of ' + shown.length;
-  }
-  function step(n) { if (!shown.length) return; at = (at + n + shown.length) % shown.length; paint(); }
-  function close() { box.classList.remove('on'); document.body.style.overflow = ''; }
-
   document.getElementById('ev-close').addEventListener('click', close);
   document.getElementById('ev-prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
   document.getElementById('ev-next').addEventListener('click', function (e) { e.stopPropagation(); step(1); });
@@ -193,8 +255,7 @@ date: 2026-09-13 12:00:00 +0800
     if (e.key === 'ArrowRight') step(1);
   });
 
-  /* The guards. None of this is a lock - a screenshot always wins - but it removes every one-click
-     route out of the page, which is what was asked for. */
+  /* The guards. Not a lock - a screenshot always wins - but every one-click way out is gone. */
   document.addEventListener('contextmenu', function (e) {
     if (e.target.closest && e.target.closest('.ev-guard')) e.preventDefault();
   });
@@ -202,17 +263,39 @@ date: 2026-09-13 12:00:00 +0800
     if (e.target.closest && e.target.closest('.ev-guard')) e.preventDefault();
   });
   document.addEventListener('keydown', function (e) {
-    // Ctrl/Cmd+S would offer to save the whole page, images and all.
     if ((e.ctrlKey || e.metaKey) && String(e.key).toLowerCase() === 's') e.preventDefault();
   });
 
+  /* Light the section bar for whatever you are actually looking at. */
+  function watchSections() {
+    var links = [].slice.call(document.querySelectorAll('.ev-jump a[data-sec]'));
+    var spy = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.toggle('on', a.dataset.sec === e.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    links.forEach(function (a) {
+      var s = document.getElementById(a.dataset.sec);
+      if (s) spy.observe(s);
+    });
+    document.getElementById('ev-backtop').addEventListener('click', function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   fetch(MANIFEST, { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(function (d) {
-    base = d.base; guest = d.guest || []; album = d.album || [];
+    base = d.base;
+    var guest = d.guest || [], album = d.album || [], voices = d.dedications || [];
 
     document.getElementById('ev-n-guest').textContent = guest.length;
-    document.getElementById('ev-n-ded').textContent = (d.dedications || []).length;
+    document.getElementById('ev-n-ded').textContent = voices.length;
     document.getElementById('ev-n-songs').textContent = d.songsRequested || '—';
-    document.getElementById('ev-span').textContent = (d.firstRequest || '') && (d.firstRequest + ' – ' + d.lastRequest);
+    document.getElementById('ev-span').textContent = d.firstRequest ? (d.firstRequest + ' – ' + d.lastRequest) : '—';
+    document.getElementById('ev-c-photos').textContent = guest.length;
+    document.getElementById('ev-c-voices').textContent = voices.length;
+    document.getElementById('ev-c-album').textContent = album.length;
 
     var g = document.getElementById('ev-guest');
     guest.forEach(function (r, i) { g.appendChild(tile(r, guest, i)); });
@@ -230,17 +313,18 @@ date: 2026-09-13 12:00:00 +0800
     }
 
     var dd = document.getElementById('ev-ded');
-    (d.dedications || []).forEach(function (v) {
+    voices.forEach(function (v) {
       var el = document.createElement('article');
-      el.innerHTML =
-        '<div class="t"><div class="song"></div><div class="artist"></div><time></time></div>' +
-        '<audio controls preload="none" controlsList="nodownload"></audio>';
+      el.innerHTML = '<div class="t"><div class="song"></div><div class="artist"></div><time></time></div>' +
+                     '<audio controls preload="none" controlsList="nodownload"></audio>';
       el.querySelector('.song').textContent = v.song || 'Dedication';
       el.querySelector('.artist').textContent = v.artist || '';
       el.querySelector('time').textContent = v.at || '';
       el.querySelector('audio').src = base + v.src;
       dd.appendChild(el);
     });
+
+    watchSections();
   }).catch(function () {
     document.getElementById('ev-guest').innerHTML =
       '<p class="sub">These photos could not be loaded just now. Please try again in a moment.</p>';
