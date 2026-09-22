@@ -48,4 +48,23 @@
   .fx-crops{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fx-crop--sq{grid-column:span 2;max-width:54%}
 }
+/* the objection, answered: a phone in the aux versus eJukebox on the night */
+.fx-vs{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-top:clamp(22px,3vw,34px)}
+.fx-vs__col{border-radius:var(--r);padding:clamp(18px,2.4vw,26px);border:1px solid var(--line);background:var(--room-2)}
+.fx-vs__col h3{margin:0 0 12px;font-size:1.15rem}
+.fx-vs__col--aux{background:var(--room);border-color:var(--line)}
+.fx-vs__col--aux h3{color:var(--dim)}
+.fx-vs__col--ej{border-color:var(--accent-line);box-shadow:var(--inset);
+  background:linear-gradient(180deg,var(--accent-soft) 0%,var(--room-2) 60%)}
+.fx-vs__col--ej h3{color:var(--accent)}
+.fx-vs__list{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.fx-vs__list li{display:flex;gap:11px;align-items:flex-start;color:var(--smoke);font-size:.96rem}
+.fx-vs__list li::before{content:"\2715";flex:none;font-family:var(--mono);font-size:.8rem;margin-top:3px;color:var(--smoke)}
+.fx-vs__list li.is-ok::before{content:"\2713";color:var(--good)}
+.fx-vs__col--aux .fx-vs__list li.is-ok{color:var(--chalk)}
+.fx-vs__col--ej .fx-vs__list li{color:var(--chalk)}
+.fx-verdict{margin:clamp(18px,2.4vw,26px) 0 0;font-family:var(--display);font-weight:700;
+  font-size:clamp(1.15rem,2.2vw,1.5rem);letter-spacing:-.02em;color:var(--smoke)}
+.fx-verdict strong{color:var(--accent)}
+@media (max-width:720px){.fx-vs{grid-template-columns:1fr}}
 </style>
