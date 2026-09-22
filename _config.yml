@@ -3,13 +3,13 @@
 # local build step.
 
 title: eJukebox TV
-tagline: The screen your venue already owns, running itself
+tagline: Every screen in the pub, one phone in your pocket
 description: >-
-  A small player into any spare HDMI port and the screen your venue already owns
-  becomes a live display - guest photos on the wall about three seconds after
-  they are taken, announcements you type from your phone that design themselves,
-  your promos in the rotation, and prompts that teach every new customer how to
-  join in.
+  Every free-to-air channel on every screen in your venue, changed from the
+  phone in your pocket. Set the weekend's sport once and the screens switch
+  themselves - the TV's sound comes up, the music goes quiet, and your specials
+  and your guests' photos come back after the whistle. It comes with eJukebox
+  music.
 
 url: "https://ejukebox.tv"
 baseurl: ""

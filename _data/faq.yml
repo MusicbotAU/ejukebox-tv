@@ -1,7 +1,7 @@
 # ---------------------------------------------------------------------------
-# THE FAQ - single source of truth for /demo/.
+# THE FAQ - single source of truth for the home page ("tv") and /demo/ ("demo").
 #
-# demo.html renders the visible <details> list from this file, and
+# The pages render the visible <details> lists from this file, and
 # _includes/schema.html renders the FAQPage JSON-LD from the same rows. One
 # edit, both stay true. A schema answer that no longer matches the visible
 # answer is exactly the mismatch that gets structured data ignored.
@@ -17,52 +17,153 @@
 #
 # NO PRICES. NO EMAIL ADDRESS. NO PHONE NUMBER. Not in a visible answer and not
 # in the markup that is generated from it.
+#
+# WORDS THAT NEVER APPEAR (the September 2026 brief): automatic / automated /
+# automatically (say "by itself", "switches itself"), kiosk, stream as a noun
+# (the one allowed use is "the broadcasters' own live streams"), player (say
+# "the eJukebox box"), "AI" outside the image disclosure, "smart", any
+# exclamation mark, and any pay TV brand by name. Pay TV is "in discussion".
 # ---------------------------------------------------------------------------
+
+tv:
+  - q: Who changes the channel at 7:30 on Friday?
+    a:
+      - >-
+        Nobody. Set it once from the sport guide on the phone and the screen
+        switches itself at kick-off, then goes back to your specials after the
+        whistle. If you change your mind, tap a different channel, or Slideshow,
+        or Mute. The phone always wins.
+
+  - q: Where does the TV sound come out?
+    a:
+      - >-
+        The TV, down the same lead as the picture. Never your music speakers.
+        One volume for the music and one for the TV, both on the phone.
+
+  - q: And the music? Does someone have to turn it down for the game?
+    a:
+      - >-
+        No. Set the game with sound and at kick-off the TV comes up and the
+        music goes quiet by itself. At the whistle the slideshow and the music
+        come back where they were.
+      - >-
+        Want the music to keep playing through the game? Set the game silent
+        instead.
+
+  - q: We have ten screens, six on one thing and four on another. Can it do that?
+    a:
+      - >-
+        Yes. Two groups, two rows on the phone. The six run off the eJukebox box
+        into the splitter you already have. The four run off a small screen box
+        behind that wall. Hardware once, nothing ongoing.
+
+  - q: Same thing on all ten?
+    a:
+      - >-
+        One lead into your splitter. Done. Every TV on the splitter follows the
+        one tap.
+
+  - q: What if two games overlap?
+    a:
+      - >-
+        The app tells you before it saves: what is already on then, and that the
+        new one would change the channel halfway through. You choose.
+
+  - q: Does the request touchscreen show the TV?
+    a:
+      - >-
+        No. It takes song requests and shows your photos and slides as its
+        screensaver, the same as it always has. The TV goes on the wall screens.
+
+  - q: Does it need the internet?
+    a:
+      - >-
+        The same connection your eJukebox music uses. The channels are the
+        broadcasters' own live streams, so there is no aerial to break up into
+        blocks. If the wifi at the far end of the room is patchy, say so and we
+        will look at a network point near the TV instead.
+
+  - q: Will it work with my TV?
+    a:
+      - >-
+        Any TV with an HDMI input. The eJukebox box goes into a spare port the
+        same way a set-top box does, and if you already run several TVs off one
+        splitter, the lead goes into that instead and every TV on it follows.
+        If your setup is unusual - an old panel, a projector, a screen already
+        fed by something else - tell us what it is and we will tell you straight.
+
+  - q: What about pay TV?
+    a:
+      - >-
+        Free-to-air today. Pay TV is in discussion.
+
+  - q: Can we keep the music we have got?
+    a:
+      - >-
+        The screens come with eJukebox music. That is the deal, and it is a
+        better deal than the box and the remote: licensed music for two zones,
+        updated every week, the request app your patrons use from their table,
+        and now every TV in the building from the same phone. The music side
+        lives at <a href="https://ejukebox.music">ejukebox.music</a>.
+
+  - q: What does it cost?
+    a:
+      - >-
+        The screens, the TV remote and the sport guide come with an eJukebox
+        music subscription. Beyond that it depends on how many screens you have
+        and how the room is wired - one TV behind a bar is a different job from
+        ten screens across two floors.
+      - >-
+        So rather than put a number on a web page that turns out to be wrong for
+        your venue, tell us about the room and we will talk it through properly.
+        One short conversation, and a figure that actually holds.
+
+  - q: Is it Australian?
+    a:
+      - >-
+        Yes. Built, run and supported here by MusicBot Pty Ltd. Send the form
+        through and you get one of us coming back to you, not a call centre and
+        not a chat window that takes three days.
 
 demo:
   - q: Will it work with my TV?
     a:
       - >-
-        Almost certainly. If the screen has a spare HDMI port, the player goes
-        into it the same way a set-top box does. It powers on with the venue and
-        runs around the clock. If your setup is unusual - an old panel, a
-        projector, a screen already fed by something else - tell us what it is
-        and we will tell you straight whether it will work.
+        Any TV with an HDMI input. The eJukebox box goes into a spare port the
+        same way a set-top box does. It powers on with the venue and runs around
+        the clock. If your setup is unusual - an old panel, a projector, a
+        screen already fed by something else - tell us what it is and we will
+        tell you straight whether it will work.
 
   - q: What about the screens with the footy on?
     a:
       - >-
-        Leave them on the footy. This goes on the spare screen - the one in the
-        corner nobody has switched on since the last grand final - so nothing
-        has to come off the game.
+        Put the footy on with it. Live free-to-air TV is part of the screens now:
+        pick the game from the guide, the screen switches to it at kick-off, and
+        it comes back to your specials after the whistle. Your specials show
+        during the ad breaks as well.
       - >-
-        If the room only has the one screen, you drive it around the fixture:
-        specials daily from four till six, then stop the show and hand the panel
-        back for the game. Starting and stopping is one tap in the manager app
-        from anywhere, and the schedule handles the regular stuff without anyone
-        touching it.
-      - >-
-        If you want both on the same panel through an HDMI switch, tell us how
-        it is wired and we will tell you straight whether it will work.
+        If you would still rather keep this on the spare screen and leave the
+        big one alone, that works too. You no longer have to choose.
 
   - q: What if the internet drops?
     a:
       - >-
-        The player is built to keep the screen up on its own. A watchdog
-        restarts the display if anything stops it, and your player is monitored
-        at our end so a problem gets spotted here rather than found by your
-        staff on a Saturday night.
+        The eJukebox box is built to keep the screen up on its own. A watchdog
+        restarts the display if anything stops it, and the box is monitored at
+        our end so a problem gets spotted here rather than found by your staff
+        on a Saturday night.
       - >-
-        Anything new - a fresh guest photo, a slide you just typed - has to come
-        down the connection, so that is the part that waits. If the wifi at the
-        far end of the room is patchy, say so on the call and we will look at a
-        network point near the TV instead.
+        Anything new - a fresh guest photo, a slide you just typed, the live TV
+        picture - has to come down the connection, so that is the part that
+        waits. If the wifi at the far end of the room is patchy, say so on the
+        call and we will look at a network point near the TV instead.
 
   - q: Who decides what photos go up?
     a:
       - >-
-        You do, and the AI screens everything first. Every guest photo is
-        checked for nudity, offensive gestures and anything tasteless
+        You do, and everything is checked first. Every guest photo is looked over
+        for nudity, offensive gestures and anything tasteless
         <strong>before</strong> it can reach the wall. What does not pass is
         held back, not displayed - it never gets as far as the screen.
       - >-
@@ -97,37 +198,32 @@ demo:
     a:
       - >-
         No. That is the whole point of it - it runs on the screens you already
-        own and already pay the power on. A spare HDMI port is the requirement.
-        If you later want a second screen, or a portrait one by the door, it
-        slots into the same system and gets its own version of every photo.
+        own and already pay the power on. A spare HDMI input is the requirement.
+        More TVs on the same picture is a lead and the splitter you have. A
+        different picture in another room is a small screen box behind that
+        wall - hardware once, nothing ongoing.
 
   - q: Does it need the music system too?
     a:
       - >-
-        No. The screen stands on its own and plenty of rooms would only ever
-        want the screen.
-      - >-
-        If you run eJukebox music as well, the two become one thing: the same QR
-        code that puts a photo on the wall takes song requests, and at a
-        function the host controls cover the music as well as the screen. The
-        music side lives at
+        The screens come with eJukebox music - that is the deal. The same QR
+        code that puts a photo on the wall takes song requests, the same phone
+        that changes the channel runs the music, and at a function the host
+        controls cover both. The music side lives at
         <a href="https://ejukebox.music">ejukebox.music</a>.
 
   - q: What does it cost?
     a:
       - >-
-        It depends on how many screens you have and how the room is set up - one
-        TV behind a bar is a different job from four screens, a function room
-        and a portrait panel at the door.
+        The screens, the TV remote and the sport guide come with an eJukebox
+        music subscription. Beyond that it depends on how many screens you have
+        and how the room is set up - one TV behind a bar is a different job from
+        four screens, a function room and a portrait panel at the door.
       - >-
         So rather than put a number on a web page that turns out to be wrong for
         your venue, tell us about the room and we will price it properly. It
         takes one short conversation and you get a figure that actually holds.
 
-  # CORRECTED. The page used to say "when you ring the number on this page" -
-  # there is no number on this page, by design, and there is not one anywhere on
-  # the site. Marking up a sentence the page cannot back is the one thing that
-  # turns FAQ markup into a liability.
   - q: Is it Australian?
     a:
       - >-

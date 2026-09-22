@@ -9,10 +9,10 @@
     ghost_href - optional secondary target
 {% endcomment %}
 <div class="closer">
-  <h2>{{ include.heading | default: "Your TV is already on the wall. Let's switch it on properly." }}</h2>
-  <p>{{ include.body | default: "Tell us about the room - how many screens, where they hang, what is on them now - and we will show you exactly what yours would look like with your logo on it." }}</p>
+  <h2>{{ include.heading | default: "Your TVs are already on the wall. Let's switch them on properly." }}</h2>
+  <p>{{ include.body | default: "Twenty minutes, on your own TV. We bring a portable unit, plug it into a TV in your bar and hand you the phone. Tell us about the room and we will set a time." }}</p>
   <div class="btn-row">
-    <a class="btn btn--primary" href="{{ include.href | default: '/demo/' | relative_url }}">{{ include.cta | default: "See it on your screen" }}</a>
+    <a class="btn btn--primary" href="{{ include.href | default: '/demo/' | relative_url }}">{{ include.cta | default: "See it on your own TV" }}</a>
     {% if include.ghost %}<a class="btn btn--ghost" href="{{ include.ghost_href | default: '/functions/' | relative_url }}">{{ include.ghost }}</a>{% endif %}
     <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
   </div>

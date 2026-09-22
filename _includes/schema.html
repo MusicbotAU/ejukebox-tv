@@ -131,8 +131,8 @@
       "@type": "Service",
       "@id": "{{ site.url }}/#service-screen",
       "name": "eJukebox TV venue screen system",
-      "serviceType": "Digital signage and guest photo wall for licensed venues",
-      "description": "A compact player into a spare HDMI port turns a screen the venue already owns into a live display - guest photos on the wall about three seconds after they are taken and AI-screened before they appear, announcements typed from a phone that design themselves, venue promos and join-in prompts in one rotation, scheduling that runs without anyone touching it, and a manager app that can stop the show from anywhere.",
+      "serviceType": "Live free-to-air TV, digital signage and guest photo wall for licensed venues",
+      "description": "Every free-to-air channel for the venue's city on every screen behind one lead, changed from the eJukebox app on a manager's phone. The weekend's sport is set once from a guide and the screens switch themselves at kick-off, the TV's sound comes up and the music goes quiet, and after the final whistle the venue's own slides and guests' photos come back. Between the games the same screens run promos, announcements typed from a phone, and guest photos that are checked before they show. It comes with eJukebox music.",
       "provider": { "@id": "{{ org_id }}" },
       "areaServed": { "@type": "Country", "name": "Australia" },
       "audience": { "@type": "BusinessAudience", "name": "Pubs, clubs, bars, hotels, cafes and function rooms" },
@@ -140,13 +140,18 @@
       "image": "{{ og_img }}",
       "hasOfferCatalog": {
         "@type": "OfferCatalog",
-        "name": "What the screen does",
+        "name": "What the screens do",
         "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Live free-to-air TV on every screen", "description": "Every free-to-air channel for the venue's city, on every screen behind the lead, from the broadcasters' own live streams." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "The phone is the remote", "description": "Tap a channel on the eJukebox app and every screen on the lead changes. Slideshow, TV sound on and off, and TV volume from the same phone." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Set the sport once", "description": "Pick the week's games from the guide. The screens switch at kick-off and come back to the venue's slides after the final whistle. Clashes are flagged before they save." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sound handled for you", "description": "At kick-off the TV's sound comes on and the music goes quiet by itself. At the whistle the music comes back where it was. The TV's sound comes out of the TV, never the music speakers." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Your specials during the ad breaks", "description": "When the ads come on, the screens show the venue's own slides. When the game returns, so does the picture." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Guest photo wall", "description": "A guest scans the QR prompt on the screen and takes a photo in the browser - no app, no sign-up - and it is on the big screen about three seconds later." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI photo moderation", "description": "Every guest photo is checked for nudity, offensive gestures and anything tasteless before it can reach the wall. What does not pass is held back, never displayed." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instant announcement slides", "description": "Type a line from a phone and the slide designs itself, goes up in the rotation, and takes itself down when it expires." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Every guest photo checked before it shows", "description": "Every guest photo is checked for nudity, offensive gestures and anything tasteless before it can reach the wall. What does not pass is held back, never displayed." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Instant announcement slides", "description": "Type a line from a phone and it is on every screen in seconds, then gone when it expires." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venue promos and scheduling", "description": "Promos, daily rules, one-off windows and join-in prompts in one rotation, kept in both portrait and landscape." } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manager app", "description": "Approve or hide photos, start and stop the show, and manage per-venue staff teams from a phone, from anywhere." } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manager app", "description": "Approve or hide photos, change the channel, start and stop the show, and manage per-venue staff teams from a phone, from anywhere." } }
         ]
       }
     }{% endif %}{% if page.schema_service == "functions" %},

@@ -1111,14 +1111,15 @@ html.motion-off .phone__status .dots i{animation:none}
 
     var GAP = 8, SLIDE_MS = 520;
     var LIB = {
+      tv:    { label: 'LIVE TV - SEVEN',          ms: 6200, rgb: '74,222,128'  },
       photo: { label: 'GUEST PHOTO',              ms: 5200, rgb: '255,179,71'  },
-      ai:    { label: 'AI SLIDE - 30 MIN',        ms: 5600, rgb: '160,107,255' },
+      ai:    { label: 'INSTANT SLIDE - 30 MIN',   ms: 5600, rgb: '160,107,255' },
       promo: { label: 'VENUE PROMO',              ms: 5200, rgb: '79,209,240'  },
       qr:    { label: 'QR PROMPT',                ms: 4400, rgb: '79,209,240'  },
       fresh: { label: 'FRESH PHOTO - 15 MIN FAME',ms: 4200, rgb: '255,179,71', slide: 'fresh', cls: 'is-fresh' },
       cut:   { label: 'PHOTO IN - 3s',            ms: 3600, rgb: '255,179,71', slide: 'fresh', cls: 'is-cut'   }
     };
-    var ORDER = ['photo','ai','promo','qr','photo','promo','ai','qr'];
+    var ORDER = ['tv','photo','ai','promo','tv','qr','photo','promo'];
     var oi = 0, fame = 0, since = 0;
     function nextKey(){
       since++;
@@ -1170,9 +1171,9 @@ html.motion-off .phone__status .dots i{animation:none}
     function build(){
       track.innerHTML = '';
       queue = [];
-      oi = 1; since = 0; fame = 0;   /* slot 0 is forced to 'photo', so start after it */
+      oi = 1; since = 0; fame = 0;   /* slot 0 is forced to 'tv' - the live game leads - so start after it */
       for (var i = 0; i < 6; i++){
-        var k = (i === 0) ? 'photo' : nextKey();
+        var k = (i === 0) ? 'tv' : nextKey();
         queue.push(k);
         track.appendChild(makeChip(k));
       }

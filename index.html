@@ -1,10 +1,13 @@
 ---
 layout: default
-title: Guest Photo Wall and Digital Signage for Pubs | eJukebox TV
-og_title: Your TV has been showing the same thing for years.
-description: Turn the spare screen in your pub or club into a guest photo wall, promo slides and announcements you type from your phone. Australian owned. See it live.
+page_css: css-tv.html
+title: Live TV on Pub Screens From Your Phone | eJukebox TV
+og_title: Every screen in the pub. One phone in your pocket.
+description: Every free-to-air channel on every screen in your pub, changed from your phone. Set the sport once and the screens switch themselves. Comes with eJukebox music.
 schema_service: screen
-date: 2026-09-01 12:00:00 +0800
+schema_faq: true
+faq_set: tv
+date: 2026-09-22 12:00:00 +0800
 changefreq: weekly
 priority: 1.0
 ---
@@ -12,36 +15,51 @@ priority: 1.0
 <!-- ======================================================= HERO / MARQUEE -->
 <section class="band band--flush band--spill" aria-labelledby="hero-h" style="padding-top:clamp(44px,6vw,84px)">
   <div class="spill" aria-hidden="true">
-    <span class="spill__layer is-on" data-spill style="background-image:radial-gradient(1150px 640px at 50% 6%, rgba(255,179,71,.17), rgba(255,179,71,.05) 44%, transparent 74%)"></span>
+    <span class="spill__layer is-on" data-spill style="background-image:radial-gradient(1150px 640px at 50% 6%, rgba(74,222,128,.15), rgba(74,222,128,.05) 44%, transparent 74%)"></span>
     <span class="spill__layer" data-spill></span>
   </div>
 
   <div class="wrap">
     <div class="grid grid--split">
       <div>
-        <h1 id="hero-h">Your TV has been showing the same thing for years.<br><span class="lit">Watch what else it can do.</span></h1>
+        <p class="eyebrow">Live TV on your screens - it comes with the music</p>
+        <h1 id="hero-h">Every screen in the pub.<br><span class="lit">One phone in your pocket.</span></h1>
 
-        <p class="lede">A small player into any spare HDMI port and the screen your venue already owns becomes a live display - your guests' photos on the wall about three seconds after they take them, announcements you type from your phone that design themselves, your promos in the rotation, and prompts that quietly teach every new customer how to join in.</p>
+        <p class="lede">Change the channel, put the weekend's sport on once, and let the screens switch themselves. Your specials and your guests' photos play between the games. No remote to lose, no box to sign into, no batteries to go flat.</p>
 
-        <p class="trustline">eJukebox has been putting music into Australian pubs, clubs and bars for years. Same team, same people who answer the email - and now the screen as well.</p>
+        <p class="trustline">eJukebox has been putting music into Australian pubs, clubs and bars for years. Same team, same people who read every enquiry - and now every TV in the building as well.</p>
 
         <div class="btn-row">
-          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
-          <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
-          <a class="btn btn--ghost" href="{{ '/functions/' | relative_url }}">Win the function booking</a>
+          <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your own TV</a>
+          <a class="btn btn--ghost" href="#how">How it works</a>
+        </div>
+
+        <div class="tv-chips" aria-label="In short">
+          <span class="chip chip--amber">Seven - Nine - Ten - ABC - SBS</span>
+          <span class="chip chip--good">Sport switches itself</span>
+          <span class="chip chip--amber">Your specials between the games</span>
         </div>
 
         <button class="playbtn" type="button" data-play="marquee">Pause the demo</button>
       </div>
 
       <div>
-        <div class="set" id="marquee">
+        <div class="set tv-set" id="marquee">
           <div class="set__frame">
             <span class="set__shine" aria-hidden="true"></span>
 
-            <div class="set__glass" data-glass role="img" aria-label="A venue screen running its rotation: a guest photo, an AI-designed announcement slide, a venue promo and a QR prompt. Every so often a fresh guest photo cuts into the queue and goes up early.">
+            <div class="set__glass" data-glass role="img" aria-label="A venue screen running its rotation: the live game, a guest photo, an instant announcement slide, a venue promo and a QR prompt. Every so often a fresh guest photo cuts into the queue and goes up early.">
 
-              <div class="slide slide--photo is-on" data-slide="photo">
+              <div class="slide slide--tv is-on" data-slide="tv">
+                <div class="tv-pitch" aria-hidden="true">
+                  <svg viewBox="0 0 160 90" preserveAspectRatio="none" focusable="false"><g fill="none" stroke="rgba(255,255,255,.72)" stroke-width="1"><rect x="6" y="6" width="148" height="78"/><line x1="80" y1="6" x2="80" y2="84"/><circle cx="80" cy="45" r="12"/><rect x="6" y="26" width="22" height="38"/><rect x="132" y="26" width="22" height="38"/></g></svg>
+                </div>
+                <span class="tv-score">SYD 2 - 1 MEL &nbsp;63'</span>
+                <span class="tv-live"><i></i>Live</span>
+                <span class="slide__onair"><i></i>Seven</span>
+              </div>
+
+              <div class="slide slide--photo" data-slide="photo">
                 <div class="frame-photo">
                   {% include pic.html src="wall-front-bar-high-table-flash" ratio="4/5" eager=true %}
                   <div class="frame-photo__cap">Sat 9:41 pm - a guest</div>
@@ -62,18 +80,18 @@ priority: 1.0
 
               <div class="slide slide--ai" data-slide="ai">
                 <div class="card-slide card-slide--ai">
-                  <div class="card-slide__kick">Typed at the bar</div>
+                  <div class="card-slide__kick">Instant slide</div>
                   <div class="card-slide__big">Trivia starts<br>in 15</div>
-                  <div class="card-slide__sub">Designed by AI - up for 30 minutes</div>
+                  <div class="card-slide__sub">Typed on the phone - up for 30 minutes</div>
                 </div>
                 <span class="slide__onair"><i></i>On air</span>
               </div>
 
               <div class="slide slide--promo" data-slide="promo">
                 <div class="card-slide">
-                  <div class="card-slide__kick">Thursday</div>
+                  <div class="card-slide__kick">Half time</div>
                   <div class="card-slide__big">Schnitzel night<br>from 5pm</div>
-                  <div class="card-slide__sub">Your promo - scheduled 4 till 8</div>
+                  <div class="card-slide__sub">Your promo - in the ad break</div>
                 </div>
                 <span class="slide__onair"><i></i>On air</span>
               </div>
@@ -97,7 +115,6 @@ priority: 1.0
           <!-- the room, unlit, with the screen as the only light on it -->
           <div class="silhouette" data-silhouette aria-hidden="true">
             <svg viewBox="0 0 600 120" preserveAspectRatio="xMidYMax meet" focusable="false">
-              <!-- the room falls away from the screen: one close figure, three further back -->
               <g fill="#04070a">
                 <path d="M228 120c0-30 20-48 46-48s46 18 46 48z"/>
                 <path d="M392 120c0-25 17-40 39-40s39 15 39 40z"/>
@@ -117,25 +134,271 @@ priority: 1.0
             </svg>
           </div>
 
-          <!-- THE PROGRAMME RAIL - what is on now and what is next -->
+          <!-- THE PROGRAMME RAIL - what is on now and what is next. The script rebuilds these chips. -->
           <div class="rail" aria-hidden="true">
             <div class="rail__track" data-rail-track>
-              <span class="rail__chip is-now"><i class="rail__fill"></i><span class="rail__label">Guest photo</span></span>
-              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">AI slide - 30 min</span></span>
+              <span class="rail__chip is-now"><i class="rail__fill"></i><span class="rail__label">Live TV - Seven</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Guest photo</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Instant slide - 30 min</span></span>
               <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Venue promo</span></span>
               <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">QR prompt</span></span>
-              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Guest photo</span></span>
-              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Venue promo</span></span>
+              <span class="rail__chip"><i class="rail__fill"></i><span class="rail__label">Live TV - Seven</span></span>
             </div>
           </div>
 
           <div class="set__strap">
-            <span class="anno anno--dim">Any TV - any HDMI - 24/7</span>
+            <span class="anno anno--dim">Any TV with an HDMI input - 24/7</span>
             <span class="anno anno--amber">Portrait + landscape</span>
+          </div>
+
+          <!-- the remote: channel buttons, Slideshow, and one rocker each for the TV's sound and the music -->
+          <div class="tv-remote" aria-hidden="true">
+            <span class="tv-remote__lbl">Screen</span>
+            <div class="tv-remote__grid">
+              <span class="tv-remote__k is-on">7</span><span class="tv-remote__k">9</span><span class="tv-remote__k">10</span>
+              <span class="tv-remote__k tv-remote__k--s">ABC</span><span class="tv-remote__k tv-remote__k--s">SBS</span><span class="tv-remote__k tv-remote__k--s">Slides</span>
+            </div>
+            <div class="tv-remote__rock"><span>TV sound -</span><span>TV sound +</span></div>
+            <span class="tv-remote__lbl">Music</span>
+            <div class="tv-remote__rock tv-remote__rock--music"><span>Music -</span><span>Music +</span></div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+
+<!-- ============================================ THE NIGHT THAT WENT WRONG -->
+<section class="band band--sober" id="night" aria-labelledby="night-h">
+  <div class="wrap">
+    <p class="eyebrow">One real night, this month</p>
+    <h2 id="night-h">Changing the channel in a pub today.</h2>
+    <p class="sub">The owner went to put the game on. This is how it went, and how it goes in a lot of venues on a Friday.</p>
+
+    <div class="tv-night" role="list">
+      <div class="tv-night__card" role="listitem">
+        <div class="tv-night__art tv-night__art--blocks" aria-hidden="true"></div>
+        <h3><span class="tv-night__mark" aria-hidden="true">&#10005;</span>The aerial drops out</h3>
+        <p>Free-to-air on the bar TV breaks up into blocks mid-game. Digital reception was never perfect, and when it goes, it goes in squares.</p>
+      </div>
+      <div class="tv-night__card" role="listitem">
+        <div class="tv-night__art tv-night__art--login" aria-hidden="true"><span class="tv-night__qr"></span><span class="tv-night__fail">Sign-in failed</span></div>
+        <h3><span class="tv-night__mark" aria-hidden="true">&#10005;</span>The box wants a login</h3>
+        <p>Upstairs, the streaming box asks for the 7plus app to be signed in again. It wants a QR code scanned on a phone. It fails. Nobody knows the password.</p>
+      </div>
+      <div class="tv-night__card" role="listitem">
+        <div class="tv-night__art tv-night__art--remote" aria-hidden="true"><span class="tv-night__rem"><span class="tv-night__batt"></span></span></div>
+        <h3><span class="tv-night__mark" aria-hidden="true">&#10005;</span>The remote is flat</h3>
+        <p>The finicky little remote will not change the station. Someone hunts for batteries. Everyone gives up and it gets changed by hand, on the TV itself.</p>
+      </div>
+      <div class="tv-night__card is-ok" role="listitem">
+        <div class="tv-night__art tv-night__art--ok" aria-hidden="true"><span class="tv-night__ph"></span><span class="tv-night__scr"></span><span class="tv-night__scr"></span><span class="tv-night__scr"></span><span class="tv-night__tick">&#10003;</span></div>
+        <h3><span class="tv-night__mark" aria-hidden="true">&#10003;</span>With eJukebox</h3>
+        <p>One tap on the manager's phone. Every screen switches, upstairs and down. The sound comes on. The music goes down. Nobody moves.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:var(--gap)">
+      <p class="tv-quote">By the time someone found batteries, the first quarter was gone and the music was still going under the commentary. That is a normal Friday in a lot of venues. <strong>With eJukebox it is one tap on the manager's phone: every screen switches, the sound comes up, the music goes down, and after the whistle the specials come back on the screens and the music comes back on its own.</strong></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================= WHAT YOU GET -->
+<section class="band" id="get" aria-labelledby="get-h">
+  <div class="wrap">
+    <p class="eyebrow">What you get</p>
+    <h2 id="get-h">The screens look after themselves.</h2>
+    <p class="sub">Four things, and every one of them is running in venues now.</p>
+
+    <div class="grid grid--4 tv-cards">
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+        <h3>The phone is the remote</h3>
+        <p>Every TV in the building, upstairs and down, from the eJukebox app staff already carry. Nothing to lose, nothing to go flat.</p>
+      </div>
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="16" y1="2" x2="16" y2="6"/><circle cx="12" cy="15" r="2"/></svg></span>
+        <h3>Set the sport once</h3>
+        <p>Pick the weekend's games from the guide on Monday. The screens switch at kick-off and come back to your specials after the whistle.</p>
+      </div>
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M3 14l5-5 4 4 3-3 6 6"/><line x1="8" y1="21" x2="16" y2="21"/></svg></span>
+        <h3>Your pictures between the games</h3>
+        <p>Specials, events and function photos on the same screens. The match, your happy hour at half time, then the match again.</p>
+      </div>
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9a4 4 0 0 1 0 6"/><path d="M18.5 6.5a8 8 0 0 1 0 11"/></svg></span>
+        <h3>Sound where it belongs</h3>
+        <p>The TV's sound comes out of the TV. Your music keeps playing through your speakers, and each has its own volume on the phone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================= HOW IT WORKS -->
+<section class="band" id="how" aria-labelledby="how-h">
+  <div class="wrap">
+    <p class="eyebrow">How it works</p>
+    <h2 id="how-h">One lead. One app. One tap.</h2>
+    <p class="sub">Nothing on your wall changes. The TVs you already own, the splitter you already have if you have one, your existing internet. The only new thing in the venue is one lead from the eJukebox box.</p>
+
+    <div class="tv-chain" role="img" aria-label="The chain: the staff app on the manager's phone, to the eJukebox box that already plays the music, down one lead into the TV or the venue's existing splitter, to every screen upstairs and down.">
+      <div class="tv-chain__node tv-chain__node--phone"><b>The phone</b><span>The eJukebox app, on the manager's own phone</span></div>
+      <div class="tv-chain__arr" aria-hidden="true">&rarr;</div>
+      <div class="tv-chain__node"><b>The eJukebox box</b><span>The same unit that already plays the music</span></div>
+      <div class="tv-chain__arr" aria-hidden="true">&rarr;</div>
+      <div class="tv-chain__node"><b>One lead</b><span>Into the TV, or into the splitter the venue already has</span></div>
+      <div class="tv-chain__arr" aria-hidden="true">&rarr;</div>
+      <div class="tv-chain__node tv-chain__node--tv"><b>Every screen</b><span>Upstairs and down, all following the one tap</span></div>
+    </div>
+
+    <div class="steps" style="margin-top:clamp(24px,3vw,36px)">
+      <div class="step">
+        <div class="step__n">01</div>
+        <h3>We plug in one lead</h3>
+        <p>From the eJukebox box into your TV, or into the splitter you already have. Every TV on it follows.</p>
+      </div>
+      <div class="step">
+        <div class="step__n">02</div>
+        <h3>Staff sign in</h3>
+        <p>The eJukebox app on their own phones, with your venue's sign-in. Managers get the remote, and the sport guide is right there.</p>
+      </div>
+      <div class="step">
+        <div class="step__n">03</div>
+        <h3>Tap a logo</h3>
+        <p>Seven, Nine, Ten, ABC, SBS and their sisters. Tap Slideshow and your own pictures come back.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ====================================================== FRIDAY TIMELINE -->
+<section class="band" id="friday" aria-labelledby="fri-h">
+  <div class="wrap">
+    <p class="eyebrow">The Friday timeline</p>
+    <h2 id="fri-h">Set on Monday. Runs itself on Friday.</h2>
+    <p class="sub">Five beats on one line. This is the proof that nobody has to stand in front of a TV at 7:29 with a remote.</p>
+
+    <div class="strip strip--5">
+      <div class="strip__frame">
+        <div class="strip__t">Mon</div>
+        <h3 class="strip__w">Set the sport</h3>
+        <p class="strip__d">The manager opens the guide and taps Saturday's game. Done for the week. If two games clash, the app says so before it saves.</p>
+      </div>
+      <div class="strip__frame">
+        <div class="strip__t">4:30</div>
+        <h3 class="strip__w">Kick-off</h3>
+        <p class="strip__d">The screens switch by themselves. The TV's sound comes on. The music goes quiet.</p>
+      </div>
+      <div class="strip__frame">
+        <div class="strip__t">Ads</div>
+        <h3 class="strip__w">Your specials</h3>
+        <p class="strip__d">When the ads come on, the screens show your slides instead. When the game comes back, so does the picture.</p>
+      </div>
+      <div class="strip__frame">
+        <div class="strip__t">7:00</div>
+        <h3 class="strip__w">Final whistle</h3>
+        <p class="strip__d">The slideshow comes back. The music comes back at the level it was.</p>
+      </div>
+      <div class="strip__frame">
+        <div class="strip__t">Any time</div>
+        <h3 class="strip__w">Change your mind</h3>
+        <p class="strip__d">Tap a different channel, or Slideshow, or Mute. The phone always wins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================ SOUND -->
+<section class="band" id="sound" aria-labelledby="sound-h">
+  <div class="wrap">
+    <p class="eyebrow">Sound</p>
+    <h2 id="sound-h">Two lanes that never cross.</h2>
+    <p class="sub">The question every venue asks first: does the commentary come through my music speakers? No. Never. The TV's sound comes out of the TV, the music stays on the music speakers, and each has its own volume on the phone.</p>
+
+    <div class="tv-lanes">
+      <div class="tv-lane tv-lane--music">
+        <h3>Music</h3>
+        <ol>
+          <li>Plays through the venue's music speakers, as it always has</li>
+          <li>Goes quiet by itself when a game with sound starts</li>
+          <li>Comes back where it was at the whistle</li>
+          <li>Its own volume on the phone</li>
+        </ol>
+      </div>
+      <div class="tv-lane tv-lane--tv">
+        <h3>TV</h3>
+        <ol>
+          <li>Comes out of the TV, down the same lead as the picture</li>
+          <li>Comes on at kick-off, if the game was set with sound</li>
+          <li>Stays on under the ad-break slides, so the game comes straight back</li>
+          <li>Its own volume on the phone</li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="note" style="margin-top:var(--gap)">Rather keep the music going through the game? Set the game silent instead. On many TVs the phone can even change the volume of the TV itself.</p>
+  </div>
+</section>
+
+
+<!-- ============================================================= CHANNELS -->
+<section class="band band--tight" id="channels" aria-labelledby="chan-h">
+  <div class="wrap">
+    <p class="eyebrow">Channels</p>
+    <h2 id="chan-h">Every free-to-air channel for your state.</h2>
+    <p class="sub">The broadcasters' own live streams, picked for your city, so there is no aerial to drop out. Sport channels come and go with the season.</p>
+
+    <div class="tv-chan" role="list" aria-label="Channels">
+      <span role="listitem">ABC</span><span role="listitem">SBS</span><span role="listitem">Seven</span><span role="listitem">Nine</span><span role="listitem">Ten</span>
+      <span role="listitem">7two</span><span role="listitem">7mate</span><span role="listitem">9Gem</span><span role="listitem">9Go</span><span role="listitem">9Rush</span>
+      <span role="listitem">SBS Viceland</span><span role="listitem">NITV</span><span role="listitem">ABC News</span><span role="listitem">Sky News</span>
+      <span role="listitem" class="is-sport">Red Bull TV</span><span role="listitem" class="is-sport">FIFA+</span><span role="listitem" class="is-sport">Sky Racing</span>
+      <span role="listitem" class="is-sport">Koori Knockout</span><span role="listitem" class="is-sport">QRL</span><span role="listitem" class="is-sport">WNBL</span>
+    </div>
+
+    <p class="note">Free-to-air today. Pay TV is in discussion.</p>
+  </div>
+</section>
+
+
+<!-- ========================================================= MORE THAN TV -->
+<section class="band band--spill" id="more" aria-labelledby="more-h">
+  <div class="wrap">
+    <p class="eyebrow">More than TV</p>
+    <h2 id="more-h">The same screens sell the venue all night.</h2>
+    <p class="sub">The TV is the part everyone asks about. The rest is what the screens do the other twenty hours a day, and none of it has gone anywhere. When the TV is not on, the screens are never blank.</p>
+
+    <div class="grid grid--4 tv-cards tv-cards--more">
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="2"/><line x1="7" y1="10" x2="17" y2="10"/><line x1="7" y1="13" x2="13" y2="13"/><line x1="9" y1="21" x2="15" y2="21"/></svg></span>
+        <h3>Slides we design for you</h3>
+        <p>Specials, the week's events, the function menu. Send us the words, we build the slide, and it is on the screens the same day.</p>
+      </div>
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg></span>
+        <h3>Your guests' photos</h3>
+        <p>Guests send a photo from their phone and it is up on the wall with your logo on it, checked before it shows. Kept in portrait and landscape, and as Instagram-ready crops.</p>
+      </div>
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v9H9l-5 4z"/><line x1="8" y1="10" x2="16" y2="10"/></svg></span>
+        <h3>A line on the screen in seconds</h3>
+        <p>"Kitchen closes at 9." "Trivia starts in ten." Type it on the phone and it is on every screen, then gone when you say.</p>
+      </div>
+      <div class="panel">
+        <span class="tv-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 15.6 7.1 18.2l.9-5.5-4-3.9L9.5 8z"/></svg></span>
+        <h3>Functions and events</h3>
+        <p>The night's photos and dedications on the screens while it happens, and a private page for the host the morning after.</p>
+      </div>
+    </div>
+
+    <p class="tv-aside"><strong>Got our request touchscreen at the bar?</strong> It keeps doing what it does: song requests, dedications, and the same photos and slides as its screensaver. The TV goes on your wall screens.</p>
   </div>
 </section>
 
@@ -157,7 +420,7 @@ priority: 1.0
       <div class="strip__frame">
         <div class="strip__t">~1s</div>
         <h3 class="strip__w">Checked, then dressed</h3>
-        <p class="strip__d">AI screens it for nudity, offensive gestures and anything tasteless <strong>before</strong> it can reach the wall. Anything questionable is held back, not displayed. What passes is branded with your logo and kept in both portrait and landscape.</p>
+        <p class="strip__d">Every photo is checked for nudity, offensive gestures and anything tasteless <strong>before</strong> it can reach the wall. Anything questionable is held back, not displayed. What passes is branded with your logo and kept in both portrait and landscape.</p>
         <div class="gate" data-gate role="img" aria-label="An illustration of the check: an incoming photo is scanned, then either approved onto the wall or held back and never shown." style="margin-top:16px">
           <div class="gate__wall" aria-hidden="true">
             {% include pic.html src="wall-older-regulars-corner" thumb=true %}
@@ -177,7 +440,7 @@ priority: 1.0
               <span class="gate__badge gate__badge--held">Held</span>
             </div>
           </div>
-          <span class="gate__caption">AI check</span>
+          <span class="gate__caption">The check</span>
         </div>
       </div>
 
@@ -207,7 +470,7 @@ priority: 1.0
         <div>
           <p class="eyebrow">Functions and events</p>
           <h2 id="fx-h" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">The photo wall is the reason they book the room again.</h2>
-          <p style="color:var(--smoke)">Weddings, engagements, 40ths, the work Christmas party. Guests scan the QR on the table, take a photo, and it is on the big screen before they have sat back down. The room turns around and looks - and that happens again every few minutes all night.</p>
+          <p style="color:var(--smoke)">Weddings, engagements, 40ths, the work Christmas party. Guests scan the QR on the table, take a photo, and it is on the big screen before they have sat back down. The room turns around and looks - and that happens again every few minutes all night. The morning after, the host gets a private page with every photo and dedication from the night.</p>
           <div class="btn-row" style="margin-top:22px">
             <a class="btn btn--primary" href="{{ '/functions/' | relative_url }}">See what a function looks like</a>
           </div>
@@ -232,7 +495,7 @@ priority: 1.0
 <section class="band band--ai" id="composer" aria-labelledby="comp-h">
   <div class="wrap">
     <p class="eyebrow eyebrow--ai">Instant slides</p>
-    <h2 id="comp-h">Type it. It designs itself.</h2>
+    <h2 id="comp-h">Type it. It is on every screen in seconds.</h2>
     <p class="sub">Standing at the bar at 11:20 with a phone in your hand is the worst possible time to open a design app. So don't. Type the sentence, tell it how long to stay up, and it is on the wall before you have put the phone back in your pocket - then it takes itself down.</p>
 
     <div class="composer">
@@ -258,13 +521,13 @@ priority: 1.0
             <div class="aislide is-lit is-built" data-aislide data-design="a">
               <div class="aislide__head" data-head><span class="aislide__word" style="--w:0">Last</span> <span class="aislide__word" style="--w:1">drinks</span> <span class="aislide__word" style="--w:2">11:30</span></div>
               <div class="aislide__sub" data-sub>Bar closes at midnight. Get one more in.</div>
-              <span class="durpill" data-pill>Auto-removes in 30:00</span>
+              <span class="durpill" data-pill>Comes down in 30:00</span>
             </div>
           </div>
         </div>
         <div class="set__shadow" aria-hidden="true"></div>
         <div class="set__strap">
-          <span class="anno anno--violet">Designed by AI</span>
+          <span class="anno anno--violet">A slide, not a form</span>
           <span class="anno anno--dim">Saved for next time</span>
         </div>
       </div>
@@ -275,7 +538,7 @@ priority: 1.0
     <div class="panel panel--ai deck" style="margin-top:clamp(22px,2.6vw,30px)">
       <div>
         <p class="anno anno--violet" style="margin-bottom:6px">Press one</p>
-        <p style="margin:0;color:var(--smoke);max-width:30em">Press one and watch. Same words, a different design every time - it is designing the slide, not filling in a form.</p>
+        <p style="margin:0;color:var(--smoke);max-width:30em">Press one and watch. Same words, a different look every time - it is laying out a slide, not filling in a form.</p>
         <button class="playbtn" type="button" data-play="composer">Pause the demo</button>
       </div>
       <div class="presets" role="group" aria-label="Try one of these slides">
@@ -303,9 +566,9 @@ priority: 1.0
 <!-- ======================================================= ONE ROTATION -->
 <section class="band" aria-labelledby="rot-h">
   <div class="wrap">
-    <p class="eyebrow">Digital signage that runs itself</p>
-    <h2 id="rot-h">One rotation. Everything in it.</h2>
-    <p class="sub">Digital signage without nine separate systems and nine logins. One screen, one rotation, and everything below takes its turn in it.</p>
+    <p class="eyebrow">Between the games</p>
+    <h2 id="rot-h">One rotation. The game, your specials, their photos.</h2>
+    <p class="sub">Not nine separate systems and nine logins. One screen, one rotation, and everything below takes its turn in it - the live TV included.</p>
 
     <div class="sched">
       <div class="sched__head" aria-hidden="true">
@@ -315,21 +578,30 @@ priority: 1.0
       </div>
 
       <div class="sched__row">
+        <div class="sched__slot"><span class="sr-only">In the rotation: </span>Live TV</div>
+        <div class="sched__what">
+          <h3>The game, when you set it</h3>
+          <p>Pick it from the guide once. The screens switch to it at kick-off and hand back to the slideshow after the whistle. Tap Slideshow any time and your own pictures come back.</p>
+        </div>
+        <div class="sched__freq"><span class="sr-only">How often: </span>When set</div>
+      </div>
+
+      <div class="sched__row">
         <div class="sched__slot"><span class="sr-only">In the rotation: </span>Your ads and promos</div>
         <div class="sched__what">
           <h3>The screen sells for you all night</h3>
-          <p>Specials, upcoming gigs, function packages, the members' draw. Your promos sit in the rotation between the photos, on a screen you already own and already pay the power on.</p>
+          <p>Specials, upcoming gigs, function packages, the members' draw. Your promos sit in the rotation between the photos - and during the ad breaks in the game - on a screen you already own and already pay the power on.</p>
         </div>
         <div class="sched__freq"><span class="sr-only">How often: </span>In rotation</div>
       </div>
 
       <div class="sched__row">
-        <div class="sched__slot"><span class="sr-only">In the rotation: </span>Smart rotation</div>
+        <div class="sched__slot"><span class="sr-only">In the rotation: </span>Short messages</div>
         <div class="sched__what">
           <h3>Urgent things come round more often</h3>
           <p>A 15-minute message earns a denser slot than an hour-long one, so the thing that matters right now actually gets seen. Fresh guest photos jump the queue entirely.</p>
         </div>
-        <div class="sched__freq"><span class="sr-only">How often: </span>Automatic</div>
+        <div class="sched__freq"><span class="sr-only">How often: </span>By itself</div>
       </div>
 
       <div class="sched__row">
@@ -354,8 +626,7 @@ priority: 1.0
         <div class="sched__slot"><span class="sr-only">In the rotation: </span>Every shape of screen</div>
         <div class="sched__what">
           <h3>Portrait and landscape, both kept</h3>
-          <p>A portrait screen by the bar and a widescreen TV on the wall each get the version that fills them properly. No stretched faces, no photo the size of a postage stamp between two black bars.</p>
-          <p style="margin-top:12px">And it does not have to fight the footy. It goes on the spare screen - the one in the corner nobody has switched on since the last grand final - so nothing comes off the game.</p>
+          <p>A portrait screen by the bar and a widescreen TV on the wall each get the version that fills them properly. No stretched faces, no photo the size of a postage stamp between two black bars. Upload the logo once and it rides on every frame.</p>
           <figure class="shot" style="margin-top:20px">
             <div class="shot__f">{% include pic.html src="screen-front-bar-tiled-afternoon" ratio="16/9" alt="A widescreen TV mounted on the dark wall behind a long white-tiled front bar, running eJukebox TV in the afternoon while a few regulars talk at the far end." %}</div>
             <figcaption><span class="anno anno--dim">The screen already on the wall</span><span class="anno anno--dim">Illustrative - AI generated</span></figcaption>
@@ -363,20 +634,41 @@ priority: 1.0
         </div>
         <div class="sched__freq"><span class="sr-only">How often: </span>Every screen</div>
       </div>
-
-      <div class="sched__row">
-        <div class="sched__slot"><span class="sr-only">In the rotation: </span>Your brand on it</div>
-        <div class="sched__what">
-          <h3>Your logo on every frame, and on their feed</h3>
-          <p>Upload the logo once and it rides on every photo. The same photos come back as Instagram-ready crops, so a guest posting their night out is posting your room.</p>
-        </div>
-        <div class="sched__freq"><span class="sr-only">How often: </span>Every photo</div>
-      </div>
     </div>
 
     <div class="btn-row" style="margin-top:clamp(24px,3vw,34px)">
-      <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your screen</a>
+      <a class="btn btn--primary" href="{{ '/demo/' | relative_url }}">See it on your own TV</a>
       <a class="btn btn--ghost" href="{{ '/contact/' | relative_url }}">Talk to us</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================= THE DEAL -->
+<section class="band" id="deal" aria-labelledby="deal-h">
+  <div class="wrap">
+    <p class="eyebrow eyebrow--signal">The deal</p>
+    <h2 id="deal-h">It comes with the music.</h2>
+
+    <div class="tv-deal">
+      <div>
+        <p style="margin:0">eJukebox music already gives you the whole room: licensed music for two zones, updated every week, with the request app your patrons use from their table. The screens ride on top of it. Music and TV, finally in the one app.</p>
+        <ul>
+          <li>Slideshow screens with your specials, events and your guests' photos</li>
+          <li>Live free-to-air TV and the sport guide, from the same app</li>
+          <li>More TVs on the same picture: a lead and a splitter</li>
+          <li>A different picture in another room: a small screen box, hardware once, nothing ongoing</li>
+          <li>Never another subscription for the screens</li>
+        </ul>
+        <div class="btn-row" style="margin-top:22px">
+          <a class="btn btn--ghost" href="{{ site.family.music }}">The music side - ejukebox.music</a>
+          <a class="btn btn--ghost" href="{{ site.family.parent }}">Everything else - ejukebox.com.au</a>
+        </div>
+      </div>
+      <div class="tv-deal__box">
+        <b>One system.<br>Music and TV.</b>
+        <span>The screens, the TV remote and the sport guide come with an eJukebox music subscription. Tell us about the room and we will talk it through.</span>
+      </div>
     </div>
   </div>
 </section>
@@ -415,7 +707,7 @@ priority: 1.0
             </div>
           </div>
           <div class="set__strap">
-            <span class="anno anno--dim">PIN-locked player</span>
+            <span class="anno anno--dim">PIN-locked screen</span>
             <button class="btn btn--ghost btn--small" type="button" data-pin-toggle aria-expanded="false" aria-controls="pinpad-demo">Show the PIN pad</button>
           </div>
         </div>
@@ -431,11 +723,11 @@ priority: 1.0
           <li><span><strong>Australian owned and supported.</strong> Built here, run here, and answered by a person in Australia.</span></li>
           <li><span><strong>The TV is PIN-locked.</strong> Walk up to the screen, press Escape, and you get a PIN pad - not a desktop, not a file manager, not somebody's browser tabs.</span></li>
           <li><span><strong>It heals itself.</strong> A watchdog restarts the display if anything ever stops it, so a hiccup at 9pm on a Saturday does not become a black screen for the rest of the night.</span></li>
-          <li><span><strong>We watch your player.</strong> It is monitored and managed remotely, so problems get spotted and fixed at our end rather than found by your staff on a Saturday night.</span></li>
-          <li><span><strong>Approve or hide from your pocket.</strong> The manager app handles photos one at a time or in bulk, fires a slide, changes the schedule, and starts or stops the show from anywhere.</span></li>
+          <li><span><strong>We keep an eye on it.</strong> The box is monitored and managed from our end, so problems get spotted and fixed here rather than found by your staff on a Saturday night.</span></li>
+          <li><span><strong>Approve or hide from your pocket.</strong> The manager app handles photos one at a time or in bulk, fires a slide, changes the schedule, changes the channel, and starts or stops the show from anywhere.</span></li>
           <li><span><strong>Push notifications.</strong> The right people get told when something actually needs a decision. A glance at the phone, one tap, done.</span></li>
           <li><span><strong>Sign-in without passwords.</strong> Staff get in with Google, Microsoft or Apple, organised into per-venue teams. Add a manager by email, remove someone the day they leave.</span></li>
-          <li><span><strong>Powers on with the venue.</strong> A compact player into any spare HDMI port. It starts when the room starts and runs around the clock with nobody touching it.</span></li>
+          <li><span><strong>Powers on with the venue.</strong> The eJukebox box into any spare HDMI input. It starts when the room starts and runs around the clock with nobody touching it.</span></li>
         </ul>
       </div>
     </div>
@@ -451,25 +743,28 @@ priority: 1.0
 <section class="band" aria-labelledby="road-h">
   <div class="wrap">
     <p class="eyebrow">Where this goes</p>
-    <h2 id="road-h">Today it does photos, slides, promos and prompts.</h2>
+    <h2 id="road-h">Today it does live TV, photos, slides, promos and prompts.</h2>
     <p class="sub">It takes its orders from a phone instead of a USB stick, so what is on it can change on a Tuesday afternoon. Here is exactly what is live now, and what is coming but is not here yet.</p>
 
     <p class="anno anno--good" style="margin-bottom:12px">Live today</p>
     <div class="tags" style="margin-bottom:34px">
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Live free-to-air TV</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>The phone is the remote</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>The sport guide</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Sound handled for you</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Your specials in the ad breaks</span>
       <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Guest photo wall</span>
-      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Instant AI slides</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Every photo checked first</span>
+      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Instant slides</span>
       <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Saved and reusable slides</span>
       <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Your own ads and promos</span>
-      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Smart rotation</span>
       <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>QR prompts</span>
       <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>Scheduling</span>
-      <span class="tag tag--live"><span class="dot" aria-hidden="true"></span><span class="sr-only">Live today: </span>AI photo moderation</span>
     </div>
 
     <p class="anno anno--dim" style="margin-bottom:12px">On the way - not shipping yet</p>
     <div class="tags">
       <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span><span class="sr-only">Coming soon, not shipping yet: </span>News headlines between slides</span>
-      <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span><span class="sr-only">Coming soon, not shipping yet: </span>Live sport scores</span>
       <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span><span class="sr-only">Coming soon, not shipping yet: </span>Weather for the beer garden</span>
       <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span><span class="sr-only">Coming soon, not shipping yet: </span>Specials and menu boards</span>
       <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span><span class="sr-only">Coming soon, not shipping yet: </span>Happy-hour countdowns</span>
@@ -478,19 +773,32 @@ priority: 1.0
       <span class="tag tag--road"><span class="dia" aria-hidden="true">&#9671;</span><span class="sr-only">Coming soon, not shipping yet: </span>Community notices</span>
     </div>
 
-    <p class="note">Everything marked &#9671; is on the roadmap and is not shipping yet. Nothing else on this page is a promise about the future - it is what the screen does today.</p>
+    <p class="note">Everything marked &#9671; is on the roadmap and is not shipping yet. Nothing else on this page is a promise about the future - it is what the screens do today.</p>
   </div>
 </section>
 
 
-<!-- ================================================ PLAYS WELL WITH MUSIC -->
-<section class="band band--tight" aria-labelledby="music-h">
+<!-- ================================================================== FAQ -->
+<section class="band" id="faq" aria-labelledby="faq-h">
   <div class="wrap wrap--narrow">
-    <p class="eyebrow eyebrow--signal">Better together</p>
-    <h2 id="music-h" style="font-size:clamp(1.5rem,3vw,2.1rem)">Plays well with music.</h2>
-    <p class="sub">Same QR code. A guest who has just put their face on the wall can request the next song from it, and the music schedules itself alongside the screen - Friday night loud, Sunday session easy. Human-curated Australian channels, and we collect and remit your OneMusic licence for you at cost.</p>
-    <div class="btn-row">
-      <a class="btn btn--ghost" href="{{ site.family.music }}">Background music for your venue - eJukebox Music</a>
+    <p class="eyebrow">Straight answers</p>
+    <h2 id="faq-h">The questions everyone asks first.</h2>
+
+    {%- comment -%}
+      Rendered from _data/faq.yml (the "tv" set), and the FAQPage structured data
+      is rendered from the same rows by _includes/schema.html. Edit the YAML.
+    {%- endcomment -%}
+    <div class="faq">
+      {%- for f in site.data.faq[page.faq_set] %}
+      <details{% if forloop.first %} open{% endif %}>
+        <summary>{{ f.q }}</summary>
+        <div class="faq__a">
+          {%- for para in f.a %}
+          <p>{{ para }}</p>
+          {%- endfor %}
+        </div>
+      </details>
+      {%- endfor %}
     </div>
   </div>
 </section>
@@ -499,6 +807,6 @@ priority: 1.0
 <!-- =============================================================== CLOSER -->
 <section class="band band--tight band--flush" aria-label="Talk to us">
   <div class="wrap">
-    {% include cta.html ghost="See a function night" ghost_href="/functions/" %}
+    {% include cta.html heading="Twenty minutes, on your own TV." body="We bring a portable unit, plug it into a TV in your bar and hand you the phone. You will have changed the channel on your own screen before the coffee is cold. Tell us about the room and we will set a time." cta="See it on your own TV" ghost="See a function night" ghost_href="/functions/" %}
   </div>
 </section>

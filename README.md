@@ -2,6 +2,13 @@
 
 Source for **https://ejukebox.tv** - the eJukebox TV sister site.
 
+**What it sells (from 22 September 2026):** live free-to-air TV on every screen in the venue,
+run from the eJukebox app on a manager's phone, with the sport set once from a guide and the
+screens switching themselves at kick-off - plus everything the screens did before: the guest
+photo wall, instant slides, promos, scheduling and functions. It comes with eJukebox music.
+The handover brief that defines this is the "Every screen in the pub, one phone in your pocket"
+artifact of 22 September 2026; the rules below are lifted from it.
+
 **Jekyll on GitHub Pages**, built server-side by GitHub. No Actions, no local build step,
 no Ruby needed on your machine - edit a file and push. The only plugin is
 `jekyll-sitemap`, which is on the GitHub Pages whitelist and runs server-side.
@@ -118,3 +125,28 @@ If the form endpoint ever needs changing, change it in the include. Do not add a
 Before pushing, grep every file for em dashes, en dashes and dollar signs.
 
 The main eJukebox site is a separate repo (`MusicbotAU/ejukebox-website`, `gh-pages` branch).
+
+## Words that never appear on this site (the September 2026 brief)
+
+Search for these before every push. Any hit in visible copy is a defect.
+
+- **automation, automated, automatically** - say "switches itself", "by itself", "runs itself",
+  "on its own". The one exception is the phrase "runs itself" in headings, which is fine.
+- **kiosk**, **HLS**, **manifest**, **agent**, **schedule engine**, **relay**, **SCTE / cue / marker** -
+  plumbing words. The customer never hears them.
+- **stream** as a noun. The one allowed use is "the broadcasters' own live streams".
+- **player** - say "the eJukebox box" or "the eJukebox computer".
+- **AI** - never in feature copy. Say "slides we design for you"; for instant slides keep it to
+  "type it and it is on the screen". The image disclosure ("Illustrative - AI generated, not
+  photographs of real customers") is the ONE place the word stays, because it is the truth
+  about the pictures and removing it would make the site dishonest.
+- **smart**, **seamless** (more than once), and **any exclamation mark**.
+- **Any pay TV brand by name.** Never. If a question needs it: "Free-to-air today. Pay TV is in
+  discussion." The channel wall uses text only - no broadcaster logos.
+- **"turns your TV on"** - say "changes the channel". **"works with any TV"** only with "with an
+  HDMI input". **"no internet needed"** - never. **"the first in the world"** - never; the honest
+  form is "music and TV, finally in the one app".
+- **Store badges for the staff app** - not until Marc confirms it is approved. Say "the eJukebox
+  app your staff already carry".
+- **Phone numbers and email addresses** - none anywhere on this site, including in structured
+  data. Every route to us is the form.
